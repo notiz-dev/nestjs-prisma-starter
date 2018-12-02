@@ -8,11 +8,11 @@ export class UsersResolver {
 
     @Query('users')
     async getUsers(@Args() args, @Info() info): Promise<User[]> {
-        return await this.prisma.prisma.users(args);
+        return await this.prisma.client.users(args);
     }
 
     @Mutation('createUser')
     async createUser(@Args() args) {
-        return await this.prisma.prisma.createUser(args);
+        return await this.prisma.client.createUser(args);
     }
 }
