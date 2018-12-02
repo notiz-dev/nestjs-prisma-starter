@@ -4,12 +4,19 @@ type Query {
 }
 
 type Mutation {
-    createUser(name: String!): User!
+  signup(email: String!, password: String!, name: String): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
 }
 
 type User {
   id: ID!
-  name: String!
+  email: String!
+  name: String
 }
 
 input UserWhereInput {

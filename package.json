@@ -4,6 +4,12 @@
   "description": "Nest Prisma",
   "author": "Marc Stammerjohann",
   "license": "MIT",
+  "keywords": [
+    "NestJS",
+    "Prisma",
+    "Prisma Client",
+    "Typescript"
+  ],
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
@@ -26,8 +32,10 @@
     "@nestjs/core": "^5.4.0",
     "@nestjs/graphql": "^5.4.0",
     "apollo-server-express": "^2.2.5",
+    "bcrypt": "^3.0.2",
     "graphql": "^14.0.2",
     "graphql-tools": "^4.0.3",
+    "jsonwebtoken": "^8.4.0",
     "prisma-client-lib": "^1.21.1",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
@@ -64,5 +72,12 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcjulian/nestjs-prisma-client-example.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marcjulian/nestjs-prisma-client-example/issues"
   }
 }

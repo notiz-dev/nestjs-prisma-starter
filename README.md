@@ -5,7 +5,7 @@
 Setup [Prisma CLI](https://www.prisma.io/docs/1.21/get-started/01-setting-up-prisma-new-database-TYPESCRIPT-t002/)
 
 ```bash
-  npm install -g prisma
+npm install -g prisma
 ```
 
 #### Step 2
@@ -13,7 +13,7 @@ Setup [Prisma CLI](https://www.prisma.io/docs/1.21/get-started/01-setting-up-pri
 Install Docker and start Prisma and the connected database by running the following command: 
 
 ```bash
-  docker-compose up -d
+docker-compose up -d
 ```
 
 #### Step 3
