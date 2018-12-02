@@ -12,12 +12,6 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./src",
-    "paths": {
-      "@controllers/*": ["controllers/*"],
-      "@prisma/*": ["generated/*"],
-      "@resolvers/*": ["resolvers/*"],
-      "@services/*": ["services/*"],
-    },
     "lib": [
       "dom",
       "es2018",
