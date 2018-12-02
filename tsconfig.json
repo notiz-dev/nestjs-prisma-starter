@@ -11,7 +11,12 @@
     "target": "es6",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./"
+    "baseUrl": "./src",
+    "lib": [
+      "dom",
+      "es2018",
+      "esnext"
+    ]
   },
   "include": [
     "src/**/*"
