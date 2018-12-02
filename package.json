@@ -28,6 +28,7 @@
     "apollo-server-express": "^2.2.5",
     "graphql": "^14.0.2",
     "graphql-tools": "^4.0.3",
+    "prisma-client-lib": "^1.21.1",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.2.2",
