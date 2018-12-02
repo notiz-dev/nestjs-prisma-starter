@@ -1,4 +1,5 @@
 type Query {
+  user(id: ID): User
   users(where: UserWhereInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
 }
 

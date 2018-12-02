@@ -59,12 +59,8 @@ For example:
 # Add user Query to user.graphql
 type Query {
   ...
-  user(where: UserWhereUniqueInput!): User!
+  user(id: ID): User
   ...
-}
-
-input UserWhereUniqueInput {
-  id: ID
 }
 ```
 
@@ -76,7 +72,7 @@ To implement the new query, a new resolver function needs to be added to `users.
 
 ```
 @Query('user')
-async getUser(@Args() args, @Info() info): Promise<User> {
+async getUser(@Args() args): Promise<User> {
   return await this.prisma.client.user(args);
 }
 ```
