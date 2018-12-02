@@ -1,4 +1,5 @@
 export const environment = {
     production: true,
-    secret: '',
+    secret: 'appsecret321',
+    saltOrRounds: 10,
 };

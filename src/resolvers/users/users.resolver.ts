@@ -1,13 +1,16 @@
-import { environment } from './../../environments/environment';
+import { AuthGuard } from './../../guards/auth.guards';
+import { AuthService } from './../../services/auth.service';
 import { PrismaService } from './../../services/prisma.service';
 import { User } from './../../generated/prisma-client/index';
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
-import { hash, compare } from 'bcrypt';
-import { sign } from 'jsonwebtoken';
+import { UseGuards } from '@nestjs/common';
 
 @Resolver()
 export class UsersResolver {
-    constructor(private readonly prisma: PrismaService) { }
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly auth: AuthService) { }
+
 
     @Query('user')
     async getUser(@Args() args): Promise<User> {
@@ -21,17 +24,15 @@ export class UsersResolver {
 
     @Mutation('signup')
     async signup(@Args() { email, password, name }) {
-        const hashedPassword = await hash(password, 10);
+        const hashedPassword = await this.auth.hash(password);
 
         const user = await this.prisma.client.createUser({
             name,
             email,
             password: hashedPassword,
         });
-        return {
-            token: sign({ userId: user.id }, environment.secret),
-            user,
-        };
+
+        return this.auth.createAuthPayload(user);
     }
 
     @Mutation('login')
@@ -41,14 +42,11 @@ export class UsersResolver {
             throw new Error(`No user found for email: ${email}`);
         }
 
-        const passwordValid = await compare(password, user.password);
+        const passwordValid = await this.auth.compare(password, user.password);
         if (!passwordValid) {
             throw new Error('Invalid password');
         }
 
-        return {
-            token: sign({ userId: user.id }, environment.secret),
-            user,
-        };
+        return this.auth.createAuthPayload(user);
     }
 }
