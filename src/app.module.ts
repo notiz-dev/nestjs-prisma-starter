@@ -1,5 +1,4 @@
-import { AuthGuard } from './guards/auth.guards';
-import { AuthModule } from './services/auth.module';
+import { AuthModule } from './auth/auth.module';
 import { AppService } from './services/app.service';
 import { AppController } from './controllers/app.controller';
 import { Module } from '@nestjs/common';
@@ -18,7 +17,6 @@ import { UsersModule } from './resolvers/users/users.module';
     UsersModule,
   ],
   controllers: [AppController],
-  providers: [AppService,
-    AuthGuard],
+  providers: [AppService],
 })
 export class AppModule { }
