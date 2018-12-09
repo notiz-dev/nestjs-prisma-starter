@@ -3,7 +3,7 @@ import { environment } from '../environments/environment';
 import { Injectable } from '@nestjs/common';
 import { hash, compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from 'services/prisma.service';
+import { PrismaService } from 'prisma/prisma.service';
 import { SignupPayload, LoginPayload, JwtPayload, AuthPayload } from './auth.types';
 
 @Injectable()

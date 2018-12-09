@@ -4,7 +4,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 import { AuthResolver } from './auth.resolver';
-import { PrismaModule } from 'services/prisma.module';
+import { PrismaModule } from 'prisma/prisma.module';
 import { GqlAuthGuard } from './auth.guard';
 import { environment } from 'environments/environment';
 

@@ -1,5 +1,5 @@
 import { GqlAuthGuard } from './../../auth/auth.guard';
-import { PrismaService } from './../../services/prisma.service';
+import { PrismaService } from '../../prisma/prisma.service';
 import { User } from './../../generated/prisma-client';
 import { Resolver, Query, Args } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
@@ -12,17 +12,7 @@ export class UsersResolver {
 
     @Query('me')
     @UseGuards(GqlAuthGuard)
-    async me(@UserEntity() user: User, @Args() args): Promise<User> {
-        return await this.prisma.client.user({ id: user.id });
-    }
-
-    @Query('user')
-    async getUser(@Args() args): Promise<User> {
-        return await this.prisma.client.user(args);
-    }
-
-    @Query('users')
-    async getUsers(@Args() args): Promise<User[]> {
-        return await this.prisma.client.users(args);
+    async me(@UserEntity() user: User): Promise<User> {
+        return user;
     }
 }
