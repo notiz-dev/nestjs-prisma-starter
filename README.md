@@ -103,7 +103,7 @@ Checkout [Apollo](https://www.apollographql.com/) a popular graphql client which
 
 #### Setup
 
-To start using[Apollo Angular](https://www.apollographql.com/docs/angular/basics/setup.html) simply run in an Angular and Ionic project:
+To start using [Apollo Angular](https://www.apollographql.com/docs/angular/basics/setup.html) simply run in an Angular and Ionic project:
 
 ```bash
 ng add apollo-angular
