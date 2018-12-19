@@ -10,13 +10,13 @@ import { UsersModule } from './resolvers/users/users.module';
   imports: [
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
-      context: ({ req }) => ({ req }),
+      context: ({ req }) => ({ req })
     }),
     PrismaModule,
     AuthModule,
-    UsersModule,
+    UsersModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
-export class AppModule { }
+export class AppModule {}

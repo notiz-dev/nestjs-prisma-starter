@@ -8,18 +8,23 @@ import { UpdateMePayload } from 'types/types';
 
 @Resolver()
 export class UsersResolver {
-    constructor(
-        private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
-    @Query('me')
-    @UseGuards(GqlAuthGuard)
-    async me(@UserEntity() user: User): Promise<User> {
-        return user;
-    }
+  @Query('me')
+  @UseGuards(GqlAuthGuard)
+  async me(@UserEntity() user: User): Promise<User> {
+    return user;
+  }
 
-    @Mutation('updateMe')
-    @UseGuards(GqlAuthGuard)
-    async updateMe(@UserEntity() user: User, @Args() args: UpdateMePayload): Promise<User> {
-        return await this.prisma.client.updateUser({ data: args, where: { id: user.id } });
-    }
+  @Mutation('updateMe')
+  @UseGuards(GqlAuthGuard)
+  async updateMe(
+    @UserEntity() user: User,
+    @Args() args: UpdateMePayload
+  ): Promise<User> {
+    return await this.prisma.client.updateUser({
+      data: args,
+      where: { id: user.id }
+    });
+  }
 }

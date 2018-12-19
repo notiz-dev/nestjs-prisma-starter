@@ -1,3 +1,3 @@
 export interface UpdateMePayload {
-    name?: string;
+  name?: string;
 }

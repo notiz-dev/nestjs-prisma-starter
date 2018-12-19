@@ -9,24 +9,17 @@ import { GqlAuthGuard } from './auth.guard';
 import { environment } from 'environments/environment';
 
 @Module({
-    imports: [
-        PassportModule.register({ defaultStrategy: 'jwt' }),
-        JwtModule.register({
-            secretOrPrivateKey: environment.secret,
-            signOptions: {
-                expiresIn: environment.expiresIn,
-            },
-        }),
-        PrismaModule,
-    ],
-    providers: [
-        AuthService,
-        JwtStrategy,
-        AuthResolver,
-        GqlAuthGuard,
-    ],
-    exports: [
-        GqlAuthGuard,
-    ],
+  imports: [
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    JwtModule.register({
+      secretOrPrivateKey: environment.secret,
+      signOptions: {
+        expiresIn: environment.expiresIn
+      }
+    }),
+    PrismaModule
+  ],
+  providers: [AuthService, JwtStrategy, AuthResolver, GqlAuthGuard],
+  exports: [GqlAuthGuard]
 })
-export class AuthModule { }
+export class AuthModule {}

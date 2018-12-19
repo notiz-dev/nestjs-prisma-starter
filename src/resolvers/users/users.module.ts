@@ -4,8 +4,7 @@ import { UsersResolver } from './users.resolver';
 import { PassportModule } from '@nestjs/passport';
 
 @Module({
-  imports: [PrismaModule,
-    PassportModule.register({ defaultStrategy: 'jwt' })],
-  providers: [UsersResolver],
+  imports: [PrismaModule, PassportModule.register({ defaultStrategy: 'jwt' })],
+  providers: [UsersResolver]
 })
-export class UsersModule { }
+export class UsersModule {}
