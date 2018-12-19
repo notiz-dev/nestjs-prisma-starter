@@ -8,7 +8,7 @@
 
 ## Prisma Setup
 
-### Step 1
+### 1. Install Prisma
 
 Setup [Prisma CLI](https://www.prisma.io/docs/1.21/get-started/01-setting-up-prisma-new-database-TYPESCRIPT-t002/)
 
@@ -16,7 +16,7 @@ Setup [Prisma CLI](https://www.prisma.io/docs/1.21/get-started/01-setting-up-pri
 npm install -g prisma
 ```
 
-### Step 2
+### 2. Install Docker
 
 Install Docker and start Prisma and the connected database by running the following command: 
 
@@ -24,7 +24,7 @@ Install Docker and start Prisma and the connected database by running the follow
 docker-compose up -d
 ```
 
-### Step 3
+### 3. Deploy Prisma
 
 To deploy the Prisma schema run: 
 
