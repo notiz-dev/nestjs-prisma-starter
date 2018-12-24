@@ -2,13 +2,13 @@
 // Please don't change this file manually but run `prisma generate` to update it.
 // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-import { DocumentNode } from 'graphql';
+import { DocumentNode } from "graphql";
 import {
   makePrismaClientClass,
   BaseClientOptions,
   Model
-} from 'prisma-client-lib';
-import { typeDefs } from './prisma-schema';
+} from "prisma-client-lib";
+import { typeDefs } from "./prisma-schema";
 
 export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
@@ -104,20 +104,20 @@ export interface ClientConstructor<T> {
  */
 
 export type UserOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'email_ASC'
-  | 'email_DESC'
-  | 'password_ASC'
-  | 'password_DESC'
-  | 'name_ASC'
-  | 'name_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC';
+  | "id_ASC"
+  | "id_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "password_ASC"
+  | "password_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
 
-export type MutationType = 'CREATED' | 'UPDATED' | 'DELETED';
+export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
 export interface UserCreateInput {
   email: String;
@@ -414,7 +414,7 @@ export type Boolean = boolean;
 
 export const models: Model[] = [
   {
-    name: 'User',
+    name: "User",
     embedded: false
   }
 ];
