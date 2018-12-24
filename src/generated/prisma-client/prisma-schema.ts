@@ -6,6 +6,8 @@ type BatchPayload {
   count: Long!
 }
 
+scalar DateTime
+
 scalar Long
 
 type Mutation {
@@ -41,15 +43,23 @@ type Query {
   node(id: ID!): Node
 }
 
+enum Role {
+  ADMIN
+  CUSTOMER
+}
+
 type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
 type User {
   id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
   email: String!
   password: String!
-  name: String
+  role: Role!
 }
 
 type UserConnection {
@@ -59,9 +69,10 @@ type UserConnection {
 }
 
 input UserCreateInput {
+  name: String
   email: String!
   password: String!
-  name: String
+  role: Role
 }
 
 type UserEdge {
@@ -72,23 +83,28 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
-  email_ASC
-  email_DESC
-  password_ASC
-  password_DESC
-  name_ASC
-  name_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
   updatedAt_DESC
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+  role_ASC
+  role_DESC
 }
 
 type UserPreviousValues {
   id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
   email: String!
   password: String!
-  name: String
+  role: Role!
 }
 
 type UserSubscriptionPayload {
@@ -110,15 +126,17 @@ input UserSubscriptionWhereInput {
 }
 
 input UserUpdateInput {
+  name: String
   email: String
   password: String
-  name: String
+  role: Role
 }
 
 input UserUpdateManyMutationInput {
+  name: String
   email: String
   password: String
-  name: String
+  role: Role
 }
 
 input UserWhereInput {
@@ -136,6 +154,36 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
   email: String
   email_not: String
   email_in: [String!]
@@ -164,20 +212,10 @@ input UserWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
+  role: Role
+  role_not: Role
+  role_in: [Role!]
+  role_not_in: [Role!]
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
