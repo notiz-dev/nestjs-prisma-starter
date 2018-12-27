@@ -53,7 +53,7 @@
     "@types/jest": "^23.3.10",
     "@types/jsonwebtoken": "^8.3.0",
     "@types/node": "^10.12.18",
-    "@types/supertest": "^2.0.5",
+    "@types/supertest": "^2.0.7",
     "jest": "^23.5.0",
     "nodemon": "^1.18.3",
     "prettier": "^1.14.2",
