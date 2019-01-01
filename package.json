@@ -55,7 +55,7 @@
     "@types/node": "^10.12.18",
     "@types/supertest": "^2.0.7",
     "jest": "^23.5.0",
-    "nodemon": "^1.18.3",
+    "nodemon": "^1.18.9",
     "prettier": "^1.14.2",
     "supertest": "^3.1.0",
     "ts-jest": "^23.1.3",
