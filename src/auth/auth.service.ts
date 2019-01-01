@@ -1,22 +1,22 @@
-import { User } from '../generated/prisma-client';
 import { environment } from '../environments/environment';
 import { Injectable } from '@nestjs/common';
 import { hash, compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from 'prisma/prisma.service';
 import {
   SignupPayload,
   LoginPayload,
   JwtPayload,
-  AuthPayload
+  AuthPayload,
 } from './auth.types';
+import { PrismaService } from '@prisma/prisma.service';
+import { User } from '@prisma/generated/prisma-client';
 
 @Injectable()
 export class AuthService {
+
   constructor(
     private readonly jwtService: JwtService,
-    private readonly prisma: PrismaService
-  ) {}
+    private readonly prisma: PrismaService) { }
 
   async createUser(payload: SignupPayload): Promise<User> {
     const hashedPassword = await this.hash(payload.password);
@@ -24,7 +24,7 @@ export class AuthService {
     return await this.prisma.client.createUser({
       name: payload.name,
       email: payload.email,
-      password: hashedPassword
+      password: hashedPassword,
     });
   }
 
@@ -57,7 +57,7 @@ export class AuthService {
   createAuthPayload(user: User): AuthPayload {
     return {
       token: this.jwtService.sign({ userId: user.id }),
-      user
+      user,
     };
   }
 }

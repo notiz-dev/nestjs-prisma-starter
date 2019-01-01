@@ -1,4 +1,4 @@
-import { User } from 'generated/prisma-client';
+import { User } from '@prisma/generated/prisma-client';
 
 export interface JwtPayload {
   userId: string;

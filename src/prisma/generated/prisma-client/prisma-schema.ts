@@ -45,7 +45,7 @@ type Query {
 
 enum Role {
   ADMIN
-  CUSTOMER
+  USER
 }
 
 type Subscription {

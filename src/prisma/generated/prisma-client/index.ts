@@ -119,7 +119,7 @@ export type UserOrderByInput =
   | "role_ASC"
   | "role_DESC";
 
-export type Role = "ADMIN" | "CUSTOMER";
+export type Role = "ADMIN" | "USER";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
