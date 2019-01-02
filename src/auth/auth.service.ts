@@ -9,7 +9,7 @@ import {
   AuthPayload,
 } from './auth.types';
 import { PrismaService } from '@prisma/prisma.service';
-import { User } from '@prisma/generated/prisma-client';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class AuthService {

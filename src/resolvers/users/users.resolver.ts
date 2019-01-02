@@ -3,7 +3,7 @@ import { UseGuards } from '@nestjs/common';
 import { UserEntity } from 'decorators/user.decorator';
 import { UpdateMePayload } from 'types/types';
 import { Roles } from 'decorators/roles.decorator';
-import { User } from '@prisma/generated/prisma-client';
+import { User } from '@prisma/client';
 import { PrismaService } from '@prisma/prisma.service';
 import { GqlAuthGuard } from '@guards/auth.guard';
 import { RolesGuard } from '@guards/roles.guard';

@@ -9,7 +9,7 @@ mutation {
     
     user2: createUser(data: {
         email: "admin@example.com",
-        name: "User",
+        name: "Admin",
         password: "$2b$10$dqyYw5XovLjpmkYNiRDEWuwKaRAvLaG45fnXE5b3KTccKZcRPka2m" # "secret42",
         role: ADMIN
     }) {
