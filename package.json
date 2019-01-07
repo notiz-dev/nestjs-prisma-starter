@@ -41,7 +41,7 @@
     "passport-jwt": "^4.0.0",
     "prisma-client-lib": "^1.23.2",
     "reflect-metadata": "^0.1.12",
-    "rimraf": "^2.6.2",
+    "rimraf": "^2.6.3",
     "rxjs": "^6.3.3",
     "typescript": "^3.2.2"
   },
