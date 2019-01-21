@@ -62,7 +62,7 @@
     "ts-loader": "4.5.0",
     "ts-node": "7.0.1",
     "tsconfig-paths": "3.7.0",
-    "tslint": "5.12.0"
+    "tslint": "5.12.1"
   },
   "jest": {
     "moduleFileExtensions": [
