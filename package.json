@@ -48,7 +48,7 @@
   "devDependencies": {
     "@nestjs/testing": "5.5.0",
     "@types/bcrypt": "3.0.0",
-    "@types/express": "4.16.0",
+    "@types/express": "4.16.1",
     "@types/graphql": "14.0.4",
     "@types/jest": "23.3.12",
     "@types/jsonwebtoken": "8.3.0",
