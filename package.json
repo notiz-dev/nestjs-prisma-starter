@@ -40,7 +40,7 @@
     "passport": "0.4.0",
     "passport-jwt": "4.0.0",
     "prisma-client-lib": "1.24.0",
-    "reflect-metadata": "0.1.12",
+    "reflect-metadata": "0.1.13",
     "rimraf": "2.6.3",
     "rxjs": "6.3.3",
     "typescript": "3.2.2"
