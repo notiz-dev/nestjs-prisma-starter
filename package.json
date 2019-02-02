@@ -39,7 +39,7 @@
     "graphql-tools": "4.0.4",
     "passport": "0.4.0",
     "passport-jwt": "4.0.0",
-    "prisma-client-lib": "1.25.6",
+    "prisma-client-lib": "1.25.7",
     "reflect-metadata": "0.1.13",
     "rimraf": "2.6.3",
     "rxjs": "6.3.3",
