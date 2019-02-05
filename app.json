@@ -1,0 +1,13 @@
+{
+    "name": "NestJS Prisma Starter",
+    "description": "NestJS Server with Prisma integration and JWT Passwort authentication",
+    "keywords": [
+        "nestjs",
+        "prisma",
+        "graphql",
+        "jwt",
+        "server"
+    ],
+    "repository": "https://github.com/fivethree-team/nestjs-prisma-client-starter",
+    "image": "heroku/nodejs"
+}
