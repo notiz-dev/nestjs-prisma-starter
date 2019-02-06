@@ -11,6 +11,8 @@ import { AppService } from './services/app.service';
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
       context: ({ req }) => ({ req }),
+      playground: true,
+      introspection: true,
     }),
     PrismaModule,
     AuthModule,
