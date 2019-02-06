@@ -1,12 +1,12 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
-import { UserEntity } from 'decorators/user.decorator';
-import { UpdateMePayload } from 'types/types';
-import { Roles } from 'decorators/roles.decorator';
-import { User } from '@prisma/client';
-import { PrismaService } from '@prisma/prisma.service';
-import { GqlAuthGuard } from '@guards/auth.guard';
-import { RolesGuard } from '@guards/roles.guard';
+import { GqlAuthGuard } from '../../guards/auth.guard';
+import { RolesGuard } from '../../guards/roles.guard';
+import { PrismaService } from '../../prisma/prisma.service';
+import { Roles } from '../../decorators/roles.decorator';
+import { UserEntity } from '../../decorators/user.decorator';
+import { User } from '../../prisma/client';
+import { UpdateMePayload } from '../../types/types';
 
 @Resolver()
 @UseGuards(GqlAuthGuard, RolesGuard)

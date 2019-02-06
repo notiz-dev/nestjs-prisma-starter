@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { AuthModule } from '@auth/auth.module';
-import { PrismaModule } from '@prisma/prisma.module';
-import { UsersModule } from '@resolvers/users/users.module';
-import { AppService } from '@services/app.service';
-import { AppController } from '@controllers/app.controller';
+import { PrismaModule } from './prisma/prisma.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './resolvers/users/users.module';
+import { AppController } from './controllers/app.controller';
+import { AppService } from './services/app.service';
 
 @Module({
   imports: [

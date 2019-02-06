@@ -11,33 +11,6 @@
     "target": "es6",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./src",
-    "paths": {
-      "@auth/*": [
-        "auth/*"
-      ],
-      "@controllers/*": [
-        "controllers/*"
-      ],
-      "@decorators/*": [
-        "decorators/*"
-      ],
-      "@env/*": [
-        "environments/*"
-      ],
-      "@guards/*": [
-        "guards/*"
-      ],
-      "@prisma/*": [
-        "prisma/*"
-      ],
-      "@services/*": [
-        "services/*"
-      ],
-      "@resolvers/*": [
-        "resolvers/*"
-      ],
-    },
     "lib": [
       "dom",
       "es2018",
