@@ -109,6 +109,16 @@ To start using [Apollo Angular](https://www.apollographql.com/docs/angular/basic
 ng add apollo-angular
 ```
 
+`HttpLink` from apollo-angular requires the `HttpClient`. Therefore, you need to add the `HttpClientModule` to the `AppModule`:
+
+```typescript
+imports: [BrowserModule,
+    HttpClientModule,
+    ...,
+    GraphQLModule],
+```
+You can also add the `GraphQLModule` in the `AppModule` to make `Apollo` available in your Angular App.
+
 You need to set the URL to the NestJS Graphql Api. Open the file `src/app/graphql.module.ts` and update `uri`:
 
 ```typescript
