@@ -8,6 +8,14 @@
         "jwt",
         "server"
     ],
+    "env": {
+        "NODE_ENV": {
+          "value": "production"
+        },
+        "NPM_CONFIG_PRODUCTION": {
+          "value": "false"
+        }
+    },
     "repository": "https://github.com/fivethree-team/nestjs-prisma-client-starter",
     "image": "heroku/nodejs"
 }
