@@ -32,7 +32,7 @@
     },
     "PRISMA_SECRET": {
       "description": "A service secret to protect your Prisma Api.",
-      "required": "false"
+      "required": false
     }
   },
   "repository": "https://github.com/fivethree-team/nestjs-prisma-client-starter",
