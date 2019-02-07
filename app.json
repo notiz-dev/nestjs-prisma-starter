@@ -20,8 +20,8 @@
       "generator": "secret"
     },
     "JWT_EXPIRES_IN": {
-      "description": "Expiration time of the JWT token expressed in seconds or a string describing a time span https://github.com/zeit/ms.js.",
-      "value": "3600"
+      "description": "Expiration time of the JWT token expressed in milliseconds or a string describing a time span https://github.com/zeit/ms.js.",
+      "value": "1d"
     },
     "PASSWORD_SALT_OR_ROUNDS": {
       "description": "The salt to be used in encryption for the password.",

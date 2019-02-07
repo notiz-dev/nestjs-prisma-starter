@@ -10,7 +10,8 @@ export class PrismaService {
     this.client = new Prisma({
       endpoint: process.env.PRISMA_ENDPOINT || configService.getString('PRISMA_ENDPOINT'),
       secret: process.env.PRISMA_SECRET || configService.getString('PRISMA_SECRET'),
-      debug: !configService.getBoolean('PRODUCTION'),
+      // TODO set false if NODE_ENV === 'production'
+      // debug: !configService.getBoolean('PRODUCTION'),
     });
   }
 }
