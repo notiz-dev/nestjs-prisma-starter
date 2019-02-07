@@ -1,14 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from './client';
+import { ConfigService } from '../services/config/config.service';
 
 @Injectable()
 export class PrismaService {
   client: Prisma;
 
-  constructor() {
+  constructor(configService: ConfigService) {
     this.client = new Prisma({
-      endpoint: 'http://localhost:4466',
-      // TODO add prisma secret here
+      endpoint: configService.getString('PRISMA_ENDPOINT'),
+      secret: configService.getString('PRISMA_SECRET'),
+      debug: !configService.getBoolean('PRODUCTION'),
     });
   }
 }

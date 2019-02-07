@@ -1,3 +1,4 @@
+import { ConfigModule } from './services/config/config.module';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { PrismaModule } from './prisma/prisma.module';
@@ -8,6 +9,7 @@ import { AppService } from './services/app.service';
 
 @Module({
   imports: [
+    ConfigModule,
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
       context: ({ req }) => ({ req }),
