@@ -4,10 +4,8 @@
 * [Prisma Setup](#prisma-setup)
 * [Start NestJS Server](#start-nestjs-server)
 * [Update Schema](#update-schema)
+* [Deploy to Heroku](#deploy-to-heroku)
 * [Graphql Client](#graphql-client)
-
-## Deploy
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/fivethree-team/nestjs-prisma-client-starter)
 
 ## Prisma Setup
 
@@ -63,6 +61,8 @@ prisma deploy
 
 `prisma deploy` will update the database and for each deploy `prisma generate` is executed. This will generate the latest Prisma Client to access Prisma from your resolvers. 
 
+**[⬆ back to top](#overview)**
+
 ### NestJS - Api Schema
 
 #### Api Schema
@@ -93,6 +93,11 @@ async getUser(@Args() args): Promise<User> {
 ```
 
 Restart the NestJS server and this time the Query to fetch a `user` should work.
+
+**[⬆ back to top](#overview)**
+
+## Deploy to Heroku
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/fivethree-team/nestjs-prisma-client-starter)
 
 **[⬆ back to top](#overview)**
 
@@ -129,6 +134,8 @@ const uri = 'http://localhost:3000/graphql';
 ```
 
 To use Apollo-Angular you can inject `private apollo: Apollo` into the constructor of a page, component or service.
+
+**[⬆ back to top](#overview)**
 
 #### Queries
 
