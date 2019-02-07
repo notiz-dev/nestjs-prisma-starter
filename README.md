@@ -6,6 +6,9 @@
 * [Update Schema](#update-schema)
 * [Graphql Client](#graphql-client)
 
+## Deploy
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/fivethree-team/nestjs-prisma-client-starter)
+
 ## Prisma Setup
 
 ### 1. Install Prisma
