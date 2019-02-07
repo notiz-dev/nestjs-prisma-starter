@@ -9,7 +9,7 @@ export class PrismaService {
   constructor(configService: ConfigService) {
     this.client = new Prisma({
       endpoint: process.env.PRISMA_ENDPOINT || configService.getString('PRISMA_ENDPOINT'),
-      secret: configService.getString('PRISMA_SECRET'),
+      secret: process.env.PRISMA_SECRET || configService.getString('PRISMA_SECRET'),
       debug: !configService.getBoolean('PRODUCTION'),
     });
   }

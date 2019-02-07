@@ -1,21 +1,39 @@
 {
-    "name": "NestJS Prisma Starter",
-    "description": "NestJS Server with Prisma integration and JWT Passwort authentication",
-    "keywords": [
-        "nestjs",
-        "prisma",
-        "graphql",
-        "jwt",
-        "server"
-    ],
-    "env": {
-        "NODE_ENV": {
-          "value": "production"
-        },
-        "NPM_CONFIG_PRODUCTION": {
-          "value": "false"
-        }
+  "name": "NestJS Prisma Starter",
+  "description": "NestJS Server with Prisma integration and JWT Passwort authentication",
+  "keywords": [
+    "nestjs",
+    "prisma",
+    "graphql",
+    "jwt",
+    "server"
+  ],
+  "env": {
+    "NODE_ENV": {
+      "value": "production"
     },
-    "repository": "https://github.com/fivethree-team/nestjs-prisma-client-starter",
-    "image": "heroku/nodejs"
+    "NPM_CONFIG_PRODUCTION": {
+      "value": "false"
+    },
+    "JWT_SECRET": {
+      "description": "A secret key for verifying the integrity of signed JWT.",
+      "generator": "secret"
+    },
+    "JWT_EXPIRES_IN": {
+      "description": "Expiration time of the JWT token expressed in seconds or a string describing a time span https://github.com/zeit/ms.js.",
+      "value": "3600"
+    },
+    "PASSWORD_SALT_OR_ROUNDS": {
+      "description": "The salt to be used in encryption for the password.",
+      "value": "10"
+    },
+    "PRISMA_ENDPOINT": {
+      "description": "Endpoint for your Prisma Api."
+    },
+    "PRISMA_SECRET": {
+      "description": "A service secret to protect your Prisma Api."
+    }
+  },
+  "repository": "https://github.com/fivethree-team/nestjs-prisma-client-starter",
+  "image": "heroku/nodejs"
 }

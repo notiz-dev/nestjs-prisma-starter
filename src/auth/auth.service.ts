@@ -1,4 +1,3 @@
-import { environment } from '../environments/environment';
 import { Injectable } from '@nestjs/common';
 import { hash, compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
@@ -10,13 +9,15 @@ import {
 } from './auth.types';
 import { PrismaService } from '../prisma/prisma.service';
 import { User } from '../prisma/client';
+import { ConfigService } from '../services/config/config.service';
 
 @Injectable()
 export class AuthService {
 
   constructor(
     private readonly jwtService: JwtService,
-    private readonly prisma: PrismaService) { }
+    private readonly prisma: PrismaService,
+    private readonly configService: ConfigService) { }
 
   async createUser(payload: SignupPayload): Promise<User> {
     const hashedPassword = await this.hash(payload.password);
@@ -47,7 +48,7 @@ export class AuthService {
   }
 
   hash(password: string): Promise<string> {
-    return hash(password, environment.saltOrRounds);
+    return hash(password, +process.env.PASSWORD_SALT_OR_ROUNDS || this.configService.getNumber('PASSWORD_SALT_OR_ROUNDS'));
   }
 
   compare(password: string, hashedPassword: string): Promise<boolean> {
