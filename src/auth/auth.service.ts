@@ -1,3 +1,4 @@
+import { GoogleProfile } from './../types/types';
 import { Injectable } from '@nestjs/common';
 import { hash, compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
@@ -47,6 +48,10 @@ export class AuthService {
     return this.prisma.client.user({ id: payload.userId });
   }
 
+  findUserByEmail(email: string): Promise<User> {
+    return this.prisma.client.user({ email });
+  }
+
   hash(password: string): Promise<string> {
     return hash(password, +process.env.PASSWORD_SALT_OR_ROUNDS || this.configService.getNumber('PASSWORD_SALT_OR_ROUNDS'));
   }
@@ -61,4 +66,20 @@ export class AuthService {
       user,
     };
   }
+
+  async validateGoogleOAuthLogin(profile: GoogleProfile): Promise<AuthPayload> {
+    const email = profile.emails[0].value;
+    let user = await this.findUserByEmail(email);
+
+    if (!user) {
+      user = await this.createUser({
+        email,
+        name: profile.displayName,
+        password: Math.random().toString(36),
+      });
+    }
+
+    return this.createAuthPayload(user);
+  }
+
 }
