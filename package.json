@@ -29,7 +29,7 @@
     "mysql": "docker-compose up -d"
   },
   "dependencies": {
-    "@nestjs/common": "5.7.0",
+    "@nestjs/common": "5.7.3",
     "@nestjs/core": "5.7.0",
     "@nestjs/graphql": "5.5.1",
     "@nestjs/jwt": "0.3.0",
