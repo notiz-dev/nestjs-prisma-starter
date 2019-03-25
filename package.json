@@ -56,7 +56,7 @@
     "@types/graphql": "14.0.5",
     "@types/jest": "23.3.13",
     "@types/jsonwebtoken": "8.3.0",
-    "@types/node": "10.12.21",
+    "@types/node": "10.14.4",
     "@types/passport-google-oauth2": "0.1.2",
     "@types/supertest": "2.0.7",
     "cross-env": "5.2.0",
