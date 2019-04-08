@@ -61,7 +61,7 @@
     "@types/supertest": "2.0.7",
     "cross-env": "5.2.0",
     "jest": "23.6.0",
-    "nodemon": "1.18.9",
+    "nodemon": "1.18.11",
     "prettier": "1.16.1",
     "supertest": "3.4.2",
     "ts-jest": "23.10.5",
