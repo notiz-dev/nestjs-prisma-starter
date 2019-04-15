@@ -29,3 +29,20 @@ npm run typings
 ```
 
 Typings are generated to `src/generated/graphql.ts`.
+
+## Prisma
+
+Start the Prisma server and database:
+
+```bash
+docker-compose up -d
+```
+
+Deploy the prisma schema:
+
+```bash
+prisma deploy
+```
+
+Now you have access to the [Prisma Admin](http://localhost:4466/_admin).
+Prisma Admin is seeded with two users, see `prisma/seed.graphql`.
