@@ -1,5 +1,5 @@
 {
-  "name": "nest-prisma-client-starter",
+  "name": "nestjs-prisma-client-starter",
   "version": "0.0.1",
   "description": "NestJS Prisma Client Starter Project",
   "author": "Marc Stammerjohann",
