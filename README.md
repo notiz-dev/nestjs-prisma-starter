@@ -16,6 +16,10 @@ Run Nest Server in Production mode:
 npm run start:prod
 ```
 
+## Rest
+
+[RESTful API](http://localhost:3000/api) documentation available with Swagger.
+
 ## Graphql
 
 Generate typings for the Nest Server:

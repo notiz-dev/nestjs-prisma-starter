@@ -1,0 +1,11 @@
+type Query {
+  publishedPosts: [Post!]!
+  post(postId: ID!): Post
+  userPosts(userId: ID!): [Post!]!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  author: User!
+}

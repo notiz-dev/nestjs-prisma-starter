@@ -1,0 +1,17 @@
+mutation {
+    user1: createUser(data: {
+        email: "user@test.com",
+        name: "User",
+        password: ""
+    }) {
+        id
+    }
+    
+    user2: createUser(data: {
+        email: "admin@test.com",
+        name: "Admin",
+        password: ""
+    }) {
+        id
+    }
+}
