@@ -1,9 +1,22 @@
 {
-  "name": "nest-prisma-starter",
+  "name": "nest-prisma-client-starter",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "NestJS Prisma Client Starter Project",
+  "author": "Marc Stammerjohann",
   "license": "MIT",
+  "keywords": [
+    "NestJS",
+    "Prisma",
+    "Prisma Client",
+    "Typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fivethree-team/nestjs-prisma-client-example.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fivethree-team/nestjs-prisma-client-example/issues"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\"",
