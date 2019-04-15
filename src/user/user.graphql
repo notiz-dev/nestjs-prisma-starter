@@ -1,0 +1,13 @@
+scalar DateTime
+
+type Query {
+  me: User!
+}
+
+type User {
+  id: ID!
+  registeredAt: DateTime!
+  email: String!
+  name: String!
+  posts: [Post]
+}

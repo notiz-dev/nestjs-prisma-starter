@@ -1,16 +1,16 @@
 mutation {
     user1: createUser(data: {
-        email: "user@example.com",
-        name: "User",
-        password: "$2b$10$dqyYw5XovLjpmkYNiRDEWuwKaRAvLaG45fnXE5b3KTccKZcRPka2m" # "secret42"
+        email: "bart@simpson.com",
+        name: "Bart Simpson",
+        password: "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm" # "secret42"
     }) {
         id
     }
     
     user2: createUser(data: {
-        email: "admin@example.com",
-        name: "Admin",
-        password: "$2b$10$dqyYw5XovLjpmkYNiRDEWuwKaRAvLaG45fnXE5b3KTccKZcRPka2m" # "secret42",
+        email: "homer@simpson.com",
+        name: "Homer Simpson",
+        password: "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm", # "secret42"
         role: ADMIN
     }) {
         id

@@ -1,11 +1,21 @@
 type User {
-  id: ID! @unique
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  name: String
+  id: ID! @id
+  registeredAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
   email: String! @unique
+  name: String!
   password: String!
-  role: Role! @default(value: "USER")
+  role: Role! @default(value: USER)
+  posts: [Post!]! @relation(link: INLINE)
+}
+
+type Post {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  title: String!
+  published: Boolean! @default(value: false)
+  author: User
 }
 
 enum Role {

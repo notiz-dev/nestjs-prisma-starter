@@ -1,7 +1,7 @@
 version: '3'
 services:
   prisma:
-    image: prismagraphql/prisma:1.26
+    image: prismagraphql/prisma:1.30
     restart: always
     ports:
     - "4466:4466"
@@ -10,18 +10,17 @@ services:
         port: 4466
         databases:
           default:
-            connector: mysql
-            host: mysql
-            port: 3306
-            user: root
-            password: prisma
-            migrations: true
-  mysql:
-    image: mysql:5.7
+            connector: mongo
+            uri: mongodb://prisma:prisma@mongo
+  mongo:
+    image: mongo:3.6
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: prisma
+      MONGO_INITDB_ROOT_USERNAME: prisma
+      MONGO_INITDB_ROOT_PASSWORD: prisma
+    ports:
+      - "27017:27017"
     volumes:
-      - mysql:/var/lib/mysql
+      - mongo:/var/lib/mongo
 volumes:
-  mysql:
+  mongo:

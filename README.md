@@ -3,8 +3,8 @@
 ## Overview
 * [Prisma Setup](#prisma-setup)
 * [Start NestJS Server](#start-nestjs-server)
+* [Rest Api](#rest-api)
 * [Update Schema](#update-schema)
-* [Deploy to Heroku](#deploy-to-heroku)
 * [Graphql Client](#graphql-client)
 
 ## Prisma Setup
@@ -34,20 +34,43 @@ prisma deploy
 ```
 
 Playground of Prisma is available here: http://localhost:4466/
+Prisma Admin is available here: http://localhost:4466/_admin
 
 **[⬆ back to top](#overview)**
 
+## Generate typings
+Generate typings for the Nest Server:
+
+```bash
+npm run typings
+```
+
+Typings are generated to `src/generated/graphql.ts`.
+
 ## Start NestJS Server
 
-To start the NestJS Server run:
+Run Nest Server in Development mode:
 
 ```bash
 npm run start
+
+# watch mode
+npm run start:dev
+```
+
+Run Nest Server in Production mode:
+
+```bash
+npm run start:prod
 ```
 
 Playground for the NestJS Server is available here: http://localhost:3000/graphql
 
 **[⬆ back to top](#overview)**
+
+## Rest Api
+
+[RESTful API](http://localhost:3000/api) documentation available with Swagger.
 
 ## Update Schema
 
@@ -93,11 +116,6 @@ async getUser(@Args() args): Promise<User> {
 ```
 
 Restart the NestJS server and this time the Query to fetch a `user` should work.
-
-**[⬆ back to top](#overview)**
-
-## Deploy to Heroku
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/fivethree-team/nestjs-prisma-client-starter)
 
 **[⬆ back to top](#overview)**
 

@@ -1,26 +1,28 @@
-import { ConfigModule } from './services/config/config.module';
-import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './resolvers/users/users.module';
-import { AppController } from './controllers/app.controller';
-import { AppService } from './services/app.service';
+import { UserModule } from './user/user.module';
+import { PostModule } from './post/post.module';
+import { DateTimeScalar } from './scalar/datetime.scalar';
+import { AppResolver } from './app.resolver';
 
 @Module({
   imports: [
-    ConfigModule,
     GraphQLModule.forRoot({
       typePaths: ['./**/*.graphql'],
-      context: ({ req }) => ({ req }),
+      debug: true,
       playground: true,
-      introspection: true,
+      context: ({ req }) => ({ req }),
     }),
     PrismaModule,
     AuthModule,
-    UsersModule,
+    UserModule,
+    PostModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, DateTimeScalar, AppResolver],
 })
-export class AppModule { }
+export class AppModule {}

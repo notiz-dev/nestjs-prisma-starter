@@ -1,16 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma } from './client';
-import { ConfigService } from '../services/config/config.service';
+import { Prisma } from './../generated/prisma-client';
 
 @Injectable()
 export class PrismaService {
   client: Prisma;
 
-  constructor(configService: ConfigService) {
+  constructor() {
     this.client = new Prisma({
-      endpoint: process.env.PRISMA_ENDPOINT || configService.getString('PRISMA_ENDPOINT'),
-      secret: process.env.PRISMA_SECRET || configService.getString('PRISMA_SECRET'),
-      // TODO set false if NODE_ENV === 'production'
+      endpoint: 'http://localhost:4466',
+      // secret: process.env.PRISMA_SECRET
       // debug: !configService.getBoolean('PRODUCTION'),
     });
   }

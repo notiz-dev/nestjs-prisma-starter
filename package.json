@@ -10,65 +10,69 @@
     "Prisma Client",
     "Typescript"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fivethree-team/nestjs-prisma-client-example.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fivethree-team/nestjs-prisma-client-example/issues"
+  },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\"",
-    "start": "cross-env NODE_ENV=development ts-node -r tsconfig-paths/register src/main.ts",
-    "start:dev": "cross-env NODE_ENV=development nodemon",
-    "start:debug": "cross-env NODE_ENV=development nodemon --config nodemon-debug.json",
-    "postinstall": "npm run prestart:prod",
-    "prestart:prod": "rimraf dist && tsc",
+    "typings": "ts-node src/generate-typings.ts",
+    "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "start:dev": "nodemon",
+    "start:debug": "nodemon --config nodemon-debug.json",
+    "prestart:prod": "rimraf dist && npm run build",
     "start:prod": "node dist/main.js",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prisma:deploy": "prisma deploy",
     "prisma:client": "prisma generate",
-    "mysql": "docker-compose up -d"
+    "db": "docker-compose up -d"
   },
   "dependencies": {
-    "@nestjs/common": "5.7.0",
-    "@nestjs/core": "5.7.0",
-    "@nestjs/graphql": "5.5.1",
-    "@nestjs/jwt": "0.3.0",
-    "@nestjs/passport": "5.1.0",
-    "apollo-server-express": "2.3.1",
-    "bcrypt": "3.0.3",
-    "dotenv": "6.2.0",
-    "graphql": "14.1.1",
+    "@nestjs/common": "6.1.1",
+    "@nestjs/core": "6.1.1",
+    "@nestjs/graphql": "6.0.5",
+    "@nestjs/jwt": "6.0.0",
+    "@nestjs/passport": "6.0.0",
+    "@nestjs/platform-express": "6.1.1",
+    "@nestjs/swagger": "3.0.2",
+    "apollo-server-express": "2.4.8",
+    "bcrypt": "3.0.6",
+    "class-transformer": "0.2.0",
+    "class-validator": "0.9.1",
+    "graphql": "14.2.1",
     "graphql-tools": "4.0.4",
     "passport": "0.4.0",
-    "passport-google-oauth20": "1.0.0",
     "passport-jwt": "4.0.0",
-    "prisma-client-lib": "1.26.3",
+    "prisma-client-lib": "1.30.1",
     "reflect-metadata": "0.1.13",
     "rimraf": "2.6.3",
-    "rxjs": "6.3.3",
-    "typescript": "3.2.4"
+    "rxjs": "6.4.0",
+    "swagger-ui-express": "4.0.2"
   },
   "devDependencies": {
-    "@nestjs/testing": "5.7.0",
-    "@types/bcrypt": "3.0.0",
-    "@types/dotenv": "6.1.0",
     "@types/express": "4.16.1",
-    "@types/graphql": "14.0.5",
-    "@types/jest": "23.3.13",
-    "@types/jsonwebtoken": "8.3.0",
-    "@types/node": "10.12.21",
-    "@types/passport-google-oauth2": "0.1.2",
+    "@types/jest": "23.3.14",
+    "@types/node": "10.14.4",
     "@types/supertest": "2.0.7",
-    "cross-env": "5.2.0",
+    "@nestjs/testing": "6.1.1",
     "jest": "23.6.0",
-    "nodemon": "1.18.9",
-    "prettier": "1.16.1",
+    "nodemon": "1.18.11",
+    "prettier": "1.17.0",
     "supertest": "3.4.2",
     "ts-jest": "23.10.5",
-    "ts-loader": "5.3.3",
-    "ts-node": "8.0.2",
-    "tsconfig-paths": "3.7.0",
-    "tslint": "5.12.1"
+    "ts-node": "8.1.0",
+    "tsconfig-paths": "3.8.0",
+    "tslint": "5.15.0",
+    "typescript": "3.4.3"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -83,12 +87,5 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/marcjulian/nestjs-prisma-client-example.git"
-  },
-  "bugs": {
-    "url": "https://github.com/marcjulian/nestjs-prisma-client-example/issues"
   }
 }
