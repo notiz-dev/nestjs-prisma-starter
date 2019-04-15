@@ -5,6 +5,7 @@ type User {
   email: String! @unique
   name: String!
   password: String!
+  role: Role! @default(value: USER)
   posts: [Post!]! @relation(link: INLINE)
 }
 
@@ -15,4 +16,9 @@ type Post {
   title: String!
   published: Boolean! @default(value: false)
   author: User
+}
+
+enum Role {
+  ADMIN
+  USER
 }

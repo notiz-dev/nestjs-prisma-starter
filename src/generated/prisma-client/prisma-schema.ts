@@ -291,6 +291,11 @@ type Query {
   node(id: ID!): Node
 }
 
+enum Role {
+  ADMIN
+  USER
+}
+
 type Subscription {
   post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
@@ -303,6 +308,7 @@ type User {
   email: String!
   name: String!
   password: String!
+  role: Role!
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
 }
 
@@ -317,6 +323,7 @@ input UserCreateInput {
   email: String!
   name: String!
   password: String!
+  role: Role
   posts: PostCreateManyWithoutAuthorInput
 }
 
@@ -330,6 +337,7 @@ input UserCreateWithoutPostsInput {
   email: String!
   name: String!
   password: String!
+  role: Role
 }
 
 type UserEdge {
@@ -350,6 +358,8 @@ enum UserOrderByInput {
   name_DESC
   password_ASC
   password_DESC
+  role_ASC
+  role_DESC
 }
 
 type UserPreviousValues {
@@ -359,6 +369,7 @@ type UserPreviousValues {
   email: String!
   name: String!
   password: String!
+  role: Role!
 }
 
 type UserSubscriptionPayload {
@@ -381,6 +392,7 @@ input UserUpdateInput {
   email: String
   name: String
   password: String
+  role: Role
   posts: PostUpdateManyWithoutAuthorInput
 }
 
@@ -388,6 +400,7 @@ input UserUpdateManyMutationInput {
   email: String
   name: String
   password: String
+  role: Role
 }
 
 input UserUpdateOneWithoutPostsInput {
@@ -403,6 +416,7 @@ input UserUpdateWithoutPostsDataInput {
   email: String
   name: String
   password: String
+  role: Role
 }
 
 input UserUpsertWithoutPostsInput {
@@ -483,6 +497,10 @@ input UserWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
+  role: Role
+  role_not: Role
+  role_in: [Role!]
+  role_not_in: [Role!]
   posts_some: PostWhereInput
   AND: [UserWhereInput!]
 }
