@@ -25,4 +25,4 @@ import { AppResolver } from './app.resolver';
   controllers: [AppController],
   providers: [AppService, DateTimeScalar, AppResolver],
 })
-export class AppModule { }
+export class AppModule {}
