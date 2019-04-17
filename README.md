@@ -4,6 +4,7 @@
 * [Prisma Setup](#prisma-setup)
 * [Start NestJS Server](#start-nestjs-server)
 * [Rest Api](#rest-api)
+* [Docker](#docker)
 * [Update Schema](#update-schema)
 * [Graphql Client](#graphql-client)
 
@@ -71,6 +72,35 @@ Playground for the NestJS Server is available here: http://localhost:3000/graphq
 ## Rest Api
 
 [RESTful API](http://localhost:3000/api) documentation available with Swagger.
+
+## Docker
+Nest serve is a Node.js application and it is easily [dockerized](https://nodejs.org/de/docs/guides/nodejs-docker-webapp/).
+
+See the [Dockerfile](./Dockerfile) on how to build a Docker image of your Nest server.
+
+There is one thing to be mentioned. A library called bcrypt is used for password hashing in the nest server starter. However, the docker container keeped crashing and the problem was bcrypt was missing necessary tools for compilation. The [solution](https://stackoverflow.com/a/41847996) is to install these tools for bcrypt's compilation before `npm install`:
+
+```Dockerfile
+# Install necessary tools for bcrypt to run in docker before npm install
+RUN apt-get update && apt-get install -y build-essential && apt-get install -y python
+```
+
+Now to build a Docker image of your own Nest server simply run:
+
+```bash
+# give your docker image a name 
+docker build -t <your username>/nest-prisma-server .
+# for example
+docker build -t nest-prisma-server .
+```
+
+After Docker build your docker image you are ready to start up a docker container running the nest server:
+
+```bash
+docker run -d -t -p 3000:3000 nest-prisma-server
+```
+
+Now open up [localhost:3000](http://localhost:3000) to verify that your nest server is running.
 
 ## Update Schema
 
