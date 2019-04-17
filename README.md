@@ -102,6 +102,9 @@ docker run -d -t -p 3000:3000 nest-prisma-server
 
 Now open up [localhost:3000](http://localhost:3000) to verify that your nest server is running.
 
+If you see an error like `request to http://localhost:4466/ failed, reason: connect ECONNREFUSED 127.0.0.1:4466` this is because Nest js tries to access the Prisma server on  `http://localhost:4466/`. In the case of a docker container localhost is the container itself. 
+Therefore, you have to open up [Prisma Service](./src/prisma/prisma.service.ts) `endpoint: 'http://localhost:4466',` and replace localhost with the IP address where the Prisma Server is executed.
+
 ## Update Schema
 
 ### Prisma - Database Schema
