@@ -1,4 +1,4 @@
-endpoint: http://localhost:4466
+endpoint: ${env:PRISMA_ENDPOINT}:${env:PRISMA_PORT}/${env:PRISMA_SERVICE_NAME}/${env:PRISMA_SERVICE_STAGE}
 datamodel: datamodel.prisma
 databaseType: document
 

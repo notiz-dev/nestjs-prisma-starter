@@ -4,10 +4,10 @@ services:
     image: prismagraphql/prisma:1.30
     restart: always
     ports:
-    - "4466:4466"
+    - "${PRISMA_PORT}:${PRISMA_PORT}"
     environment:
       PRISMA_CONFIG: |
-        port: 4466
+        port: ${PRISMA_PORT}
         databases:
           default:
             connector: mongo
