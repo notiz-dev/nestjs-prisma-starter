@@ -1,3 +1,5 @@
+scalar DateTime
+
 type Query {
   publishedPosts: [Post!]!
   post(postId: ID!): Post
@@ -6,6 +8,7 @@ type Query {
 
 type Post {
   id: ID!
+  createdAt: DateTime!
   title: String!
   author: User!
 }
