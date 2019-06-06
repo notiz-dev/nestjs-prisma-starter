@@ -37,12 +37,12 @@
     "db": "docker-compose up -d"
   },
   "dependencies": {
-    "@nestjs/common": "6.1.1",
-    "@nestjs/core": "6.1.1",
+    "@nestjs/common": "6.3.1",
+    "@nestjs/core": "6.3.1",
     "@nestjs/graphql": "6.0.5",
     "@nestjs/jwt": "6.0.0",
     "@nestjs/passport": "6.0.0",
-    "@nestjs/platform-express": "6.1.1",
+    "@nestjs/platform-express": "6.3.1",
     "@nestjs/swagger": "3.0.2",
     "apollo-server-express": "2.4.8",
     "bcrypt": "3.0.6",
@@ -59,7 +59,7 @@
     "swagger-ui-express": "4.0.2"
   },
   "devDependencies": {
-    "@nestjs/testing": "6.1.1",
+    "@nestjs/testing": "6.3.1",
     "@types/bcrypt": "3.0.0",
     "@types/express": "4.16.1",
     "@types/jest": "23.3.14",
