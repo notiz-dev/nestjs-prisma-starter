@@ -44,7 +44,7 @@
     "@nestjs/passport": "6.0.0",
     "@nestjs/platform-express": "6.1.1",
     "@nestjs/swagger": "3.0.2",
-    "apollo-server-express": "2.4.8",
+    "apollo-server-express": "2.6.3",
     "bcrypt": "3.0.6",
     "class-transformer": "0.2.0",
     "class-validator": "0.9.1",
