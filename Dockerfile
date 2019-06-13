@@ -12,6 +12,13 @@ RUN apt-get update && apt-get install -y build-essential && apt-get install -y p
 # Install app dependencies
 RUN npm install
 
+FROM node:10-alpine
+
+# Create app directory
+WORKDIR /usr/src/app
+
+COPY --from=0 /usr/src/app .
+
 COPY . .
 
 EXPOSE 3000
