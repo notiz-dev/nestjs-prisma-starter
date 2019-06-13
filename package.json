@@ -68,7 +68,7 @@
     "nodemon": "1.19.1",
     "prettier": "1.18.2",
     "rimraf": "2.6.3",
-    "supertest": "3.4.2",
+    "supertest": "4.0.2",
     "ts-jest": "23.10.5",
     "ts-node": "8.1.0",
     "tsconfig-paths": "3.8.0",
