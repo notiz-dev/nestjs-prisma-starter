@@ -7,7 +7,9 @@ export class PrismaService {
 
   constructor() {
     this.client = new Prisma({
-      endpoint: 'http://localhost:4466',
+      // TODO change service name 'blog' and stage 'dev'
+      // TODO get endpoint from .env file
+      endpoint: 'http://localhost:4466/blog/dev',
       // secret: process.env.PRISMA_SECRET
       // debug: !configService.getBoolean('PRODUCTION'),
     });
