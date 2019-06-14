@@ -34,7 +34,7 @@ To deploy the Prisma schema run:
 prisma deploy
 ```
 
-Playground of Prisma is available here: http://localhost:4466/
+Playground of Prisma is available here: http://localhost:4466/  
 Prisma Admin is available here: http://localhost:4466/_admin
 
 **[⬆ back to top](#overview)**
