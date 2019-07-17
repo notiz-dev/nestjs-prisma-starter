@@ -62,7 +62,7 @@
     "@types/bcrypt": "3.0.0",
     "@types/express": "4.17.0",
     "@types/jest": "23.3.14",
-    "@types/node": "10.14.4",
+    "@types/node": "10.14.13",
     "@types/supertest": "2.0.8",
     "jest": "23.6.0",
     "nodemon": "1.19.1",
