@@ -18,13 +18,12 @@
     "url": "https://github.com/fivethree-team/nestjs-prisma-client-example/issues"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\"",
     "typings": "ts-node src/generate-typings.ts",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/main.js\"",
     "start:debug": "tsc-watch -p tsconfig.build.json --onSuccess \"node --inspect-brk dist/main.js\"",
-    "prestart:prod": "rimraf dist && npm run build",
     "start:prod": "node dist/main.js",
     "lint": "tslint -p tsconfig.json -c tslint.json",
     "test": "jest",
