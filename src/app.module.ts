@@ -6,23 +6,23 @@ import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { PostModule } from './post/post.module';
-import { DateTimeScalar } from './scalar/datetime.scalar';
 import { AppResolver } from './app.resolver';
+import { DateScalar } from './common/scalars/date.scalar';
 
 @Module({
   imports: [
     GraphQLModule.forRoot({
-      typePaths: ['./**/*.graphql'],
+      autoSchemaFile: './src/schema.graphql',
       debug: true,
       playground: true,
       context: ({ req }) => ({ req }),
     }),
     PrismaModule,
-    AuthModule,
-    UserModule,
-    PostModule,
+    // AuthModule,
+    // UserModule,
+    // PostModule,
   ],
   controllers: [AppController],
-  providers: [AppService, DateTimeScalar, AppResolver],
+  providers: [AppService, AppResolver],
 })
 export class AppModule {}

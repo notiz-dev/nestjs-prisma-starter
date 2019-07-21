@@ -20,7 +20,6 @@
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\"",
-    "typings": "ts-node src/generate-typings.ts",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:dev": "tsc-watch -p tsconfig.build.json --onSuccess \"node dist/main.js\"",
     "start:debug": "tsc-watch -p tsconfig.build.json --onSuccess \"node --inspect-brk dist/main.js\"",
@@ -54,7 +53,8 @@
     "prisma-client-lib": "1.34.2",
     "reflect-metadata": "0.1.13",
     "rxjs": "6.5.2",
-    "swagger-ui-express": "4.0.7"
+    "swagger-ui-express": "4.0.7",
+    "type-graphql": "0.17.4"
   },
   "devDependencies": {
     "@nestjs/testing": "6.5.3",
