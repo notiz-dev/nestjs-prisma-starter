@@ -5,8 +5,8 @@ import {
   Parent,
   Args,
 } from '@nestjs/graphql';
-import { PrismaService } from './../prisma/prisma.service';
-import { Post, User } from './../generated/prisma-client';
+import { PrismaService } from '../../prisma/prisma.service';
+import { Post, User } from '../../generated/prisma-client';
 
 @Resolver('Post')
 export class PostResolver {

@@ -1,9 +1,9 @@
-import { GqlAuthGuard } from './../guards/gql-auth.guard';
-import { PrismaService } from './../prisma/prisma.service';
+import { GqlAuthGuard } from '../../guards/gql-auth.guard';
+import { PrismaService } from '../../prisma/prisma.service';
 import { Resolver, Query, ResolveProperty, Parent } from '@nestjs/graphql';
-import { User, Post } from './../generated/prisma-client';
+import { User, Post } from '../../generated/prisma-client';
 import { UseGuards } from '@nestjs/common';
-import { UserEntity } from './../decorators/user.decorator';
+import { UserEntity } from '../../decorators/user.decorator';
 
 @Resolver('User')
 @UseGuards(GqlAuthGuard)

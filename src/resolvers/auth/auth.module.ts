@@ -1,6 +1,6 @@
-import { GqlAuthGuard } from './../guards/gql-auth.guard';
-import { PrismaModule } from './../prisma/prisma.module';
-import { AuthService } from './../services/auth.service';
+import { GqlAuthGuard } from '../../guards/gql-auth.guard';
+import { PrismaModule } from '../../prisma/prisma.module';
+import { AuthService } from '../../services/auth.service';
 import { AuthResolver } from './auth.resolver';
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
