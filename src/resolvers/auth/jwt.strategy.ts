@@ -1,16 +1,17 @@
+import { User } from './../../models/user';
 import { JwtDto } from './dto/jwt.dto';
-import { User } from '../../generated/graphql';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../../services/auth.service';
+import { authConstants } from './../../common/auth/constants';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly authService: AuthService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: 'appsecret321',
+      secretOrKey: authConstants.jwtSecret
     });
   }
 

@@ -3,7 +3,37 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Auth {
+  """JWT Beare token"""
+  token: String!
+  user: User!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  signup(data: SignupInput!): Auth!
+  login(data: LoginInput!): Auth!
+}
+
 type Query {
   helloWorld: String!
   hello(name: String!): String!
+}
+
+input SignupInput {
+  email: String!
+  password: String!
+  firstname: String
+  lastname: String
+}
+
+type User {
+  id: String!
+  email: String!
+  firstname: String
+  lastname: String
 }

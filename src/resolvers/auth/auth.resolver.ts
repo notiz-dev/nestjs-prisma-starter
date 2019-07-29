@@ -1,22 +1,37 @@
-import { LoginDto } from './dto/login.dto';
-import { Resolver, Mutation, Args } from '@nestjs/graphql';
+import { Auth } from './../../models/auth';
+import { LoginInput } from './dto/login.input';
+import {
+  Resolver,
+  Mutation,
+  Args,
+  ResolveProperty,
+  Parent
+} from '@nestjs/graphql';
 import { AuthService } from '../../services/auth.service';
-import { AuthPayload } from '../../generated/graphql';
-import { SignupDto } from './dto/signup.dto';
+import { SignupInput } from './dto/signup.input';
 
-@Resolver()
+@Resolver(of => Auth)
 export class AuthResolver {
   constructor(private readonly auth: AuthService) {}
 
-  @Mutation('signup')
-  async signup(@Args('data') data: SignupDto): Promise<AuthPayload> {
-    const user = await this.auth.createUser(data);
-    return this.auth.createAuthPayload(user);
+  @Mutation(returns => Auth)
+  async signup(@Args('data') data: SignupInput) {
+    const token = await this.auth.createUser(data);
+    return {
+      token
+    };
   }
 
-  @Mutation('login')
-  async login(@Args('data') data: LoginDto): Promise<AuthPayload> {
-    const user = await this.auth.login(data);
-    return this.auth.createAuthPayload(user);
+  @Mutation(returns => Auth)
+  async login(@Args('data') { email, password }: LoginInput) {
+    const token = await this.auth.login(email, password);
+    return {
+      token
+    };
+  }
+
+  @ResolveProperty('user')
+  async user(@Parent() auth: Auth) {
+    return await this.auth.getUserFromToken(auth.token);
   }
 }

@@ -3,7 +3,8 @@ type User {
   registeredAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
   email: String! @unique
-  name: String!
+  firstname: String
+  lastname: String
   password: String!
   role: Role! @default(value: USER)
   posts: [Post!]! @relation(link: INLINE)

@@ -18,7 +18,7 @@ import { DateScalar } from './common/scalars/date.scalar';
       context: ({ req }) => ({ req }),
     }),
     PrismaModule,
-    // AuthModule,
+    AuthModule,
     // UserModule,
     // PostModule,
   ],

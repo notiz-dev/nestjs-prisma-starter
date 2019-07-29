@@ -1,8 +1,8 @@
 import { createParamDecorator } from '@nestjs/common';
-import { User } from './../generated/graphql';
+import { User } from './../models/user';
 
 export const UserEntity = createParamDecorator(
-  (data, [root, args, ctx, info]) => getUser(ctx),
+  (data, [root, args, ctx, info]) => getUser(ctx)
 );
 
 export function getUser(ctx): User {

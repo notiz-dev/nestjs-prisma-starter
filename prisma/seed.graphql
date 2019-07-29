@@ -1,18 +1,24 @@
 mutation {
-    user1: createUser(data: {
-        email: "bart@simpson.com",
-        name: "Bart Simpson",
-        password: "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm" # "secret42"
-    }) {
-        id
+  user1: createUser(
+    data: {
+      email: "bart@simpson.com"
+      firstname: "Bart"
+      lastname: "Simpson"
+      password: "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm" # "secret42"
     }
-    
-    user2: createUser(data: {
-        email: "homer@simpson.com",
-        name: "Homer Simpson",
-        password: "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm", # "secret42"
-        role: ADMIN
-    }) {
-        id
+  ) {
+    id
+  }
+
+  user2: createUser(
+    data: {
+      email: "homer@simpson.com"
+      firstname: "Homer"
+      lastname: "Simpson"
+      password: "$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm" # "secret42"
+      role: ADMIN
     }
+  ) {
+    id
+  }
 }

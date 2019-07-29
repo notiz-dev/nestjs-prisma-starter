@@ -1,10 +1,13 @@
-import { LoginInput } from '../../../generated/graphql';
 import { IsEmail, IsNotEmpty, MinLength } from 'class-validator';
+import { InputType, Field } from 'type-graphql';
 
-export class LoginDto extends LoginInput {
+@InputType()
+export class LoginInput {
+  @Field()
   @IsEmail()
   email: string;
 
+  @Field()
   @IsNotEmpty()
   @MinLength(8)
   password: string;
