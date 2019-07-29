@@ -39,6 +39,12 @@ type Query {
   hello(name: String!): String!
 }
 
+"""User role"""
+enum Role {
+  ADMIN
+  USER
+}
+
 input SignupInput {
   email: String!
   password: String!
@@ -53,5 +59,6 @@ type User {
   email: String!
   firstname: String
   lastname: String
+  role: Role!
   posts: [Post!]!
 }

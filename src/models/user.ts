@@ -1,4 +1,4 @@
-import { Field, ObjectType } from 'type-graphql';
+import { Field, ObjectType, registerEnumType } from 'type-graphql';
 import { Post } from './post';
 
 @ObjectType()
@@ -21,8 +21,21 @@ export class User {
   @Field({ nullable: true })
   lastname?: string;
 
+  @Field(type => Role)
+  role: Role;
+
   @Field(type => [Post])
   posts: Post[];
 
   password: string;
 }
+
+export enum Role {
+  ADMIN = 'ADMIN',
+  USER = 'USER'
+}
+
+registerEnumType(Role, {
+  name: 'Role',
+  description: 'User role'
+});
