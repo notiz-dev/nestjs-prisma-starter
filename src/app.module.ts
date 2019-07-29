@@ -2,7 +2,6 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './resolvers/auth/auth.module';
 import { UserModule } from './resolvers/user/user.module';
 import { PostModule } from './resolvers/post/post.module';
@@ -17,7 +16,6 @@ import { DateScalar } from './common/scalars/date.scalar';
       playground: true,
       context: ({ req }) => ({ req })
     }),
-    PrismaModule,
     AuthModule,
     UserModule,
     PostModule

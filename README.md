@@ -2,41 +2,89 @@
 
 ## Overview
 
-- [Prisma Setup](#prisma-setup)
-- [Start NestJS Server](#start-nestjs-server)
-- [Rest Api](#rest-api)
-- [Docker](#docker)
-- [Update Schema](#update-schema)
-- [Graphql Client](#graphql-client)
+- [Instructions](#instructions)
+  - [Overview](#overview)
+  - [Prisma Setup](#prisma-setup)
+    - [1. Install Prisma](#1-install-prisma)
+    - [2. Prisma2: Lift](#2-prisma2-lift)
+    - [3. Prisma2: Photon](#3-prisma2-photon)
+    - [4. Install Dependencies](#4-install-dependencies)
+    - [5. Seed the database data with this script](#5-seed-the-database-data-with-this-script)
+    - [6. Install Nestjs](#6-install-nestjs)
+  - [Start NestJS Server](#start-nestjs-server)
+  - [Rest Api](#rest-api)
+  - [Docker](#docker)
+  - [Update Schema](#update-schema)
+    - [Prisma - Database Schema](#prisma---database-schema)
+    - [NestJS - Api Schema](#nestjs---api-schema)
+      - [Resolver](#resolver)
+  - [Graphql Client](#graphql-client)
+    - [Angular](#angular)
+      - [Setup](#setup)
+      - [Queries](#queries)
+      - [Mutations](#mutations)
+      - [Subscriptions](#subscriptions)
+      - [Authentication](#authentication)
 
 ## Prisma Setup
 
 ### 1. Install Prisma
 
-Setup [Prisma CLI](https://www.prisma.io/docs/1.21/get-started/01-setting-up-prisma-new-database-TYPESCRIPT-t002/)
+Setup [Prisma2](https://github.com/prisma/prisma2/blob/master/docs/getting-started.md)
 
 ```bash
-npm install -g prisma
+npm install -g prisma2
 ```
 
-### 2. Install Docker
+### 2. Prisma2: Lift
 
-Install Docker and start Prisma and the connected database by running the following command:
+[Lift](https://github.com/prisma/prisma2/blob/master/docs/tutorial.md#5-migrate-your-database-using-lift) is used to manage the schema and migration of the database.
+
+Saving the migration of the database:
 
 ```bash
-docker-compose up -d
+prisma2 lift save
 ```
 
-### 3. Deploy Prisma
-
-To deploy the Prisma schema run:
+Perform the database migration:
 
 ```bash
-prisma deploy
+prisma2 lift up
 ```
 
-Playground of Prisma is available here: http://localhost:4466/  
-Prisma Admin is available here: http://localhost:4466/_admin
+### 3. Prisma2: Photon
+
+[Photon](https://github.com/prisma/prisma2/blob/master/docs/photon/api.md) is a type-safe database client auto-generated based on the data model.
+
+To generate Photon execute, this will alwayse be executed after `npm install`:
+
+```bash
+prisma2 generate
+```
+
+### 4. Install Dependencies
+
+Install the dependencies for the Nest server in the folder:
+
+```bash
+npm install
+```
+
+### 5. Seed the database data with this script
+
+Execute the script with this command:
+
+```sh
+npm run seed
+```
+
+### 6. Install Nestjs
+
+The [Nestjs CLI](https://docs.nestjs.com/cli/usages) can be used to generate controller, services, resolvers and more.
+
+```
+npm i -g @nestjs/cli
+```
 
 **[⬆ back to top](#overview)**
 

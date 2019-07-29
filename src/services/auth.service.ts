@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from './../prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
-import { User } from './../generated/prisma-client';
 import { PasswordService } from './password.service';
 import { SignupInput } from '../resolvers/auth/dto/signup.input';
+import { PhotonService } from './photon.service';
+import { User } from '@generated/photon';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
-    private readonly prisma: PrismaService,
+    private readonly photon: PhotonService,
     private readonly passwordService: PasswordService
   ) {}
 
@@ -18,16 +18,19 @@ export class AuthService {
       payload.password
     );
 
-    const user = await this.prisma.client.createUser({
-      ...payload,
-      password: hashedPassword
+    const user = await this.photon.users.create({
+      data: {
+        ...payload,
+        password: hashedPassword,
+        role: 'USER'
+      }
     });
 
     return this.jwtService.sign({ userId: user.id });
   }
 
   async login(email: string, password: string): Promise<string> {
-    const user = await this.prisma.client.user({ email });
+    const user = await this.photon.users.findOne({ where: { email } });
 
     if (!user) {
       throw new Error(`No user found for email: ${email}`);
@@ -46,11 +49,11 @@ export class AuthService {
   }
 
   validateUser(userId: string): Promise<User> {
-    return this.prisma.client.user({ id: userId });
+    return this.photon.users.findOne({ where: { id: userId } });
   }
 
   getUserFromToken(token: string): Promise<User> {
     const id = this.jwtService.decode(token)['userId'];
-    return this.prisma.client.user({ id });
+    return this.photon.users.findOne({ where: { id } });
   }
 }
