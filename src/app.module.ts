@@ -19,8 +19,8 @@ import { DateScalar } from './common/scalars/date.scalar';
     }),
     PrismaModule,
     AuthModule,
-    UserModule
-    // PostModule,
+    UserModule,
+    PostModule
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver, DateScalar]

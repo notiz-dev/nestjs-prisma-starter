@@ -1,36 +1,46 @@
+import { PaginationArgs } from './../../models/args/pagination-args';
+import { PostIdArgs } from './../../models/args/postid-args';
+import { UserIdArgs } from '../../models/args/userid-args';
 import {
   Resolver,
   Query,
   ResolveProperty,
   Parent,
-  Args,
+  Args
 } from '@nestjs/graphql';
 import { PrismaService } from '../../prisma/prisma.service';
-import { Post, User } from '../../generated/prisma-client';
+import { Post } from './../../models/post';
 
-@Resolver('Post')
+@Resolver(of => Post)
 export class PostResolver {
   constructor(private prisma: PrismaService) {}
 
-  @Query('publishedPosts')
-  publishedPosts(): Promise<Post[]> {
-    return this.prisma.client.posts({ where: { published: true } });
+  @Query(returns => [Post])
+  publishedPosts(@Args() { skip, after, before, first, last }: PaginationArgs) {
+    return this.prisma.client.posts({
+      where: { published: true },
+      skip,
+      after,
+      before,
+      first,
+      last
+    });
   }
 
-  @Query('userPosts')
-  userPosts(@Args('userId') userId: string): Promise<Post[]> {
+  @Query(returns => [Post])
+  userPosts(@Args() id: UserIdArgs) {
     return this.prisma.client
-      .user({ id: userId })
+      .user({ id: id.userId })
       .posts({ where: { published: true } });
   }
 
-  @Query('post')
-  post(@Args('postId') postId: string): Promise<Post> {
-    return this.prisma.client.post({ id: postId });
+  @Query(returns => Post)
+  post(@Args() id: PostIdArgs) {
+    return this.prisma.client.post({ id: id.postId });
   }
 
   @ResolveProperty('author')
-  getAuthor(@Parent() post: Post): Promise<User> {
+  author(@Parent() post: Post) {
     return this.prisma.client.post({ id: post.id }).author();
   }
 }
