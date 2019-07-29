@@ -23,6 +23,6 @@ import { DateScalar } from './common/scalars/date.scalar';
     // PostModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AppResolver]
+  providers: [AppService, AppResolver, DateScalar]
 })
 export class AppModule {}
