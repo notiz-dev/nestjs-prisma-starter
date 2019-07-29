@@ -1,4 +1,4 @@
-import { User } from './../../models/user';
+import { User } from './../../generated/prisma-client';
 import { JwtDto } from './dto/jwt.dto';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';

@@ -1,22 +1,23 @@
+import { Post } from './../../models/post';
 import { GqlAuthGuard } from '../../guards/gql-auth.guard';
 import { PrismaService } from '../../prisma/prisma.service';
 import { Resolver, Query, ResolveProperty, Parent } from '@nestjs/graphql';
-import { User, Post } from '../../generated/prisma-client';
 import { UseGuards } from '@nestjs/common';
 import { UserEntity } from '../../decorators/user.decorator';
+import { User } from './../../models/user';
 
-@Resolver('User')
+@Resolver(of => User)
 @UseGuards(GqlAuthGuard)
 export class UserResolver {
   constructor(private prisma: PrismaService) {}
 
-  @Query('me')
+  @Query(returns => User)
   async me(@UserEntity() user: User): Promise<User> {
     return user;
   }
 
   @ResolveProperty('posts')
-  getPosts(@Parent() author: User): Promise<Post[]> {
+  posts(@Parent() author: User): Promise<Post[]> {
     return this.prisma.client.user({ id: author.id }).posts();
   }
 }

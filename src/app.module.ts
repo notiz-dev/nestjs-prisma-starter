@@ -15,14 +15,14 @@ import { DateScalar } from './common/scalars/date.scalar';
       autoSchemaFile: './src/schema.graphql',
       debug: true,
       playground: true,
-      context: ({ req }) => ({ req }),
+      context: ({ req }) => ({ req })
     }),
     PrismaModule,
     AuthModule,
-    // UserModule,
+    UserModule
     // PostModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AppResolver],
+  providers: [AppService, AppResolver]
 })
 export class AppModule {}

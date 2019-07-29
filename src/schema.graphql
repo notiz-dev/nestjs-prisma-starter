@@ -9,6 +9,11 @@ type Auth {
   user: User!
 }
 
+"""
+The javascript `Date` as string. Type represents date and time as the ISO Date string.
+"""
+scalar DateTime
+
 input LoginInput {
   email: String!
   password: String!
@@ -19,7 +24,17 @@ type Mutation {
   login(data: LoginInput!): Auth!
 }
 
+type Post {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  published: Boolean!
+  author: User!
+}
+
 type Query {
+  me: User!
   helloWorld: String!
   hello(name: String!): String!
 }
@@ -33,7 +48,10 @@ input SignupInput {
 
 type User {
   id: String!
+  registeredAt: DateTime!
+  updatedAt: DateTime!
   email: String!
   firstname: String
   lastname: String
+  posts: [Post!]!
 }
