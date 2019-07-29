@@ -1,12 +1,13 @@
 # Instructions
 
 ## Overview
-* [Prisma Setup](#prisma-setup)
-* [Start NestJS Server](#start-nestjs-server)
-* [Rest Api](#rest-api)
-* [Docker](#docker)
-* [Update Schema](#update-schema)
-* [Graphql Client](#graphql-client)
+
+- [Prisma Setup](#prisma-setup)
+- [Start NestJS Server](#start-nestjs-server)
+- [Rest Api](#rest-api)
+- [Docker](#docker)
+- [Update Schema](#update-schema)
+- [Graphql Client](#graphql-client)
 
 ## Prisma Setup
 
@@ -20,7 +21,7 @@ npm install -g prisma
 
 ### 2. Install Docker
 
-Install Docker and start Prisma and the connected database by running the following command: 
+Install Docker and start Prisma and the connected database by running the following command:
 
 ```bash
 docker-compose up -d
@@ -28,7 +29,7 @@ docker-compose up -d
 
 ### 3. Deploy Prisma
 
-To deploy the Prisma schema run: 
+To deploy the Prisma schema run:
 
 ```bash
 prisma deploy
@@ -38,15 +39,6 @@ Playground of Prisma is available here: http://localhost:4466/
 Prisma Admin is available here: http://localhost:4466/_admin
 
 **[⬆ back to top](#overview)**
-
-## Generate typings
-Generate typings for the Nest Server:
-
-```bash
-npm run typings
-```
-
-Typings are generated to `src/generated/graphql.ts`.
 
 ## Start NestJS Server
 
@@ -74,6 +66,7 @@ Playground for the NestJS Server is available here: http://localhost:3000/graphq
 [RESTful API](http://localhost:3000/api) documentation available with Swagger.
 
 ## Docker
+
 Nest serve is a Node.js application and it is easily [dockerized](https://nodejs.org/de/docs/guides/nodejs-docker-webapp/).
 
 See the [Dockerfile](./Dockerfile) on how to build a Docker image of your Nest server.
@@ -88,7 +81,7 @@ RUN apt-get update && apt-get install -y build-essential && apt-get install -y p
 Now to build a Docker image of your own Nest server simply run:
 
 ```bash
-# give your docker image a name 
+# give your docker image a name
 docker build -t <your username>/nest-prisma-server .
 # for example
 docker build -t nest-prisma-server .
@@ -102,7 +95,7 @@ docker run -d -t -p 3000:3000 nest-prisma-server
 
 Now open up [localhost:3000](http://localhost:3000) to verify that your nest server is running.
 
-If you see an error like `request to http://localhost:4466/ failed, reason: connect ECONNREFUSED 127.0.0.1:4466` this is because Nest js tries to access the Prisma server on  `http://localhost:4466/`. In the case of a docker container localhost is the container itself. 
+If you see an error like `request to http://localhost:4466/ failed, reason: connect ECONNREFUSED 127.0.0.1:4466` this is because Nest js tries to access the Prisma server on `http://localhost:4466/`. In the case of a docker container localhost is the container itself.
 Therefore, you have to open up [Prisma Service](./src/prisma/prisma.service.ts) `endpoint: 'http://localhost:4466',` and replace localhost with the IP address where the Prisma Server is executed.
 
 ## Update Schema
@@ -115,34 +108,22 @@ Update the Prisma schema `prisma/datamodel.prisma` and after that run the follow
 prisma deploy
 ```
 
-`prisma deploy` will update the database and for each deploy `prisma generate` is executed. This will generate the latest Prisma Client to access Prisma from your resolvers. 
+`prisma deploy` will update the database and for each deploy `prisma generate` is executed. This will generate the latest Prisma Client to access Prisma from your resolvers.
 
 **[⬆ back to top](#overview)**
 
 ### NestJS - Api Schema
 
-#### Api Schema
-Add or update the `*.graphql` schema with Queries or Mutations. 
+The [schema.graphql](./src/schema.graphql) is generated with [type-graphql](https://typegraphql.ml/). The schema is generated from the [models](./src/models/user.ts), the [resolvers](./src/resolvers/auth/auth.resolver.ts) and the [input](./src/resolvers/auth/dto/login.input.ts) classes.
 
-For example:
-
-```
-# Add user Query to user.graphql
-type Query {
-  ...
-  user(id: ID): User
-  ...
-}
-```
-
-After starting NestJS this Query is available in the Playground, but will fail at the moment. This will be fixed in the next step. Add a new resolver function.
+You can use [class-validator](https://docs.nestjs.com/techniques/validation) to validate your inputs and arguments.
 
 #### Resolver
 
 To implement the new query, a new resolver function needs to be added to `users.resolver.ts`.
 
 ```
-@Query('user')
+@Query(returns => User)
 async getUser(@Args() args): Promise<User> {
   return await this.prisma.client.user(args);
 }
@@ -154,7 +135,7 @@ Restart the NestJS server and this time the Query to fetch a `user` should work.
 
 ## Graphql Client
 
-A graphql client is necessary to consume the graphql api provided by the NestJS Server. 
+A graphql client is necessary to consume the graphql api provided by the NestJS Server.
 
 Checkout [Apollo](https://www.apollographql.com/) a popular graphql client which offers several clients for React, Angular, Vue.js, Native iOS, Native Android and more.
 
@@ -176,6 +157,7 @@ imports: [BrowserModule,
     ...,
     GraphQLModule],
 ```
+
 You can also add the `GraphQLModule` in the `AppModule` to make `Apollo` available in your Angular App.
 
 You need to set the URL to the NestJS Graphql Api. Open the file `src/app/graphql.module.ts` and update `uri`:
@@ -190,7 +172,7 @@ To use Apollo-Angular you can inject `private apollo: Apollo` into the construct
 
 #### Queries
 
-To execute a query you can use: 
+To execute a query you can use:
 
 ```typescript
 this.apollo.query({query: YOUR_QUERY});
@@ -212,25 +194,24 @@ const CurrentUserProfile = gql`
       email
       name
     }
-}`;
-
+  }
+`;
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  styleUrls: ['home.page.scss']
 })
 export class HomePage implements OnInit {
-
   data: Observable<any>;
 
-  constructor(private apollo: Apollo) { }
+  constructor(private apollo: Apollo) {}
 
   ngOnInit() {
     this.data = this.apollo.watchQuery({
       query: CurrentUserProfile
     }).valueChanges;
-  } 
+  }
 }
 ```
 
@@ -238,9 +219,9 @@ Use the `AsyncPipe` and [SelectPipe](https://www.apollographql.com/docs/angular/
 
 ```html
 <div *ngIf="data | async | select: 'me' as me">
-    <p>Me id: {{me.id}}</p>
-    <p>Me email: {{me.email}}</p>
-    <p>Me name: {{me.name}}</p>
+  <p>Me id: {{me.id}}</p>
+  <p>Me email: {{me.email}}</p>
+  <p>Me name: {{me.name}}</p>
 </div>
 ```
 
@@ -253,7 +234,7 @@ Please refer to the [Authentication](#authentication) section.
 
 #### Mutations
 
-To execute a mutation you can use: 
+To execute a mutation you can use:
 
 ```typescript
 this.apollo.mutate({
@@ -266,46 +247,45 @@ Here is an example how to login into your profile using the `login` Mutation:
 ```typescript
 const Login = gql`
   mutation Login {
-  login(email: "test@example.com", password: "pizzaHawaii") {
-    token
-    user {
-      id
-      email
-      name
+    login(email: "test@example.com", password: "pizzaHawaii") {
+      token
+      user {
+        id
+        email
+        name
+      }
     }
   }
-}`;
+`;
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  styleUrls: ['home.page.scss']
 })
 export class HomePage implements OnInit {
-
   data: Observable<any>;
 
-  constructor(private apollo: Apollo) { }
+  constructor(private apollo: Apollo) {}
 
   ngOnInit() {
     this.data = this.apollo.mutate({
       mutation: Login
     });
   }
-
 }
-``` 
+```
 
 **[⬆ back to top](#overview)**
 
 #### Subscriptions
 
-To execute a subscription you can use: 
+To execute a subscription you can use:
 
 ```typescript
 this.apollo.subscribe({
   query: YOUR_SUBSCRIPTION_QUERY
-})
+});
 ```
 
 **[⬆ back to top](#overview)**
@@ -316,30 +296,37 @@ To authenticate your requests you have to add your `TOKEN` you receive on `signu
 
 Because the apollo client is using `HttpClient` under the hood you are able to simply use an `Interceptor` to add your token to the requests.
 
-Create the following class: 
+Create the following class:
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest
+} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
+  constructor() {}
 
-    constructor() { }
-
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const token = 'YOUR_TOKEN'; // get from local storage
-        if (token !== undefined) {
-            req = req.clone({
-                setHeaders: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    const token = 'YOUR_TOKEN'; // get from local storage
+    if (token !== undefined) {
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
         }
-
-        return next.handle(req);
+      });
     }
+
+    return next.handle(req);
+  }
 }
 ```
 
