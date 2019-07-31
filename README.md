@@ -71,7 +71,7 @@ Nest serve is a Node.js application and it is easily [dockerized](https://nodejs
 
 See the [Dockerfile](./Dockerfile) on how to build a Docker image of your Nest server.
 
-There is one thing to be mentioned. A library called bcrypt is used for password hashing in the nest server starter. However, the docker container keeped crashing and the problem was bcrypt was missing necessary tools for compilation. The [solution](https://stackoverflow.com/a/41847996) is to install these tools for bcrypt's compilation before `npm install`:
+There is one thing to be mentioned. A library called bcrypt is used for password hashing in the nest server starter. However, the docker container keeped crashing and the problem was missing tools for compilationof [bcrypt](https://github.com/kelektiv/node.bcrypt.js). The [solution](https://stackoverflow.com/a/41847996) is to install these tools for bcrypt's compilation before `npm install`:
 
 ```Dockerfile
 # Install necessary tools for bcrypt to run in docker before npm install
