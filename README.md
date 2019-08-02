@@ -1,5 +1,15 @@
 # Instructions
 
+Starter template for 😻 [nest](https://nestjs.com/) and [Prisma](https://www.prisma.io/).
+
+## Features
+
+- GraphQL w/ [playground](https://github.com/prisma/graphql-playground)
+- Code-First w/ [type-graphql](https://github.com/19majkel94/type-graphql)
+- [Prisma](https://www.prisma.io/) for database modelling, migration and type-safe access (Postgres, MySQL & MongoDB)
+- 🔐 JWT authentication w/ [passport-jwt](https://github.com/mikenicholson/passport-jwt)
+- REST API docs w/ [Swagger](https://swagger.io/)
+
 ## Overview
 
 - [Prisma Setup](#prisma-setup)
