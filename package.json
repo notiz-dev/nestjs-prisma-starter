@@ -65,7 +65,7 @@
     "@types/node": "11.13.4",
     "@types/supertest": "2.0.8",
     "chance": "1.0.18",
-    "jest": "24.8.0",
+    "jest": "24.9.0",
     "prettier": "1.18.2",
     "rimraf": "2.6.3",
     "supertest": "4.0.2",
