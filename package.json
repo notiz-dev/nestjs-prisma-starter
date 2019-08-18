@@ -54,7 +54,7 @@
     "reflect-metadata": "0.1.13",
     "rxjs": "6.5.2",
     "swagger-ui-express": "4.0.7",
-    "type-graphql": "0.17.4"
+    "type-graphql": "0.17.5"
   },
   "devDependencies": {
     "@nestjs/testing": "6.5.3",
