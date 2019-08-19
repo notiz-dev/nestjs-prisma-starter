@@ -1,5 +1,15 @@
 # Instructions
 
+Starter template for 😻 [nest](https://nestjs.com/) and [Prisma](https://www.prisma.io/).
+
+## Features
+
+- GraphQL w/ [playground](https://github.com/prisma/graphql-playground)
+- Code-First w/ [type-graphql](https://github.com/19majkel94/type-graphql)
+- [Prisma](https://www.prisma.io/) for database modelling, migration and type-safe access (Postgres, MySQL & MongoDB)
+- 🔐 JWT authentication w/ [passport-jwt](https://github.com/mikenicholson/passport-jwt)
+- REST API docs w/ [Swagger](https://swagger.io/)
+
 ## Overview
 
 - [Instructions](#instructions)
@@ -119,7 +129,7 @@ Nest serve is a Node.js application and it is easily [dockerized](https://nodejs
 
 See the [Dockerfile](./Dockerfile) on how to build a Docker image of your Nest server.
 
-There is one thing to be mentioned. A library called bcrypt is used for password hashing in the nest server starter. However, the docker container keeped crashing and the problem was bcrypt was missing necessary tools for compilation. The [solution](https://stackoverflow.com/a/41847996) is to install these tools for bcrypt's compilation before `npm install`:
+There is one thing to be mentioned. A library called bcrypt is used for password hashing in the nest server starter. However, the docker container keeped crashing and the problem was missing tools for compilationof [bcrypt](https://github.com/kelektiv/node.bcrypt.js). The [solution](https://stackoverflow.com/a/41847996) is to install these tools for bcrypt's compilation before `npm install`:
 
 ```Dockerfile
 # Install necessary tools for bcrypt to run in docker before npm install
@@ -143,7 +153,7 @@ docker run -d -t -p 3000:3000 nest-prisma-server
 
 Now open up [localhost:3000](http://localhost:3000) to verify that your nest server is running.
 
-If you see an error like `request to http://localhost:4466/ failed, reason: connect ECONNREFUSED 127.0.0.1:4466` this is because Nest js tries to access the Prisma server on `http://localhost:4466/`. In the case of a docker container localhost is the container itself.
+If you see an error like `request to http://localhost:4466/ failed, reason: connect ECONNREFUSED 127.0.0.1:4466` this is because Nest tries to access the Prisma server on `http://localhost:4466/`. In the case of a docker container localhost is the container itself.
 Therefore, you have to open up [Prisma Service](./src/prisma/prisma.service.ts) `endpoint: 'http://localhost:4466',` and replace localhost with the IP address where the Prisma Server is executed.
 
 ## Update Schema

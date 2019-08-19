@@ -6,7 +6,7 @@ export class AppService {
     return 'Hello World!';
   }
 
-  getHelloName(name?: string): string {
-    return name ? `Hello ${name}!` : 'Hello World!';
+  getHelloName(name: string): string {
+    return `Hello ${name}!`;
   }
 }
