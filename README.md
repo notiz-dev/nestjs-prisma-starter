@@ -1,5 +1,15 @@
 # Instructions
 
+Starter template for 😻 [nest](https://nestjs.com/) and [Prisma](https://www.prisma.io/).
+
+## Features
+
+- GraphQL w/ [playground](https://github.com/prisma/graphql-playground)
+- Code-First w/ [type-graphql](https://github.com/19majkel94/type-graphql)
+- [Prisma](https://www.prisma.io/) for database modelling, migration and type-safe access (Postgres, MySQL & MongoDB)
+- 🔐 JWT authentication w/ [passport-jwt](https://github.com/mikenicholson/passport-jwt)
+- REST API docs w/ [Swagger](https://swagger.io/)
+
 ## Overview
 
 - [Prisma Setup](#prisma-setup)
@@ -11,7 +21,15 @@
 
 ## Prisma Setup
 
-### 1. Install Prisma
+### 1. Install Deps
+
+Install the dependencies for the nest server:
+
+```bash
+npm install
+```
+
+### 2. Install Prisma
 
 Setup [Prisma CLI](https://www.prisma.io/docs/1.21/get-started/01-setting-up-prisma-new-database-TYPESCRIPT-t002/)
 
@@ -19,7 +37,7 @@ Setup [Prisma CLI](https://www.prisma.io/docs/1.21/get-started/01-setting-up-pri
 npm install -g prisma
 ```
 
-### 2. Install Docker
+### 3. Install Docker
 
 Install Docker and start Prisma and the connected database by running the following command:
 
@@ -27,7 +45,7 @@ Install Docker and start Prisma and the connected database by running the follow
 docker-compose up -d
 ```
 
-### 3. Deploy Prisma
+### 4. Deploy Prisma
 
 To deploy the Prisma schema run:
 

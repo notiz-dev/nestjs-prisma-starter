@@ -16,6 +16,7 @@ export class AuthResolver {
 
   @Mutation(returns => Auth)
   async signup(@Args('data') data: SignupInput) {
+    data.email = data.email.toLowerCase();
     const token = await this.auth.createUser(data);
     return {
       token
@@ -24,7 +25,7 @@ export class AuthResolver {
 
   @Mutation(returns => Auth)
   async login(@Args('data') { email, password }: LoginInput) {
-    const token = await this.auth.login(email, password);
+    const token = await this.auth.login(email.toLowerCase(), password);
     return {
       token
     };
