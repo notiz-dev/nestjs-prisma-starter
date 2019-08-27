@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PasswordService } from './password.service';
 import { SignupInput } from '../resolvers/auth/dto/signup.input';
@@ -30,10 +34,11 @@ export class AuthService {
   }
 
   async login(email: string, password: string): Promise<string> {
-    const user = await this.photon.users.findOne({ where: { email } });
-
-    if (!user) {
-      throw new Error(`No user found for email: ${email}`);
+    let user: User;
+    try {
+      user = await this.photon.users.findOne({ where: { email } });
+    } catch (error) {
+      throw new NotFoundException(`No user found for email: ${email}`);
     }
 
     const passwordValid = await this.passwordService.validatePassword(
@@ -42,7 +47,7 @@ export class AuthService {
     );
 
     if (!passwordValid) {
-      throw new Error('Invalid password');
+      throw new BadRequestException('Invalid password');
     }
 
     return this.jwtService.sign({ userId: user.id });
