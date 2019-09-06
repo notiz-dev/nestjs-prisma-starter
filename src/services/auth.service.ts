@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  BadRequestException
+} from '@nestjs/common';
 import { PrismaService } from './../prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
 import { User } from './../generated/prisma-client';
@@ -30,7 +34,7 @@ export class AuthService {
     const user = await this.prisma.client.user({ email });
 
     if (!user) {
-      throw new Error(`No user found for email: ${email}`);
+      throw new NotFoundException(`No user found for email: ${email}`);
     }
 
     const passwordValid = await this.passwordService.validatePassword(
@@ -39,7 +43,7 @@ export class AuthService {
     );
 
     if (!passwordValid) {
-      throw new Error('Invalid password');
+      throw new BadRequestException('Invalid password');
     }
 
     return this.jwtService.sign({ userId: user.id });
