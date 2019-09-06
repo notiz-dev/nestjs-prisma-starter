@@ -4,15 +4,21 @@ services:
     image: mysql:5.7
     restart: always
     ports:
-      - 3306:3306
+      - '3306:3306'
     environment:
       MYSQL_ROOT_PASSWORD: topSecret42
     volumes:
       - mysql:/var/lib/mysql
+  prisma-studio:
+    build:
+      context: prisma
+      dockerfile: Dockerfile
+    ports:
+      - '5555:5555'
   nest-api:
     build: .
     ports:
-      - 3000:3000
+      - '3000:3000'
     image: nest-api
     container_name: nest_api
 volumes:
