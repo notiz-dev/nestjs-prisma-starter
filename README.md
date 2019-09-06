@@ -120,6 +120,16 @@ Playground for the NestJS Server is available here: http://localhost:3000/graphq
 
 **[⬆ back to top](#overview)**
 
+## Playground
+
+Some queries and mutations are secured by an auth guard. You have to accuire a JWT token from `signup` or `login`. Add the the auth token as followed to **HTTP HEADERS** in the playground and replace `YOURTOKEN` here:
+
+```
+{
+  "Authorization" : "Bearer YOURTOKEN"
+}
+```
+
 ## Rest Api
 
 [RESTful API](http://localhost:3000/api) documentation available with Swagger.
