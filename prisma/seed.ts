@@ -21,7 +21,7 @@ async function main() {
   });
   const user2 = await photon.users.create({
     data: {
-      email: 'Bart@simpson.com',
+      email: 'bart@simpson.com',
       firstname: 'Bart',
       lastname: 'Simpson',
       role: 'ADMIN',
