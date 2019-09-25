@@ -46,7 +46,7 @@
     "bcrypt": "3.0.6",
     "class-transformer": "0.2.3",
     "class-validator": "0.10.0",
-    "graphql": "14.5.4",
+    "graphql": "14.5.8",
     "graphql-tools": "4.0.5",
     "passport": "0.4.0",
     "passport-jwt": "4.0.0",
