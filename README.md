@@ -23,6 +23,7 @@ Starter template for 😻 [nest](https://nestjs.com/) and [Prisma](https://www.p
     - [5. Seed the database data with this script](#5-seed-the-database-data-with-this-script)
     - [6. Install Nestjs](#6-install-nestjs)
   - [Start NestJS Server](#start-nestjs-server)
+  - [Playground](#playground)
   - [Rest Api](#rest-api)
   - [Docker](#docker)
   - [Update Schema](#update-schema)
