@@ -4,7 +4,7 @@
 # -----------------------------------------------
 
 type Auth {
-  """JWT Beare token"""
+  """JWT Bearer token"""
   token: String!
   user: User!
 }
