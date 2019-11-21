@@ -43,7 +43,7 @@
     "@nestjs/platform-express": "6.6.7",
     "@nestjs/swagger": "3.1.0",
     "apollo-server-express": "2.9.3",
-    "bcrypt": "3.0.6",
+    "bcrypt": "3.0.7",
     "class-transformer": "0.2.3",
     "class-validator": "0.10.0",
     "graphql": "14.5.4",
