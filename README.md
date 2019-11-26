@@ -17,11 +17,10 @@ Starter template for 😻 [nest](https://nestjs.com/) and [Prisma](https://www.p
   - [Overview](#overview)
   - [Prisma Setup](#prisma-setup)
     - [1. Install Dependencies](#1-install-dependencies)
-    - [2. Install Prisma](#2-install-prisma)
-    - [3. Prisma2: Lift](#3-prisma2-lift)
-    - [4. Prisma2: Photon](#4-prisma2-photon)
-    - [5. Seed the database data with this script](#5-seed-the-database-data-with-this-script)
-    - [6. Install Nestjs](#6-install-nestjs)
+    - [2. Prisma2: Lift](#2-prisma2-lift)
+    - [3. Prisma2: Photon](#3-prisma2-photon)
+    - [4. Seed the database data with this script](#4-seed-the-database-data-with-this-script)
+    - [5. Install Nestjs](#5-install-nestjs)
   - [Start NestJS Server](#start-nestjs-server)
   - [Playground](#playground)
   - [Rest Api](#rest-api)
@@ -48,41 +47,33 @@ Install the dependencies for the nest server:
 npm install
 ```
 
-### 2. Install Prisma
-
-Setup [Prisma2](https://github.com/prisma/prisma2/blob/master/docs/getting-started.md)
-
-```bash
-npm install -g prisma2
-```
-
-### 3. Prisma2: Lift
+### 2. Prisma2: Lift
 
 [Lift](https://github.com/prisma/prisma2/blob/master/docs/tutorial.md#5-migrate-your-database-using-lift) is used to manage the schema and migration of the database.
 
 Saving the migration of the database:
 
 ```bash
-prisma2 lift save
+npx prisma2 lift save
 ```
 
 Perform the database migration:
 
 ```bash
-prisma2 lift up
+npx prisma2 lift up
 ```
 
-### 4. Prisma2: Photon
+### 3. Prisma2: Photon
 
 [Photon](https://github.com/prisma/prisma2/blob/master/docs/photon/api.md) is a type-safe database client auto-generated based on the data model.
 
 To generate Photon execute, this will alwayse be executed after `npm install`:
 
 ```bash
-prisma2 generate
+npx prisma2 generate
 ```
 
-### 5. Seed the database data with this script
+### 4. Seed the database data with this script
 
 Execute the script with this command:
 
@@ -90,7 +81,7 @@ Execute the script with this command:
 npm run seed
 ```
 
-### 6. Install Nestjs
+### 5. Install Nestjs
 
 The [Nestjs CLI](https://docs.nestjs.com/cli/usages) can be used to generate controller, services, resolvers and more.
 

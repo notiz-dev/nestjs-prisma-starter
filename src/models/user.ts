@@ -6,8 +6,8 @@ export class User {
   @Field()
   id: string;
 
-  @Field()
-  registeredAt: Date;
+  @Field({ name: 'registeredAt' })
+  createdAt: Date;
 
   @Field()
   updatedAt: Date;

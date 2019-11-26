@@ -4,7 +4,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../../services/auth.service';
 import { authConstants } from './../../common/auth/constants';
-import { User } from '@generated/photon';
+import { User } from '@prisma/photon';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
