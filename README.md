@@ -55,12 +55,16 @@ Saving the migration of the database:
 
 ```bash
 npx prisma2 lift save
+# or
+npm run lift:save
 ```
 
 Perform the database migration:
 
 ```bash
 npx prisma2 lift up
+# or
+npm run lift:up
 ```
 
 ### 3. Prisma2: Photon
@@ -71,6 +75,8 @@ To generate Photon execute, this will alwayse be executed after `npm install`:
 
 ```bash
 npx prisma2 generate
+# or
+npm run prisma:generate
 ```
 
 ### 4. Seed the database data with this script
