@@ -35,9 +35,10 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<string> {
     let user: User;
-    try {
-      user = await this.photon.users.findOne({ where: { email } });
-    } catch (error) {
+
+    user = await this.photon.users.findOne({ where: { email } });
+
+    if (user === null) {
       throw new NotFoundException(`No user found for email: ${email}`);
     }
 

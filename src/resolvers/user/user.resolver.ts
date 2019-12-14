@@ -1,5 +1,4 @@
 import { PhotonService } from './../../services/photon.service';
-import { Post } from './../../models/post';
 import { GqlAuthGuard } from '../../guards/gql-auth.guard';
 import { Resolver, Query, ResolveProperty, Parent } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
