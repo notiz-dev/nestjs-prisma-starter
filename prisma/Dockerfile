@@ -1,10 +1,14 @@
-FROM node:10
+FROM node:12
+RUN openssl version -v
+RUN uname -a
+RUN echo $POSTGRESQL_URL
 
 # Create app directory
 WORKDIR /usr/src/app
 
 RUN npm install -g prisma2 --unsafe-perm
 
-COPY ./ ./prisma/
+ADD ./ ./prisma/
 
+EXPOSE 5555
 CMD [ "prisma2", "dev"]
