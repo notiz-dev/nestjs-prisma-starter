@@ -1,8 +1,12 @@
 import { Photon } from '@prisma/photon';
+import * as dotenv from 'dotenv';
 
 const photon = new Photon();
 
 async function main() {
+  dotenv.config();
+  console.log('Seeding...');
+
   const user1 = await photon.users.create({
     data: {
       email: 'lisa@simpson.com',
