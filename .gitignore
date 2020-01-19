@@ -2,3 +2,5 @@ node_modules/
 dist/
 prisma/*.db
 coverage/
+
+prisma/migrations/dev/
