@@ -20,7 +20,7 @@
         "source": "db"
       },
       "argument": "provider",
-      "value": "\"sqlite\""
+      "value": "\"postgresql\""
     },
     {
       "tag": "CreateArgument",
@@ -29,7 +29,7 @@
         "source": "db"
       },
       "argument": "url",
-      "value": "\"file:dev.db\""
+      "value": "env(\"POSTGRESQL_URL\")"
     },
     {
       "tag": "CreateModel",

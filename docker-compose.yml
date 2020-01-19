@@ -12,10 +12,15 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
   nest-api:
-    build: .
+    container_name: nest-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - POSTGRESQL_URL=${POSTGRESQL_URL}
     ports:
       - '3000:3000'
-    image: nest-api
-    container_name: nest_api
+    environment:
+      POSTGRESQL_URL: ${POSTGRESQL_URL}
 volumes:
   postgres: ~

@@ -1,6 +1,8 @@
 FROM node:12
 RUN openssl version -v
 RUN uname -a
+ARG POSTGRESQL_URL
+ENV POSTGRESQL_URL "$POSTGRESQL_URL"
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -19,6 +21,8 @@ RUN apt-get update && apt-get install -y build-essential && apt-get install -y p
 RUN npm install --unsafe-perm
 
 ADD . .
+
+RUN npm run build
 
 EXPOSE 3000
 CMD [ "npm", "run", "start:prod" ]
