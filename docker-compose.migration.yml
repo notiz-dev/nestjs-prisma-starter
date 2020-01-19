@@ -11,11 +11,12 @@ services:
       POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD}
     volumes:
       - postgres:/var/lib/postgresql/data
-  nest-api:
-    build: .
-    ports:
-      - '3000:3000'
-    image: nest-api
-    container_name: nest_api
+  prisma-lift:
+    container_name: prisma-lift
+    build:
+      context: prisma
+      dockerfile: Dockerfile
+    environment:
+      POSTGRESQL_URL: ${POSTGRESQL_URL}
 volumes:
   postgres: ~

@@ -10,5 +10,4 @@ RUN npm install -g prisma2 --unsafe-perm
 
 ADD ./ ./prisma/
 
-EXPOSE 5555
-CMD [ "prisma2", "dev"]
+CMD [ "prisma2", "lift", "up"]

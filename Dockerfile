@@ -1,14 +1,16 @@
-FROM node:10
+FROM node:12
+RUN openssl version -v
+RUN uname -a
 
 # Create app directory
 WORKDIR /usr/src/app
 
 RUN npm install -g prisma2 --unsafe-perm
 
-COPY ./prisma/schema.prisma ./
+ADD ./prisma/schema.prisma ./
 
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
-COPY package*.json ./
+ADD package*.json ./
 
 # Install necessary tools for bcrypt to run in docker before npm install
 RUN apt-get update && apt-get install -y build-essential && apt-get install -y python
@@ -16,7 +18,7 @@ RUN apt-get update && apt-get install -y build-essential && apt-get install -y p
 # Install app dependencies
 RUN npm install --unsafe-perm
 
-COPY . .
+ADD . .
 
 EXPOSE 3000
 CMD [ "npm", "run", "start:prod" ]
