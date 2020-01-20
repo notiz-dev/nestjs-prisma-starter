@@ -22,8 +22,15 @@ type Mutation {
   login(data: LoginInput!): Auth!
 }
 
+type PageInfo {
+  endCursor: String!
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String!
+}
+
 type Post {
-  id: String!
+  id: ID!
   createdAt: Date!
   updatedAt: Date!
   title: String!
@@ -31,9 +38,20 @@ type Post {
   author: User!
 }
 
+type PostConnection {
+  edges: [PostEdge!]
+  nodes: [Post!]
+  pageInfo: PageInfo!
+}
+
+type PostEdge {
+  cursor: String!
+  node: Post!
+}
+
 type Query {
   me: User!
-  publishedPosts(skip: Int, after: String, before: String, first: Int, last: Int): [Post!]!
+  publishedPosts(skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   userPosts(userId: String!): [Post!]!
   post(postId: String!): Post!
   helloWorld: String!
@@ -54,7 +72,7 @@ input SignupInput {
 }
 
 type User {
-  id: String!
+  id: ID!
   createdAt: Date!
   updatedAt: Date!
   email: String!

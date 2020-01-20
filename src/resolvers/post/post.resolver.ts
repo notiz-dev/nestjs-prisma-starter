@@ -10,21 +10,28 @@ import {
   Args
 } from '@nestjs/graphql';
 import { Post } from './../../models/post';
+import { findManyCursor } from '../../common/find-many-cursor';
+import { PostConnection } from '../../models/pagination/post.pagination';
 
 @Resolver(of => Post)
 export class PostResolver {
   constructor(private photon: PhotonService) {}
 
-  @Query(returns => [Post])
-  publishedPosts(@Args() { skip, after, before, first, last }: PaginationArgs) {
-    return this.photon.posts.findMany({
-      where: { published: true },
-      skip,
-      after,
-      before,
-      first,
-      last
-    });
+  @Query(returns => PostConnection)
+  async publishedPosts(
+    @Args() { skip, after, before, first, last }: PaginationArgs
+  ) {
+    return await findManyCursor(
+      args =>
+        this.photon.posts.findMany({
+          include: { author: true },
+          where: {
+            published: true
+          },
+          ...args
+        }),
+      { first, last, before, after }
+    );
   }
 
   @Query(returns => [Post])

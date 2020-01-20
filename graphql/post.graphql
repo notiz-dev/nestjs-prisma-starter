@@ -4,3 +4,12 @@ query UserPosts {
     title
   }
 }
+
+query PublishedPostsConnection {
+  publishedPosts(first: 10) {
+    nodes {
+      id
+      title
+    }
+  }
+}
