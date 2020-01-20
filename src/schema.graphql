@@ -55,7 +55,7 @@ input SignupInput {
 
 type User {
   id: String!
-  registeredAt: Date!
+  createdAt: Date!
   updatedAt: Date!
   email: String!
   firstname: String

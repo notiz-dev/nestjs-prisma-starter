@@ -1,21 +1,13 @@
 import { Field, ObjectType } from 'type-graphql';
 import { User } from './user';
+import { Model } from './model';
 
 @ObjectType()
-export class Post {
-  @Field()
-  id: string;
-
-  @Field()
-  createdAt: Date;
-
-  @Field()
-  updatedAt: Date;
-
-  @Field()
+export class Post extends Model {
+  @Field(type => String)
   title: string;
 
-  @Field()
+  @Field(type => Boolean)
   published: boolean;
 
   @Field(type => User)

@@ -1,24 +1,16 @@
 import { Field, ObjectType, registerEnumType } from 'type-graphql';
 import { Post } from './post';
+import { Model } from './model';
 
 @ObjectType()
-export class User {
-  @Field()
-  id: string;
-
-  @Field({ name: 'registeredAt' })
-  createdAt: Date;
-
-  @Field()
-  updatedAt: Date;
-
-  @Field()
+export class User extends Model {
+  @Field(type => String)
   email: string;
 
-  @Field({ nullable: true })
+  @Field(type => String, { nullable: true })
   firstname?: string;
 
-  @Field({ nullable: true })
+  @Field(type => String, { nullable: true })
   lastname?: string;
 
   @Field(type => Role)
