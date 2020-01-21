@@ -41,7 +41,7 @@ export class PostResolver {
       .posts({ where: { published: true } });
 
     // or
-    // return this.photon.posts.findMany({
+    // return this.prisma.posts.findMany({
     //   where: {
     //     published: true,
     //     author: { id: id.userId }

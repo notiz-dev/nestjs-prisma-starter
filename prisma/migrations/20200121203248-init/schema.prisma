@@ -10,7 +10,7 @@ datasource db {
   enabled  = false
 }
 
-generator photon {
+generator client {
   provider = "prisma-client-js"
 }
 
