@@ -1,10 +1,17 @@
+datasource sqlite {
+  provider = "sqlite"
+  url = "***"
+  enabled  = true
+}
+
 datasource db {
   provider = "postgresql"
   url = "***"
+  enabled  = false
 }
 
 generator photon {
-  provider = "photonjs"
+  provider = "prisma-client-js"
 }
 
 model User {

@@ -12,4 +12,4 @@ RUN npm install -g prisma2 --unsafe-perm
 # Copy schema and migration folder
 ADD ./ ./prisma/
 
-CMD [ "prisma2", "lift", "up"]
+CMD [ "prisma2", "migrate", "up", "--experimental"]

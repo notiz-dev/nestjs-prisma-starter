@@ -1,4 +1,4 @@
-import { PhotonService } from './../../services/photon.service';
+import { PrismaService } from './../../services/prisma.service';
 import { PasswordService } from './../../services/password.service';
 import { GqlAuthGuard } from '../../guards/gql-auth.guard';
 import { AuthService } from '../../services/auth.service';
@@ -22,7 +22,7 @@ import { authConstants } from './../../common/auth/constants';
     JwtStrategy,
     GqlAuthGuard,
     PasswordService,
-    PhotonService
+    PrismaService
   ],
   exports: [GqlAuthGuard]
 })

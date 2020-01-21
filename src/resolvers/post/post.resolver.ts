@@ -1,4 +1,4 @@
-import { PhotonService } from './../../services/photon.service';
+import { PrismaService } from './../../services/prisma.service';
 import { PaginationArgs } from './../../models/args/pagination-args';
 import { PostIdArgs } from './../../models/args/postid-args';
 import { UserIdArgs } from '../../models/args/userid-args';
@@ -15,7 +15,7 @@ import { PostConnection } from '../../models/pagination/post.pagination';
 
 @Resolver(of => Post)
 export class PostResolver {
-  constructor(private photon: PhotonService) {}
+  constructor(private prisma: PrismaService) {}
 
   @Query(returns => PostConnection)
   async publishedPosts(
@@ -23,7 +23,7 @@ export class PostResolver {
   ) {
     return await findManyCursor(
       args =>
-        this.photon.posts.findMany({
+        this.prisma.posts.findMany({
           include: { author: true },
           where: {
             published: true
@@ -36,7 +36,7 @@ export class PostResolver {
 
   @Query(returns => [Post])
   userPosts(@Args() id: UserIdArgs) {
-    return this.photon.users
+    return this.prisma.users
       .findOne({ where: { id: id.userId } })
       .posts({ where: { published: true } });
 
@@ -51,11 +51,11 @@ export class PostResolver {
 
   @Query(returns => Post)
   async post(@Args() id: PostIdArgs) {
-    return this.photon.posts.findOne({ where: { id: id.postId } });
+    return this.prisma.posts.findOne({ where: { id: id.postId } });
   }
 
   @ResolveProperty('author')
   async author(@Parent() post: Post) {
-    return this.photon.posts.findOne({ where: { id: post.id } }).author();
+    return this.prisma.posts.findOne({ where: { id: post.id } }).author();
   }
 }

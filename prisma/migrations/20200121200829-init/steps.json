@@ -11,6 +11,37 @@
     },
     {
       "tag": "CreateSource",
+      "source": "sqlite"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Source",
+        "source": "sqlite"
+      },
+      "argument": "provider",
+      "value": "\"sqlite\""
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Source",
+        "source": "sqlite"
+      },
+      "argument": "url",
+      "value": "\"file:./dev.db\""
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Source",
+        "source": "sqlite"
+      },
+      "argument": "enabled",
+      "value": "true"
+    },
+    {
+      "tag": "CreateSource",
       "source": "db"
     },
     {
@@ -30,6 +61,15 @@
       },
       "argument": "url",
       "value": "env(\"POSTGRESQL_URL\")"
+    },
+    {
+      "tag": "CreateArgument",
+      "location": {
+        "tag": "Source",
+        "source": "db"
+      },
+      "argument": "enabled",
+      "value": "false"
     },
     {
       "tag": "CreateModel",
