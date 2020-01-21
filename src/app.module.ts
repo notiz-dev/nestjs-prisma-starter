@@ -12,8 +12,8 @@ import { DateScalar } from './common/scalars/date.scalar';
   imports: [
     GraphQLModule.forRoot({
       autoSchemaFile: './src/schema.graphql',
-      debug: true,
-      playground: true,
+      debug: true, // TODO use env-variables
+      playground: true, // TODO env-variables
       context: ({ req }) => ({ req })
     }),
     AuthModule,
