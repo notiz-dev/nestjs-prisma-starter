@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "@nestjs/common": "6.10.14",
+    "@nestjs/config": "~0.1.0",
     "@nestjs/core": "6.10.14",
     "@nestjs/graphql": "6.5.3",
     "@nestjs/jwt": "6.1.1",
@@ -57,7 +58,6 @@
     "bcrypt": "3.0.7",
     "class-transformer": "0.2.3",
     "class-validator": "0.11.0",
-    "dotenv": "~8.2.0",
     "graphql": "14.5.8",
     "graphql-tools": "4.0.6",
     "passport": "0.4.1",

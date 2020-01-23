@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import * as dotenv from 'dotenv';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -11,20 +10,24 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   // Swagger Api
-  const options = new DocumentBuilder()
-    .setTitle('Nestjs')
-    .setDescription('The nestjs API description')
-    .setVersion('1.0')
-    .build();
-  const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('api', app, document);
+  if (process.env.SWAGGER_ENABLE === '1') {
+    const options = new DocumentBuilder()
+      .setTitle(process.env.SWAGGER_TITLE || 'Nestjs')
+      .setDescription(
+        process.env.SWAGGER_DESCRIPTION || 'The nestjs API description'
+      )
+      .setVersion(process.env.SWAGGER_VERSION || '1.0')
+      .build();
+    const document = SwaggerModule.createDocument(app, options);
+
+    SwaggerModule.setup(process.env.SWAGGER_PATH || 'api', app, document);
+  }
 
   // Cors
-  app.enableCors();
+  if (process.env.CORS_ENABLE === '1') {
+    app.enableCors();
+  }
 
-  // Environment variables
-  dotenv.config();
-
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
