@@ -7,7 +7,7 @@ async function main() {
   dotenv.config();
   console.log('Seeding...');
 
-  const user1 = await prismaClient.users.create({
+  const user1 = await prismaClient.user.create({
     data: {
       email: 'lisa@simpson.com',
       firstname: 'Lisa',
@@ -23,7 +23,7 @@ async function main() {
       }
     }
   });
-  const user2 = await prismaClient.users.create({
+  const user2 = await prismaClient.user.create({
     data: {
       email: 'bart@simpson.com',
       firstname: 'Bart',

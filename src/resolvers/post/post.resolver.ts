@@ -23,7 +23,7 @@ export class PostResolver {
   ) {
     return await findManyCursor(
       args =>
-        this.prisma.posts.findMany({
+        this.prisma.post.findMany({
           include: { author: true },
           where: {
             published: true
@@ -36,7 +36,7 @@ export class PostResolver {
 
   @Query(returns => [Post])
   userPosts(@Args() id: UserIdArgs) {
-    return this.prisma.users
+    return this.prisma.user
       .findOne({ where: { id: id.userId } })
       .posts({ where: { published: true } });
 
@@ -51,11 +51,11 @@ export class PostResolver {
 
   @Query(returns => Post)
   async post(@Args() id: PostIdArgs) {
-    return this.prisma.posts.findOne({ where: { id: id.postId } });
+    return this.prisma.post.findOne({ where: { id: id.postId } });
   }
 
   @ResolveProperty('author')
   async author(@Parent() post: Post) {
-    return this.prisma.posts.findOne({ where: { id: post.id } }).author();
+    return this.prisma.post.findOne({ where: { id: post.id } }).author();
   }
 }
