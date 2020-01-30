@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD}
     volumes:
       - postgres:/var/lib/postgresql/data
-  prisma-lift:
+  prisma-migrate:
     container_name: prisma-migrate
     build:
       context: prisma
