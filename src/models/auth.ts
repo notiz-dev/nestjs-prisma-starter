@@ -3,7 +3,7 @@ import { User } from './user';
 
 @ObjectType()
 export class Auth {
-  @Field({ description: 'JWT Beare token' })
+  @Field({ description: 'JWT Bearer token' })
   token: string;
 
   @Field(type => User)

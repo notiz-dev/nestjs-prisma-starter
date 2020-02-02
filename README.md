@@ -12,16 +12,33 @@ Starter template for 😻 [nest](https://nestjs.com/) and [Prisma](https://www.p
 
 ## Overview
 
-- [Prisma Setup](#prisma-setup)
-- [Start NestJS Server](#start-nestjs-server)
-- [Rest Api](#rest-api)
-- [Docker](#docker)
-- [Update Schema](#update-schema)
-- [Graphql Client](#graphql-client)
+- [Instructions](#instructions)
+  - [Features](#features)
+  - [Overview](#overview)
+  - [Prisma Setup](#prisma-setup)
+    - [1. Install Dependencies](#1-install-dependencies)
+    - [2. Prisma2: Prisma Migrate](#2-prisma2-prisma-migrate)
+    - [3. Prisma2: Prisma Client JS](#3-prisma2-client-js)
+    - [4. Seed the database data with this script](#4-seed-the-database-data-with-this-script)
+    - [5. Install Nestjs](#5-install-nestjs)
+  - [Start NestJS Server](#start-nestjs-server)
+  - [Playground](#playground)
+  - [Rest Api](#rest-api)
+  - [Docker](#docker)
+  - [Schema Development](#schema-development)
+  - [NestJS - Api Schema](#nestjs---api-schema)
+    - [Resolver](#resolver)
+  - [Graphql Client](#graphql-client)
+    - [Angular](#angular)
+      - [Setup](#setup)
+      - [Queries](#queries)
+      - [Mutations](#mutations)
+      - [Subscriptions](#subscriptions)
+      - [Authentication](#authentication)
 
 ## Prisma Setup
 
-### 1. Install Deps
+### 1. Install Dependencies
 
 Install the dependencies for the nest server:
 
@@ -29,32 +46,53 @@ Install the dependencies for the nest server:
 npm install
 ```
 
-### 2. Install Prisma
+### 2. Prisma2: Prisma Migrate
 
-Setup [Prisma CLI](https://www.prisma.io/docs/1.21/get-started/01-setting-up-prisma-new-database-TYPESCRIPT-t002/)
+[Prisma Migrate](https://github.com/prisma/prisma2/tree/master/docs/prisma-migrate) is used to manage the schema and migration of the database.
 
-```bash
-npm install -g prisma
-```
-
-### 3. Install Docker
-
-Install Docker and start Prisma and the connected database by running the following command:
+Saving the migration of the database:
 
 ```bash
-docker-compose up -d
+npx prisma2 lift save
+# or
+npm run lift:save
 ```
 
-### 4. Deploy Prisma
-
-To deploy the Prisma schema run:
+Perform the database migration:
 
 ```bash
-prisma deploy
+npx prisma2 lift up
+# or
+npm run lift:up
 ```
 
-Playground of Prisma is available here: http://localhost:4466/  
-Prisma Admin is available here: http://localhost:4466/_admin
+### 3. Prisma2: Prisma Client JS
+
+[Prisma Client JS](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) is a type-safe database client auto-generated based on the data model.
+
+To generate Prisma Client JS execute, this will alwayse be executed after `npm install`:
+
+```bash
+npx prisma2 generate
+# or
+npm run prisma:generate
+```
+
+### 4. Seed the database data with this script
+
+Execute the script with this command:
+
+```sh
+npm run seed
+```
+
+### 5. Install Nestjs
+
+The [Nestjs CLI](https://docs.nestjs.com/cli/usages) can be used to generate controller, services, resolvers and more.
+
+```
+npm i -g @nestjs/cli
+```
 
 **[⬆ back to top](#overview)**
 
@@ -126,27 +164,28 @@ Now open up [localhost:3000](http://localhost:3000) to verify that your nest ser
 If you see an error like `request to http://localhost:4466/ failed, reason: connect ECONNREFUSED 127.0.0.1:4466` this is because Nest tries to access the Prisma server on `http://localhost:4466/`. In the case of a docker container localhost is the container itself.
 Therefore, you have to open up [Prisma Service](./src/prisma/prisma.service.ts) `endpoint: 'http://localhost:4466',` and replace localhost with the IP address where the Prisma Server is executed.
 
-## Update Schema
+## Schema Development
 
-### Prisma - Database Schema
-
-Update the Prisma schema `prisma/datamodel.prisma` and after that run the following two commands:
+Update the Prisma schema `prisma/schema.prisma` and after that run the following two commands:
 
 ```bash
-prisma deploy
+npx prisma2 generate
+# or in watch mode
+npx prisma2 generate --watch
+# or
+npm run prisma:generate
+npm run prisma:generate:watch
 ```
-
-`prisma deploy` will update the database and for each deploy `prisma generate` is executed. This will generate the latest Prisma Client to access Prisma from your resolvers.
 
 **[⬆ back to top](#overview)**
 
-### NestJS - Api Schema
+## NestJS - Api Schema
 
 The [schema.graphql](./src/schema.graphql) is generated with [type-graphql](https://typegraphql.ml/). The schema is generated from the [models](./src/models/user.ts), the [resolvers](./src/resolvers/auth/auth.resolver.ts) and the [input](./src/resolvers/auth/dto/login.input.ts) classes.
 
 You can use [class-validator](https://docs.nestjs.com/techniques/validation) to validate your inputs and arguments.
 
-#### Resolver
+### Resolver
 
 To implement the new query, a new resolver function needs to be added to `users.resolver.ts`.
 

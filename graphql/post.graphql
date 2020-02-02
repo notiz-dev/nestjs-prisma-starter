@@ -1,0 +1,15 @@
+query UserPosts {
+  userPosts(userId: "USER_ID") {
+    id
+    title
+  }
+}
+
+query PublishedPostsConnection {
+  publishedPosts(first: 10) {
+    nodes {
+      id
+      title
+    }
+  }
+}
