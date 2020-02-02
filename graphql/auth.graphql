@@ -2,8 +2,7 @@ mutation Admin {
   login(data: { email: "bart@simpson.com", password: "secret42" }) {
     token
     user {
-      id
-      email
+      ...UserData
     }
   }
 }
@@ -12,8 +11,15 @@ mutation User {
   login(data: { email: "lisa@simpson.com", password: "secret42" }) {
     token
     user {
-      id
-      email
+      ...UserData
     }
   }
+}
+
+fragment UserData on User {
+  id
+  email
+  firstname
+  lastname
+  role
 }

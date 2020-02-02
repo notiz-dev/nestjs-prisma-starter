@@ -42,6 +42,7 @@ type Post {
   createdAt: Date!
   updatedAt: Date!
   title: String!
+  content: String!
   published: Boolean!
   author: User!
 }
@@ -62,24 +63,19 @@ input PostOrder {
   field: PostOrderField!
 }
 
-input PostOrderByInput {
-  id: OrderDirection
-  createdAt: OrderDirection
-  updatedAt: OrderDirection
-  published: OrderDirection
-  title: OrderDirection
-  content: OrderDirection
-}
-
 """Properties by which post connections can be ordered."""
 enum PostOrderField {
-  CREATED_AT
-  UPDATED_AT
+  id
+  createdAt
+  updatedAt
+  published
+  title
+  content
 }
 
 type Query {
   me: User!
-  publishedPosts(orderBy: PostOrderByInput, query: String, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
+  publishedPosts(orderBy: PostOrder = {direction: asc, field: createdAt}, query: String, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   userPosts(userId: String!): [Post!]!
   post(postId: String!): Post!
   helloWorld: String!

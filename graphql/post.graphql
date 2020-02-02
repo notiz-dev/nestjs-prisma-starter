@@ -6,10 +6,29 @@ query UserPosts {
 }
 
 query PublishedPostsConnection {
-  publishedPosts(first: 10) {
+  publishedPosts(first: 20, orderBy: { field: title, direction: asc }) {
     nodes {
-      id
-      title
+      ...PostData
+      author {
+        ...UserData
+      }
     }
   }
+}
+
+fragment UserData on User {
+  id
+  email
+  firstname
+  lastname
+  role
+}
+
+fragment PostData on Post {
+  id
+  createdAt
+  updatedAt
+  published
+  title
+  content
 }

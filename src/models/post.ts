@@ -7,6 +7,9 @@ export class Post extends Model {
   @Field(type => String)
   title: string;
 
+  @Field(type => String)
+  content: string;
+
   @Field(type => Boolean)
   published: boolean;
 

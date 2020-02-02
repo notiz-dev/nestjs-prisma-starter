@@ -1,7 +1,13 @@
 query Me {
   me {
-    id
-    email
-    firstname
+    ...UserData
   }
+}
+
+fragment UserData on User {
+  id
+  email
+  firstname
+  lastname
+  role
 }
