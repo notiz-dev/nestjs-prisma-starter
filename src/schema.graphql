@@ -51,7 +51,7 @@ type PostEdge {
 
 type Query {
   me: User!
-  publishedPosts(skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
+  publishedPosts(query: String, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   userPosts(userId: String!): [Post!]!
   post(postId: String!): Post!
   helloWorld: String!

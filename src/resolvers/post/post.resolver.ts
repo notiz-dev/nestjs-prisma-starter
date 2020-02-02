@@ -1,5 +1,5 @@
 import { PrismaService } from './../../services/prisma.service';
-import { PaginationArgs } from './../../models/args/pagination-args';
+import { PaginationArgs } from '../../common/pagination/pagination-args';
 import { PostIdArgs } from './../../models/args/postid-args';
 import { UserIdArgs } from '../../models/args/userid-args';
 import {
@@ -11,7 +11,7 @@ import {
 } from '@nestjs/graphql';
 import { Post } from './../../models/post';
 import { findManyCursor } from '../../common/find-many-cursor';
-import { PostConnection } from '../../models/pagination/post.pagination';
+import { PostConnection } from '../../models/post.pagination';
 
 @Resolver(of => Post)
 export class PostResolver {
@@ -19,14 +19,17 @@ export class PostResolver {
 
   @Query(returns => PostConnection)
   async publishedPosts(
-    @Args() { skip, after, before, first, last }: PaginationArgs
+    @Args() { skip, after, before, first, last }: PaginationArgs,
+    @Args({ name: 'query', type: () => String, nullable: true })
+    query: string
   ) {
     return await findManyCursor(
       args =>
         this.prisma.post.findMany({
           include: { author: true },
           where: {
-            published: true
+            published: true,
+            title: { contains: query || '' }
           },
           ...args
         }),
