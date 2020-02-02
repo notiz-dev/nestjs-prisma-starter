@@ -22,6 +22,14 @@ type Mutation {
   login(data: LoginInput!): Auth!
 }
 
+"""
+Possible directions in which to order a list of items when provided an `orderBy` argument.
+"""
+enum OrderDirection {
+  asc
+  desc
+}
+
 type PageInfo {
   endCursor: String!
   hasNextPage: Boolean!
@@ -49,9 +57,29 @@ type PostEdge {
   node: Post!
 }
 
+input PostOrder {
+  direction: OrderDirection!
+  field: PostOrderField!
+}
+
+input PostOrderByInput {
+  id: OrderDirection
+  createdAt: OrderDirection
+  updatedAt: OrderDirection
+  published: OrderDirection
+  title: OrderDirection
+  content: OrderDirection
+}
+
+"""Properties by which post connections can be ordered."""
+enum PostOrderField {
+  CREATED_AT
+  UPDATED_AT
+}
+
 type Query {
   me: User!
-  publishedPosts(query: String, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
+  publishedPosts(orderBy: PostOrderByInput, query: String, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   userPosts(userId: String!): [Post!]!
   post(postId: String!): Post!
   helloWorld: String!

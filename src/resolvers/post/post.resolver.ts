@@ -12,6 +12,7 @@ import {
 import { Post } from './../../models/post';
 import { findManyCursor } from '../../common/find-many-cursor';
 import { PostConnection } from '../../models/post.pagination';
+import { PostOrderByInput } from '../../models/inputs/post.order';
 
 @Resolver(of => Post)
 export class PostResolver {
@@ -21,7 +22,9 @@ export class PostResolver {
   async publishedPosts(
     @Args() { skip, after, before, first, last }: PaginationArgs,
     @Args({ name: 'query', type: () => String, nullable: true })
-    query: string
+    query: string,
+    @Args({ name: 'orderBy', type: () => PostOrderByInput, nullable: true })
+    orderBy: PostOrderByInput
   ) {
     return await findManyCursor(
       args =>
@@ -31,6 +34,7 @@ export class PostResolver {
             published: true,
             title: { contains: query || '' }
           },
+          orderBy,
           ...args
         }),
       { first, last, before, after }
