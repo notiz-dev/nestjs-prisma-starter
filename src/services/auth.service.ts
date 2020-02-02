@@ -34,9 +34,7 @@ export class AuthService {
   }
 
   async login(email: string, password: string): Promise<string> {
-    let user: User;
-
-    user = await this.prisma.user.findOne({ where: { email } });
+    const user = await this.prisma.user.findOne({ where: { email } });
 
     if (user === null) {
       throw new NotFoundException(`No user found for email: ${email}`);

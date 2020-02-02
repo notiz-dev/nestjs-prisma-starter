@@ -2,6 +2,16 @@ import { Field, ObjectType, registerEnumType } from 'type-graphql';
 import { Post } from './post';
 import { Model } from './model';
 
+export enum Role {
+  ADMIN = 'ADMIN',
+  USER = 'USER'
+}
+
+registerEnumType(Role, {
+  name: 'Role',
+  description: 'User role'
+});
+
 @ObjectType()
 export class User extends Model {
   @Field(type => String)
@@ -21,13 +31,3 @@ export class User extends Model {
 
   password: string;
 }
-
-export enum Role {
-  ADMIN = 'ADMIN',
-  USER = 'USER'
-}
-
-registerEnumType(Role, {
-  name: 'Role',
-  description: 'User role'
-});

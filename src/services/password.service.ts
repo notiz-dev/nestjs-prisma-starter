@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { hash, compare, genSaltSync } from 'bcrypt';
+import { hash, compare } from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
 
 @Injectable()

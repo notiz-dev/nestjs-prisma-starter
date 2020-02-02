@@ -30,7 +30,7 @@
     "prisma:studio": "npx prisma2 studio --experimental",
     "prisma:generate": "npx prisma2 generate",
     "prisma:generate:watch": "npx prisma2 generate --watch",
-    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "lint": "eslint '{src,apps,libs,test}/**/*.ts' --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
@@ -76,6 +76,11 @@
     "@types/jest": "25.1.1",
     "@types/node": "13.5.3",
     "@types/supertest": "2.0.8",
+    "@typescript-eslint/eslint-plugin": "2.18.0",
+    "@typescript-eslint/parser": "2.18.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.10.0",
+    "eslint-plugin-import": "2.20.0",
     "chance": "1.1.4",
     "jest": "25.1.0",
     "prettier": "1.19.1",
@@ -86,7 +91,6 @@
     "ts-loader": "6.2.1",
     "ts-node": "8.6.2",
     "tsconfig-paths": "3.9.0",
-    "tslint": "6.0.0",
     "typescript": "3.7.5"
   },
   "jest": {
