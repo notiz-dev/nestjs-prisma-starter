@@ -75,7 +75,7 @@ enum PostOrderField {
 
 type Query {
   me: User!
-  publishedPosts(orderBy: PostOrder = {direction: asc, field: createdAt}, query: String, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
+  publishedPosts(orderBy: PostOrder, query: String, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   userPosts(userId: String!): [Post!]!
   post(postId: String!): Post!
   helloWorld: String!

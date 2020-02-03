@@ -12,8 +12,7 @@ import {
 import { Post } from './../../models/post';
 import { findManyCursor } from '../../common/find-many-cursor';
 import { PostConnection } from '../../models/post.pagination';
-import { PostOrder, PostOrderField } from '../../models/inputs/post.order';
-import { OrderDirection } from 'src/common/order/order-direction';
+import { PostOrder } from '../../models/inputs/post.order';
 
 @Resolver(of => Post)
 export class PostResolver {
@@ -27,10 +26,7 @@ export class PostResolver {
     @Args({
       name: 'orderBy',
       type: () => PostOrder,
-      defaultValue: {
-        field: PostOrderField.createdAt,
-        direction: OrderDirection.asc
-      }
+      nullable: true
     })
     orderBy: PostOrder
   ) {
@@ -42,7 +38,7 @@ export class PostResolver {
             published: true,
             title: { contains: query || '' }
           },
-          orderBy: { [orderBy.field]: orderBy.direction },
+          orderBy: orderBy ? { [orderBy.field]: orderBy.direction } : null,
           ...args
         }),
       { first, last, before, after }
