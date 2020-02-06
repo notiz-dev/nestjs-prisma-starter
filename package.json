@@ -45,13 +45,13 @@
     "docker": "docker-compose up -d"
   },
   "dependencies": {
-    "@nestjs/common": "6.11.5",
+    "@nestjs/common": "6.11.6",
     "@nestjs/config": "0.1.0",
-    "@nestjs/core": "6.11.5",
+    "@nestjs/core": "6.11.6",
     "@nestjs/graphql": "6.5.4",
     "@nestjs/jwt": "6.1.1",
     "@nestjs/passport": "6.1.1",
-    "@nestjs/platform-express": "6.11.5",
+    "@nestjs/platform-express": "6.11.6",
     "@nestjs/swagger": "4.2.3",
     "@prisma/client": "2.0.0-preview021",
     "apollo-server-express": "2.9.16",
@@ -68,8 +68,8 @@
     "type-graphql": "0.17.6"
   },
   "devDependencies": {
-    "@nestjs/cli": "6.14.1",
-    "@nestjs/testing": "6.11.5",
+    "@nestjs/cli": "6.14.2",
+    "@nestjs/testing": "6.11.6",
     "@types/bcrypt": "3.0.0",
     "@types/chance": "1.0.8",
     "@types/express": "4.17.2",
