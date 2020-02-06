@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@nestjs/common": "6.11.5",
-    "@nestjs/config": "0.1.0",
+    "@nestjs/config": "0.2.2",
     "@nestjs/core": "6.11.5",
     "@nestjs/graphql": "6.5.4",
     "@nestjs/jwt": "6.1.1",
