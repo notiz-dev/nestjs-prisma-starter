@@ -10,7 +10,7 @@ import {
   Args
 } from '@nestjs/graphql';
 import { Post } from './../../models/post';
-import { findManyCursor } from '../../common/find-many-cursor';
+import { findManyCursor } from '../../common/pagination/find-many-cursor';
 import { PostConnection } from '../../models/post.pagination';
 import { PostOrder } from '../../models/inputs/post.order';
 
