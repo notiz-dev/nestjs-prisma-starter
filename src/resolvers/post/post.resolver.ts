@@ -11,7 +11,7 @@ import {
 } from '@nestjs/graphql';
 import { Post } from './../../models/post';
 import { findManyCursor } from '../../common/pagination/find-many-cursor';
-import { PostConnection } from '../../models/post.pagination';
+import { PostConnection } from '../../models/pagination/post.pagination';
 import { PostOrder } from '../../models/inputs/post.order';
 
 @Resolver(of => Post)
