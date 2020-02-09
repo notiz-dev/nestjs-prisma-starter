@@ -1,13 +1,13 @@
 datasource sqlite {
   provider = "sqlite"
   url      = "file:./dev.db"
-  enabled  = false
+  enabled  = true
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("POSTGRESQL_URL")
-  enabled  = true
+  enabled  = false
 }
 
 generator client {

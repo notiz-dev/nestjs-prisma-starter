@@ -4,6 +4,12 @@ query Me {
   }
 }
 
+mutation ChangePassword {
+  changePassword(data: { oldPassword: "secret42", newPassword: "secret42" }) {
+    ...UserData
+  }
+}
+
 fragment UserData on User {
   id
   email

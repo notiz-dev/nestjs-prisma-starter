@@ -9,6 +9,11 @@ type Auth {
   user: User!
 }
 
+input ChangePasswordInput {
+  oldPassword: String!
+  newPassword: String!
+}
+
 """Date custom scalar type"""
 scalar Date
 
@@ -20,6 +25,7 @@ input LoginInput {
 type Mutation {
   signup(data: SignupInput!): Auth!
   login(data: LoginInput!): Auth!
+  changePassword(data: ChangePasswordInput!): User!
 }
 
 """
