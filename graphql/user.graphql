@@ -4,6 +4,12 @@ query Me {
   }
 }
 
+mutation UpdateUser {
+  updateUser(data: { firstname: "Bart", lastname: "Simpson" }) {
+    ...UserData
+  }
+}
+
 mutation ChangePassword {
   changePassword(data: { oldPassword: "secret42", newPassword: "secret42" }) {
     ...UserData

@@ -25,6 +25,7 @@ input LoginInput {
 type Mutation {
   signup(data: SignupInput!): Auth!
   login(data: LoginInput!): Auth!
+  updateUser(data: UpdateUserInput!): User!
   changePassword(data: ChangePasswordInput!): User!
 }
 
@@ -97,6 +98,11 @@ enum Role {
 input SignupInput {
   email: String!
   password: String!
+  firstname: String
+  lastname: String
+}
+
+input UpdateUserInput {
   firstname: String
   lastname: String
 }

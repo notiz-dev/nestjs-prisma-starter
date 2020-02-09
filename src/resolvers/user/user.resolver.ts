@@ -13,6 +13,7 @@ import { UserEntity } from '../../decorators/user.decorator';
 import { User } from './../../models/user';
 import { ChangePasswordInput } from './dto/change-password.input';
 import { UserService } from 'src/services/user.service';
+import { UpdateUserInput } from './dto/update-user.input';
 
 @Resolver(of => User)
 @UseGuards(GqlAuthGuard)
@@ -25,6 +26,15 @@ export class UserResolver {
   @Query(returns => User)
   async me(@UserEntity() user: User): Promise<User> {
     return user;
+  }
+
+  @UseGuards(GqlAuthGuard)
+  @Mutation(returns => User)
+  async updateUser(
+    @UserEntity() user: User,
+    @Args('data') newUserData: UpdateUserInput
+  ) {
+    return this.userService.updateUser(user.id, newUserData);
   }
 
   @UseGuards(GqlAuthGuard)
