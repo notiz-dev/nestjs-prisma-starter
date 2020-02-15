@@ -1,7 +1,8 @@
 import {
   Injectable,
   NotFoundException,
-  BadRequestException
+  BadRequestException,
+  ConflictException
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PasswordService } from './password.service';
@@ -22,15 +23,19 @@ export class AuthService {
       payload.password
     );
 
-    const user = await this.prisma.user.create({
-      data: {
-        ...payload,
-        password: hashedPassword,
-        role: 'USER'
-      }
-    });
+    try {
+      const user = await this.prisma.user.create({
+        data: {
+          ...payload,
+          password: hashedPassword,
+          role: 'USER'
+        }
+      });
 
-    return this.jwtService.sign({ userId: user.id });
+      return this.jwtService.sign({ userId: user.id });
+    } catch (error) {
+      throw new ConflictException(`Email ${payload.email} already used.`);
+    }
   }
 
   async login(email: string, password: string): Promise<string> {
