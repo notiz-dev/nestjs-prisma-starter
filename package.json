@@ -84,7 +84,7 @@
     "chance": "1.1.4",
     "jest": "25.1.0",
     "prettier": "1.19.1",
-    "prisma2": "2.0.0-preview021",
+    "prisma2": "2.0.0-preview022",
     "rimraf": "3.0.2",
     "supertest": "4.0.2",
     "ts-jest": "25.2.0",
