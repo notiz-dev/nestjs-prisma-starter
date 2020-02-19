@@ -87,7 +87,7 @@
     "prisma2": "2.0.0-preview021",
     "rimraf": "3.0.2",
     "supertest": "4.0.2",
-    "ts-jest": "25.2.0",
+    "ts-jest": "25.2.1",
     "ts-loader": "6.2.1",
     "ts-node": "8.6.2",
     "tsconfig-paths": "3.9.0",
