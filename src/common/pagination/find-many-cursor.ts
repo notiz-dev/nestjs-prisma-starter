@@ -1,4 +1,15 @@
+export type SpecifiedCursor = {
+  id?: string | null;
+};
+
 export type ConnectionCursor = string;
+
+export interface SpecifiedArguments {
+  before?: SpecifiedCursor | null;
+  after?: SpecifiedCursor | null;
+  first?: number | null;
+  last?: number | null;
+}
 
 export interface ConnectionArguments {
   before?: ConnectionCursor | null;
@@ -32,7 +43,7 @@ export interface Connection<T> {
  * @see https://facebook.github.io/relay/graphql/connections.htm
  */
 export async function findManyCursor<Model extends { id: string }>(
-  findMany: (args: ConnectionArguments) => Promise<Model[]>,
+  findMany: (args: SpecifiedArguments) => Promise<Model[]>,
   args: ConnectionArguments = {} as ConnectionArguments
 ): Promise<Connection<Model>> {
   if (args.first === undefined && args.last === undefined) {
@@ -55,8 +66,11 @@ export async function findManyCursor<Model extends { id: string }>(
   const first = args.first != null ? args.first + 1 : undefined;
   const last = args.last != null ? args.last + 1 : undefined;
 
+  const after = args.after ? { id: args.after } : undefined;
+  const before = args.after ? { id: args.before } : undefined;
+
   // Execute the underlying findMany operation
-  const nodes = await findMany({ ...args, first, last });
+  const nodes = await findMany({ after, before, first, last });
 
   // totalCounts
   // const totalCounts = nodes.length;
