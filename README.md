@@ -53,17 +53,17 @@ npm install
 Saving the migration of the database:
 
 ```bash
-npx prisma2 lift save
+npx prisma2 migrate save
 # or
-npm run lift:save
+npm run migrate:save
 ```
 
 Perform the database migration:
 
 ```bash
-npx prisma2 lift up
+npx prisma2 migrate up
 # or
-npm run lift:up
+npm run migrate:up
 ```
 
 ### 3. Prisma2: Prisma Client JS
