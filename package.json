@@ -48,7 +48,7 @@
     "@nestjs/common": "6.11.8",
     "@nestjs/config": "0.2.4",
     "@nestjs/core": "6.11.8",
-    "@nestjs/graphql": "6.6.1",
+    "@nestjs/graphql": "6.6.2",
     "@nestjs/jwt": "6.1.2",
     "@nestjs/passport": "6.2.0",
     "@nestjs/platform-express": "6.11.8",
