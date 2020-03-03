@@ -41,37 +41,6 @@
       "value": "true"
     },
     {
-      "tag": "CreateSource",
-      "source": "db"
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Source",
-        "source": "db"
-      },
-      "argument": "provider",
-      "value": "\"postgresql\""
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Source",
-        "source": "db"
-      },
-      "argument": "url",
-      "value": "env(\"POSTGRESQL_URL\")"
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Source",
-        "source": "db"
-      },
-      "argument": "enabled",
-      "value": "false"
-    },
-    {
       "tag": "CreateModel",
       "model": "User"
     },

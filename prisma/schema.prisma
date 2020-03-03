@@ -4,11 +4,11 @@ datasource sqlite {
   enabled  = true
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRESQL_URL")
-  enabled  = false
-}
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("POSTGRESQL_URL")
+//   enabled  = false
+// }
 
 generator client {
   provider = "prisma-client-js"
@@ -37,6 +37,5 @@ model Post {
 }
 
 enum Role {
-  ADMIN
-  USER
+  ADMIN USER
 }
