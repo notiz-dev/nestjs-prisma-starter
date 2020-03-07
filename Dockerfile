@@ -1,13 +1,11 @@
 FROM node:12
-RUN openssl version -v
-RUN uname -a
 
 # Install necessary tools for bcrypt to run in docker before npm install
 RUN apt-get update \
     && apt-get install -y build-essential python
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
 ARG POSTGRESQL_URL
 ENV POSTGRESQL_URL "$POSTGRESQL_URL"
@@ -20,9 +18,10 @@ ADD ./prisma/schema.prisma ./
 ADD package*.json ./
 
 # Install app dependencies
-RUN npm install --unsafe-perm
+RUN npm install
 
-ADD . .
+ADD tsconfig*.json ./
+ADD src ./src
 
 RUN npm run build
 

@@ -156,7 +156,7 @@ docker build -t nest-prisma-server .
 After Docker build your docker image you are ready to start up a docker container running the nest server:
 
 ```bash
-docker run -d -t -p 3000:3000 nest-prisma-server
+docker run -d -t -p 3000:3000 --env-file .env nest-prisma-server
 ```
 
 Now open up [localhost:3000](http://localhost:3000) to verify that your nest server is running.
