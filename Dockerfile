@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:12 AS builder
 
 # Install necessary tools for bcrypt to run in docker before npm install
 RUN apt-get update \
@@ -12,18 +12,22 @@ ENV POSTGRESQL_URL "$POSTGRESQL_URL"
 
 RUN npm install -g prisma2 --unsafe-perm
 
-ADD ./prisma/schema.prisma ./
+COPY ./prisma/schema.prisma ./
 
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
-ADD package*.json ./
+COPY package*.json ./
 
 # Install app dependencies
 RUN npm install
 
-ADD tsconfig*.json ./
-ADD src ./src
+COPY tsconfig*.json ./
+COPY src ./src
 
 RUN npm run build
 
+FROM node:12
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/dist ./dist
 EXPOSE 3000
 CMD [ "npm", "run", "start:prod" ]

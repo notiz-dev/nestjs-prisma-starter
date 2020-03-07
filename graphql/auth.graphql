@@ -16,6 +16,15 @@ mutation User {
   }
 }
 
+mutation AuthUser {
+  signup(data: { email: "bart@simpson.com", password: "secret42" }) {
+    token
+    user {
+      ...UserData
+    }
+  }
+}
+
 fragment UserData on User {
   id
   email

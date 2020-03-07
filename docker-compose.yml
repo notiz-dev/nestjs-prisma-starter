@@ -20,7 +20,7 @@ services:
         - POSTGRESQL_URL=${POSTGRESQL_URL}
     ports:
       - '3000:3000'
-    environment:
-      POSTGRESQL_URL: ${POSTGRESQL_URL}
+    env_file:
+      - ./.env
 volumes:
   postgres: ~

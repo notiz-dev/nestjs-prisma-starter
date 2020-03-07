@@ -4,7 +4,7 @@ RUN uname -a
 RUN echo $POSTGRESQL_URL
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Install prisma2 for the migration
 RUN npm install -g prisma2 --unsafe-perm
