@@ -11,34 +11,25 @@
     },
     {
       "tag": "CreateSource",
-      "source": "sqlite"
+      "source": "db"
     },
     {
       "tag": "CreateArgument",
       "location": {
         "tag": "Source",
-        "source": "sqlite"
+        "source": "db"
       },
       "argument": "provider",
-      "value": "\"sqlite\""
+      "value": "\"postgresql\""
     },
     {
       "tag": "CreateArgument",
       "location": {
         "tag": "Source",
-        "source": "sqlite"
+        "source": "db"
       },
       "argument": "url",
-      "value": "\"file:./dev.db\""
-    },
-    {
-      "tag": "CreateArgument",
-      "location": {
-        "tag": "Source",
-        "source": "sqlite"
-      },
-      "argument": "enabled",
-      "value": "true"
+      "value": "env(\"POSTGRESQL_URL\")"
     },
     {
       "tag": "CreateModel",
