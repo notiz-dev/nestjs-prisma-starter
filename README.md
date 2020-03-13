@@ -2,6 +2,15 @@
 
 Starter template for 😻 [nest](https://nestjs.com/) and [Prisma](https://www.prisma.io/).
 
+## Version
+
+| Branch                                                                                                |  Nest | Prisma                                               |  Graphql                                                               |
+| ----------------------------------------------------------------------------------------------------- | ----- | ---------------------------------------------------- | ---------------------------------------------------------------------- |
+| master                                                                                                |  v6   | [prisma2-preview](https://github.com/prisma/prisma2) | [Code-first](https://github.com/19majkel94/type-graphql)               |
+|  [Prisma1 Code First](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-6-code-first) | v6    | [v1](https://github.com/prisma/prisma)               | [Code-first](https://github.com/19majkel94/type-graphql)               |
+|  [Prisma1 SDL First]()                                                                                |  v6   | [v1](https://github.com/prisma/prisma)               | [SDL First](https://docs.nestjs.com/graphql/quick-start#schema-first)  |
+| [Prisma1 SDL First](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-5)              |  v5   | [v1](https://github.com/prisma/prisma)               |  [SDL First](https://docs.nestjs.com/graphql/quick-start#schema-first) |
+
 ## Features
 
 - GraphQL w/ [playground](https://github.com/prisma/graphql-playground)
