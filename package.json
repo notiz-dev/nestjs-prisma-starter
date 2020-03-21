@@ -83,7 +83,7 @@
     "eslint-plugin-import": "2.20.1",
     "chance": "1.1.4",
     "jest": "25.1.0",
-    "prettier": "1.19.1",
+    "prettier": "2.0.0",
     "prisma2": "2.0.0-preview024",
     "rimraf": "3.0.2",
     "supertest": "4.0.2",
