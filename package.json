@@ -52,7 +52,7 @@
     "@nestjs/jwt": "6.1.2",
     "@nestjs/passport": "6.2.0",
     "@nestjs/platform-express": "6.11.11",
-    "@nestjs/swagger": "4.3.2",
+    "@nestjs/swagger": "4.5.1",
     "@prisma/client": "2.0.0-preview024",
     "apollo-server-express": "2.11.0",
     "bcrypt": "4.0.1",
