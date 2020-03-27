@@ -1,32 +1,32 @@
-import { Field, ObjectType, registerEnumType } from 'type-graphql';
+import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { Post } from './post';
 import { Model } from './model';
 
 export enum Role {
   ADMIN = 'ADMIN',
-  USER = 'USER'
+  USER = 'USER',
 }
 
 registerEnumType(Role, {
   name: 'Role',
-  description: 'User role'
+  description: 'User role',
 });
 
 @ObjectType()
 export class User extends Model {
-  @Field(type => String)
+  @Field((type) => String)
   email: string;
 
-  @Field(type => String, { nullable: true })
+  @Field((type) => String, { nullable: true })
   firstname?: string;
 
-  @Field(type => String, { nullable: true })
+  @Field((type) => String, { nullable: true })
   lastname?: string;
 
-  @Field(type => Role)
+  @Field((type) => Role)
   role: Role;
 
-  @Field(type => [Post])
+  @Field((type) => [Post])
   posts: Post[];
 
   password: string;

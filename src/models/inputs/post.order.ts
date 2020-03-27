@@ -1,6 +1,6 @@
-import { Field, InputType } from 'type-graphql';
+import { Field, InputType } from '@nestjs/graphql';
 import { Order } from '../../common/order/order';
-import { registerEnumType } from 'type-graphql';
+import { registerEnumType } from '@nestjs/graphql';
 
 export enum PostOrderField {
   id = 'id',
@@ -8,16 +8,16 @@ export enum PostOrderField {
   updatedAt = 'updatedAt',
   published = 'published',
   title = 'title',
-  content = 'content'
+  content = 'content',
 }
 
 registerEnumType(PostOrderField, {
   name: 'PostOrderField',
-  description: 'Properties by which post connections can be ordered.'
+  description: 'Properties by which post connections can be ordered.',
 });
 
 @InputType()
 export class PostOrder extends Order {
-  @Field(type => PostOrderField)
+  @Field((type) => PostOrderField)
   field: PostOrderField;
 }
