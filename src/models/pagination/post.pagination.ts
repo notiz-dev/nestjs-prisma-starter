@@ -1,4 +1,4 @@
-import { ObjectType } from 'type-graphql';
+import { ObjectType } from '@nestjs/graphql';
 import PaginatedResponse from '../../common/pagination/pagination';
 import { Post } from '../post';
 
