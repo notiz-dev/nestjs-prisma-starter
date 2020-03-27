@@ -28,6 +28,21 @@ type Mutation {
   changePassword(data: ChangePasswordInput!): User!
 }
 
+"""
+Possible directions in which to order a list of items when provided an `orderBy` argument.
+"""
+enum OrderDirection {
+  asc
+  desc
+}
+
+type PageInfo {
+  endCursor: String!
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String!
+}
+
 type Post {
   id: ID!
   createdAt: Date!
@@ -38,8 +53,35 @@ type Post {
   author: User!
 }
 
+type PostConnection {
+  edges: [PostEdge!]
+  nodes: [Post!]
+  pageInfo: PageInfo!
+}
+
+type PostEdge {
+  cursor: String!
+  node: Post!
+}
+
+input PostOrder {
+  direction: OrderDirection!
+  field: PostOrderField!
+}
+
+"""Properties by which post connections can be ordered."""
+enum PostOrderField {
+  id
+  createdAt
+  updatedAt
+  published
+  title
+  content
+}
+
 type Query {
   me: User!
+  publishedPosts(orderBy: PostOrder, query: String, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
   userPosts(userId: String!): [Post!]!
   post(postId: String!): Post!
   helloWorld: String!
