@@ -2,19 +2,13 @@ import { PrismaService } from './../../services/prisma.service';
 import { PaginationArgs } from '../../common/pagination/pagination-args';
 import { PostIdArgs } from './../../models/args/postid-args';
 import { UserIdArgs } from '../../models/args/userid-args';
-import {
-  Resolver,
-  Query,
-  ResolveProperty,
-  Parent,
-  Args
-} from '@nestjs/graphql';
+import { Resolver, Query, Parent, Args, ResolveField } from '@nestjs/graphql';
 import { Post } from './../../models/post';
 import { findManyCursor } from '../../common/pagination/find-many-cursor';
 import { PostConnection } from '../../models/pagination/post.pagination';
 import { PostOrder } from '../../models/inputs/post.order';
 
-@Resolver(of => Post)
+@Resolver((of) => Post)
 export class PostResolver {
   constructor(private prisma: PrismaService) {}
 
@@ -45,7 +39,7 @@ export class PostResolver {
     );
   }
 
-  @Query(returns => [Post])
+  @Query((returns) => [Post])
   userPosts(@Args() id: UserIdArgs) {
     return this.prisma.user
       .findOne({ where: { id: id.userId } })
@@ -60,12 +54,12 @@ export class PostResolver {
     // });
   }
 
-  @Query(returns => Post)
+  @Query((returns) => Post)
   async post(@Args() id: PostIdArgs) {
     return this.prisma.post.findOne({ where: { id: id.postId } });
   }
 
-  @ResolveProperty('author')
+  @ResolveField('author')
   async author(@Parent() post: Post) {
     return this.prisma.post.findOne({ where: { id: post.id } }).author();
   }
