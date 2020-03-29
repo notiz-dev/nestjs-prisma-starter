@@ -81,7 +81,7 @@
     "eslint-config-prettier": "6.10.1",
     "eslint-plugin-import": "2.20.2",
     "chance": "1.1.4",
-    "jest": "25.2.3",
+    "jest": "25.2.4",
     "prettier": "2.0.2",
     "prisma2": "2.0.0-preview024",
     "rimraf": "3.0.2",
