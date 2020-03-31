@@ -64,7 +64,7 @@ Saving the migration of the database:
 ```bash
 npx prisma2 migrate save
 # or
-npm run migrate:save
+npm run prisma:save
 ```
 
 Perform the database migration:
@@ -72,14 +72,14 @@ Perform the database migration:
 ```bash
 npx prisma2 migrate up
 # or
-npm run migrate:up
+npm run prisma:up
 ```
 
 ### 3. Prisma2: Prisma Client JS
 
 [Prisma Client JS](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) is a type-safe database client auto-generated based on the data model.
 
-To generate Prisma Client JS execute, this will alwayse be executed after `npm install`:
+To generate Prisma Client JS execute, this will always be executed after `npm install`:
 
 ```bash
 npx prisma2 generate
@@ -128,7 +128,7 @@ Playground for the NestJS Server is available here: http://localhost:3000/graphq
 
 ## Playground
 
-Some queries and mutations are secured by an auth guard. You have to accuire a JWT token from `signup` or `login`. Add the the auth token as followed to **HTTP HEADERS** in the playground and replace `YOURTOKEN` here:
+Some queries and mutations are secured by an auth guard. You have to acquire a JWT token from `signup` or `login`. Add the the auth token as followed to **HTTP HEADERS** in the playground and replace `YOURTOKEN` here:
 
 ```
 {
@@ -146,7 +146,7 @@ Nest serve is a Node.js application and it is easily [dockerized](https://nodejs
 
 See the [Dockerfile](./Dockerfile) on how to build a Docker image of your Nest server.
 
-There is one thing to be mentioned. A library called bcrypt is used for password hashing in the nest server starter. However, the docker container keeped crashing and the problem was missing tools for compilationof [bcrypt](https://github.com/kelektiv/node.bcrypt.js). The [solution](https://stackoverflow.com/a/41847996) is to install these tools for bcrypt's compilation before `npm install`:
+There is one thing to be mentioned. A library called bcrypt is used for password hashing in the nest server starter. However, the docker container kept crashing and the problem was missing tools for compilation of [bcrypt](https://github.com/kelektiv/node.bcrypt.js). The [solution](https://stackoverflow.com/a/41847996) is to install these tools for bcrypt's compilation before `npm install`:
 
 ```Dockerfile
 # Install necessary tools for bcrypt to run in docker before npm install
