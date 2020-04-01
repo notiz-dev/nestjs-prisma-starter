@@ -63,7 +63,7 @@ npm install
 Saving the migration of the database:
 
 ```bash
-npx prisma2 migrate save
+npx prisma2 migrate save --experimental
 # or
 npm run prisma:save
 ```
@@ -71,7 +71,7 @@ npm run prisma:save
 Perform the database migration:
 
 ```bash
-npx prisma2 migrate up
+npx prisma2 migrate up --experimental
 # or
 npm run prisma:up
 ```
