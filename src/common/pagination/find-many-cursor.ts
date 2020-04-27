@@ -34,7 +34,7 @@ export interface Connection<T> {
   edges: Array<Edge<T>>;
   nodes: Array<T>;
   pageInfo: PageInfo;
-  // totalCount: number;
+  totalCount: number;
 }
 
 /**
@@ -44,6 +44,7 @@ export interface Connection<T> {
  */
 export async function findManyCursor<Model extends { id: string }>(
   findMany: (args: SpecifiedArguments) => Promise<Model[]>,
+  aggregate: (args: SpecifiedArguments) => Promise<number>,
   args: ConnectionArguments = {} as ConnectionArguments
 ): Promise<Connection<Model>> {
   if (args.first === undefined && args.last === undefined) {
@@ -73,7 +74,7 @@ export async function findManyCursor<Model extends { id: string }>(
   const nodes = await findMany({ after, before, first, last });
 
   // totalCounts
-  // const totalCounts = nodes.length;
+  const totalCounts = await aggregate({ after, before, first, last });
 
   // Check if we actually got an additional node. This would indicate we have
   // a prev/next page
@@ -104,14 +105,14 @@ export async function findManyCursor<Model extends { id: string }>(
   const hasPreviousPage = first != null ? args.after != null : hasExtraNode;
 
   return {
-    edges: nodes.map(node => ({ cursor: node.id, node })),
+    edges: nodes.map((node) => ({ cursor: node.id, node })),
     nodes: nodes,
     pageInfo: {
       startCursor,
       endCursor,
       hasNextPage,
-      hasPreviousPage
-    }
-    // totalCount: totalCounts
+      hasPreviousPage,
+    },
+    totalCount: totalCounts,
   };
 }

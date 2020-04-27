@@ -35,6 +35,14 @@ export class PostResolver {
           orderBy: orderBy ? { [orderBy.field]: orderBy.direction } : null,
           ...args,
         }),
+      (args) =>
+        this.prisma.post.count({
+          where: {
+            published: true,
+            title: { contains: query || '' },
+          },
+          ...args,
+        }),
       { first, last, before, after }
     );
   }
