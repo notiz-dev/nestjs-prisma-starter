@@ -4,13 +4,13 @@ Starter template for 😻 [nest](https://nestjs.com/) and [Prisma](https://www.p
 
 ## Version
 
-| Branch                                                                                               |  Nest | Prisma                                               |  Graphql                                                               |
-| ---------------------------------------------------------------------------------------------------- | ----- | ---------------------------------------------------- | ---------------------------------------------------------------------- |
-| master                                                                                               |  v7   | [prisma2-beta](https://github.com/prisma/prisma2) | [Code-first](https://github.com/19majkel94/type-graphql)               |
-| [Prisma2 Code First](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-6-prisma2-code-first)                                                                                               |  v6   | [prisma2-preview](https://github.com/prisma/prisma2) | [Code-first](https://github.com/19majkel94/type-graphql)               |
-| [Prisma1 Code First](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-6-code-first) | v6    | [v1](https://github.com/prisma/prisma)               | [Code-first](https://github.com/19majkel94/type-graphql)               |
-| [Prisma1 SDL First]()                                                                                |  v6   | [v1](https://github.com/prisma/prisma)               | [SDL First](https://docs.nestjs.com/graphql/quick-start#schema-first)  |
-| [Prisma1 SDL First](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-5)             |  v5   | [v1](https://github.com/prisma/prisma)               |  [SDL First](https://docs.nestjs.com/graphql/quick-start#schema-first) |
+| Branch                                                                                                       |  Nest | Prisma                                               |  Graphql                                                              |
+| ------------------------------------------------------------------------------------------------------------ | ----- | ---------------------------------------------------- | --------------------------------------------------------------------- |
+| master                                                                                                       | v7    | [prisma2-beta](https://github.com/prisma/prisma2)    | [Code-first](https://github.com/19majkel94/type-graphql)              |
+| [Prisma2 Code First](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-6-prisma2-code-first) | v6    | [prisma2-preview](https://github.com/prisma/prisma2) | [Code-first](https://github.com/19majkel94/type-graphql)              |
+| [Prisma1 Code First](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-6-code-first)         | v6    | [v1](https://github.com/prisma/prisma)               | [Code-first](https://github.com/19majkel94/type-graphql)              |
+| [Prisma1 SDL First]()                                                                                        | v6    | [v1](https://github.com/prisma/prisma)               | [SDL First](https://docs.nestjs.com/graphql/quick-start#schema-first) |
+| [Prisma1 SDL First](https://github.com/fivethree-team/nestjs-prisma-starter/tree/nest-5)                     | v5    | [v1](https://github.com/prisma/prisma)               | [SDL First](https://docs.nestjs.com/graphql/quick-start#schema-first) |
 
 ## Features
 
@@ -63,7 +63,7 @@ npm install
 Saving the migration of the database:
 
 ```bash
-npx prisma2 migrate save --experimental
+npx prisma migrate save --experimental
 # or
 npm run prisma:save
 ```
@@ -71,19 +71,19 @@ npm run prisma:save
 Perform the database migration:
 
 ```bash
-npx prisma2 migrate up --experimental
+npx prisma migrate up --experimental
 # or
 npm run prisma:up
 ```
 
 ### 3. Prisma2: Prisma Client JS
 
-[Prisma Client JS](https://github.com/prisma/prisma2/blob/master/docs/prisma-client-js/api.md) is a type-safe database client auto-generated based on the data model.
+[Prisma Client JS](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/api) is a type-safe database client auto-generated based on the data model.
 
 To generate Prisma Client JS execute, this will always be executed after `npm install`:
 
 ```bash
-npx prisma2 generate
+npx prisma generate
 # or
 npm run prisma:generate
 ```
@@ -179,9 +179,9 @@ Therefore, you have to open up [Prisma Service](./src/prisma/prisma.service.ts) 
 Update the Prisma schema `prisma/schema.prisma` and after that run the following two commands:
 
 ```bash
-npx prisma2 generate
+npx prisma generate
 # or in watch mode
-npx prisma2 generate --watch
+npx prisma generate --watch
 # or
 npm run prisma:generate
 npm run prisma:generate:watch
@@ -277,7 +277,7 @@ const CurrentUserProfile = gql`
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss']
+  styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
   data: Observable<any>;
@@ -286,7 +286,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.data = this.apollo.watchQuery({
-      query: CurrentUserProfile
+      query: CurrentUserProfile,
     }).valueChanges;
   }
 }
@@ -315,7 +315,7 @@ To execute a mutation you can use:
 
 ```typescript
 this.apollo.mutate({
-  mutation: YOUR_MUTATION
+  mutation: YOUR_MUTATION,
 });
 ```
 
@@ -338,7 +338,7 @@ const Login = gql`
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss']
+  styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
   data: Observable<any>;
@@ -347,7 +347,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.data = this.apollo.mutate({
-      mutation: Login
+      mutation: Login,
     });
   }
 }
@@ -361,7 +361,7 @@ To execute a subscription you can use:
 
 ```typescript
 this.apollo.subscribe({
-  query: YOUR_SUBSCRIPTION_QUERY
+  query: YOUR_SUBSCRIPTION_QUERY,
 });
 ```
 
@@ -381,7 +381,7 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpHandler,
-  HttpRequest
+  HttpRequest,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -397,8 +397,8 @@ export class TokenInterceptor implements HttpInterceptor {
     if (token !== undefined) {
       req = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       });
     }
 
