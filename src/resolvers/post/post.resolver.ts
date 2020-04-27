@@ -1,12 +1,12 @@
 import { PrismaService } from './../../services/prisma.service';
 import { PaginationArgs } from '../../common/pagination/pagination-args';
-import { PostIdArgs } from './../../models/args/postid-args';
-import { UserIdArgs } from '../../models/args/userid-args';
+import { PostIdArgs } from '../../models/args/post-id.args';
+import { UserIdArgs } from '../../models/args/user-id.args';
 import { Resolver, Query, Parent, Args, ResolveField } from '@nestjs/graphql';
-import { Post } from './../../models/post';
+import { Post } from '../../models/post.model';
 import { findManyCursor } from '../../common/pagination/find-many-cursor';
-import { PostOrder } from '../../models/inputs/post.order';
-import { PostConnection } from 'src/models/pagination/post.pagination';
+import { PostOrder } from '../../models/inputs/post-order.input';
+import { PostConnection } from 'src/models/pagination/post-connection.model';
 
 @Resolver((of) => Post)
 export class PostResolver {

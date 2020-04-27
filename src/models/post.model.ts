@@ -1,18 +1,11 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { User } from './user';
-import { Model } from './model';
+import { User } from './user.model';
+import { Model } from './model.model';
 
 @ObjectType()
 export class Post extends Model {
-  @Field((type) => String)
   title: string;
-
-  @Field((type) => String)
   content: string;
-
-  @Field((type) => Boolean)
   published: boolean;
-
-  @Field((type) => User)
   author: User;
 }

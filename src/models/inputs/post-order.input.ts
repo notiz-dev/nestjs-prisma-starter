@@ -1,4 +1,4 @@
-import { Field, InputType } from '@nestjs/graphql';
+import { InputType } from '@nestjs/graphql';
 import { Order } from '../../common/order/order';
 import { registerEnumType } from '@nestjs/graphql';
 
@@ -18,6 +18,5 @@ registerEnumType(PostOrderField, {
 
 @InputType()
 export class PostOrder extends Order {
-  @Field((type) => PostOrderField)
   field: PostOrderField;
 }

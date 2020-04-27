@@ -1,4 +1,4 @@
-import { Auth } from './../../models/auth';
+import { Auth } from '../../models/auth.model';
 import { LoginInput } from './dto/login.input';
 import {
   Resolver,
