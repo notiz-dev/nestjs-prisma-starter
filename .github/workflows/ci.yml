@@ -16,6 +16,6 @@ jobs:
           node-version: 12
       - run: npm i
         env:
-          POSTGRESQL_URL: ''
+          POSTGRESQL_URL: 'CONNECTION'
       - run: npm test
       - run: npm run build
