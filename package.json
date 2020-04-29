@@ -82,7 +82,7 @@
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-import": "2.20.2",
     "chance": "1.1.4",
-    "jest": "25.5.1",
+    "jest": "25.5.2",
     "prettier": "2.0.5",
     "rimraf": "3.0.2",
     "supertest": "4.0.2",
