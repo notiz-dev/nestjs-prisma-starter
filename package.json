@@ -59,7 +59,7 @@
     "class-transformer": "0.2.3",
     "class-validator": "0.12.2",
     "graphql": "14.6.0",
-    "graphql-tools": "4.0.7",
+    "graphql-tools": "4.0.8",
     "passport": "0.4.1",
     "passport-jwt": "4.0.0",
     "reflect-metadata": "0.1.13",
