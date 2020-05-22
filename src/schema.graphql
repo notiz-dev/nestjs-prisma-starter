@@ -3,8 +3,11 @@
 # ------------------------------------------------------
 
 type Auth {
-  """JWT Bearer token"""
-  token: String!
+  """JWT access token"""
+  accessToken: String!
+
+  """JWT refresh token"""
+  refreshToken: String!
   user: User!
 }
 
@@ -24,6 +27,7 @@ input LoginInput {
 type Mutation {
   signup(data: SignupInput!): Auth!
   login(data: LoginInput!): Auth!
+  refreshToken(token: String!): Token!
   updateUser(data: UpdateUserInput!): User!
   changePassword(data: ChangePasswordInput!): User!
 }
@@ -100,6 +104,14 @@ input SignupInput {
   password: String!
   firstname: String
   lastname: String
+}
+
+type Token {
+  """JWT access token"""
+  accessToken: String!
+
+  """JWT refresh token"""
+  refreshToken: String!
 }
 
 input UpdateUserInput {
