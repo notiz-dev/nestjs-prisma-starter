@@ -22,17 +22,9 @@ mutation RefreshToken {
   }
 }
 
-fragment TokenData on Token {
-  accessToken
-  refreshToken
-}
-
 fragment UserData on User {
   id
   email
-  firstname
-  lastname
-  role
 }
 
 fragment AuthTokens on Auth {
@@ -41,4 +33,9 @@ fragment AuthTokens on Auth {
   user {
     ...UserData
   }
+}
+
+fragment TokenData on Token {
+  accessToken
+  refreshToken
 }
