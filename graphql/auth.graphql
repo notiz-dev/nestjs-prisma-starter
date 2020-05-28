@@ -1,45 +1,41 @@
 mutation Admin {
   login(data: { email: "bart@simpson.com", password: "secret42" }) {
-    ...tokenData
-    user {
-      ...UserData
-    }
+    ...AuthTokens
   }
 }
 
 mutation User {
   login(data: { email: "lisa@simpson.com", password: "secret42" }) {
-    ...tokenData
-    user {
-      ...UserData
-    }
+    ...AuthTokens
   }
 }
 
 mutation AuthUser {
   signup(data: { email: "bart@simpson.com", password: "secret42" }) {
-    ...tokenData
-    user {
-      ...UserData
-    }
+    ...AuthTokens
   }
 }
 
 mutation RefreshToken {
   refreshToken(token: "REFRESH_TOKEN") {
-    ...TokenDate
+    ...TokenData
   }
-}
-
-fragment tokenData on Token {
-  accessToken
-  refreshToken
 }
 
 fragment UserData on User {
   id
   email
-  firstname
-  lastname
-  role
+}
+
+fragment AuthTokens on Auth {
+  accessToken
+  refreshToken
+  user {
+    ...UserData
+  }
+}
+
+fragment TokenData on Token {
+  accessToken
+  refreshToken
 }
