@@ -45,14 +45,14 @@
     "docker": "docker-compose up -d"
   },
   "dependencies": {
-    "@nestjs/common": "7.0.11",
-    "@nestjs/config": "0.4.2",
-    "@nestjs/core": "7.0.11",
+    "@nestjs/common": "7.1.2",
+    "@nestjs/config": "0.5.0",
+    "@nestjs/core": "7.1.2",
     "@nestjs/graphql": "7.3.4",
     "@nestjs/jwt": "7.0.0",
     "@nestjs/passport": "7.0.0",
-    "@nestjs/platform-express": "7.0.11",
-    "@nestjs/swagger": "4.5.6",
+    "@nestjs/platform-express": "7.1.2",
+    "@nestjs/swagger": "4.5.9",
     "@prisma/client": "2.0.0-beta.5",
     "apollo-server-express": "2.11.0",
     "bcrypt": "4.0.1",
@@ -67,8 +67,8 @@
     "swagger-ui-express": "4.1.4"
   },
   "devDependencies": {
-    "@nestjs/cli": "7.1.5",
-    "@nestjs/testing": "7.0.11",
+    "@nestjs/cli": "7.2.0",
+    "@nestjs/testing": "7.1.2",
     "@prisma/cli": "2.0.0-beta.5",
     "@types/bcrypt": "3.0.0",
     "@types/chance": "1.1.0",
