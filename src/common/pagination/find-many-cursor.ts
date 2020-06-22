@@ -68,7 +68,7 @@ export async function findManyCursor<Model extends { id: string }>(
   const last = args.last != null ? args.last + 1 : undefined;
 
   const after = args.after ? { id: args.after } : undefined;
-  const before = args.after ? { id: args.before } : undefined;
+  const before = args.before ? { id: args.before } : undefined;
 
   // Execute the underlying findMany operation
   const nodes = await findMany({ after, before, first, last });
