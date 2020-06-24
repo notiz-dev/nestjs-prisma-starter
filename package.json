@@ -45,7 +45,7 @@
     "docker": "docker-compose up -d"
   },
   "dependencies": {
-    "@devoxa/prisma-relay-cursor-connection": "~1.0.1",
+    "@devoxa/prisma-relay-cursor-connection": "1.0.1",
     "@nestjs/common": "7.2.0",
     "@nestjs/config": "0.5.0",
     "@nestjs/core": "7.2.0",
