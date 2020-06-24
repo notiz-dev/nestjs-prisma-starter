@@ -6,23 +6,24 @@ query UserPosts {
 }
 
 query PublishedPostsConnection {
-  publishedPosts(first: 20, orderBy: { field: title, direction: asc }) {
+  publishedPosts(first: 20, orderBy: { field: title, direction: desc }) {
     totalCount
-    nodes {
-      ...PostData
-      author {
-        ...UserData
+    edges {
+      cursor
+      node {
+        ...PostData
+        author {
+          ...UserData
+        }
       }
     }
+    pageInfo {
+      startCursor
+      endCursor
+      hasNextPage
+      hasPreviousPage
+    }
   }
-}
-
-fragment UserData on User {
-  id
-  email
-  firstname
-  lastname
-  role
 }
 
 fragment PostData on Post {
@@ -32,4 +33,12 @@ fragment PostData on Post {
   published
   title
   content
+}
+
+fragment UserData on User {
+  id
+  email
+  firstname
+  lastname
+  role
 }

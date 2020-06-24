@@ -4,9 +4,9 @@ import { PostIdArgs } from '../../models/args/post-id.args';
 import { UserIdArgs } from '../../models/args/user-id.args';
 import { Resolver, Query, Parent, Args, ResolveField } from '@nestjs/graphql';
 import { Post } from '../../models/post.model';
-import { findManyCursor } from '../../common/pagination/find-many-cursor';
 import { PostOrder } from '../../models/inputs/post-order.input';
 import { PostConnection } from 'src/models/pagination/post-connection.model';
+import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
 
 @Resolver((of) => Post)
 export class PostResolver {
@@ -24,7 +24,7 @@ export class PostResolver {
     })
     orderBy: PostOrder
   ) {
-    return await findManyCursor(
+    const a = await findManyCursorConnection(
       (args) =>
         this.prisma.post.findMany({
           include: { author: true },
@@ -35,16 +35,16 @@ export class PostResolver {
           orderBy: orderBy ? { [orderBy.field]: orderBy.direction } : null,
           ...args,
         }),
-      (args) =>
+      () =>
         this.prisma.post.count({
           where: {
             published: true,
             title: { contains: query || '' },
           },
-          ...args,
         }),
       { first, last, before, after }
     );
+    return a;
   }
 
   @Query((returns) => [Post])
