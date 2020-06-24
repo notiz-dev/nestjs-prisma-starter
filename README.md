@@ -15,7 +15,7 @@ Starter template for 😻 [nest](https://nestjs.com/) and [Prisma](https://www.p
 ## Features
 
 - GraphQL w/ [playground](https://github.com/prisma/graphql-playground)
-- Code-First w/ [type-graphql](https://github.com/19majkel94/type-graphql)
+- Code-First w/ [decorators](https://docs.nestjs.com/graphql/quick-start#code-first)
 - [Prisma](https://www.prisma.io/) for database modelling, migration and type-safe access (Postgres, MySQL & MongoDB)
 - 🔐 JWT authentication w/ [passport-jwt](https://github.com/mikenicholson/passport-jwt)
 - REST API docs w/ [Swagger](https://swagger.io/)
@@ -191,7 +191,7 @@ npm run prisma:generate:watch
 
 ## NestJS - Api Schema
 
-The [schema.graphql](./src/schema.graphql) is generated with [type-graphql](https://typegraphql.ml/). The schema is generated from the [models](./src/models/user.ts), the [resolvers](./src/resolvers/auth/auth.resolver.ts) and the [input](./src/resolvers/auth/dto/login.input.ts) classes.
+The [schema.graphql](./src/schema.graphql) is generated with [code first approach](https://docs.nestjs.com/graphql/quick-start#code-first). The schema is generated from the [models](./src/models/user.ts), the [resolvers](./src/resolvers/auth/auth.resolver.ts) and the [input](./src/resolvers/auth/dto/login.input.ts) classes.
 
 You can use [class-validator](https://docs.nestjs.com/techniques/validation) to validate your inputs and arguments.
 
