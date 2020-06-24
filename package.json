@@ -55,7 +55,7 @@
     "@nestjs/platform-express": "7.2.0",
     "@nestjs/swagger": "4.5.11",
     "@prisma/client": "2.1.1",
-    "apollo-server-express": "2.14.3",
+    "apollo-server-express": "2.15.0",
     "bcrypt": "4.0.1",
     "class-transformer": "0.2.3",
     "class-validator": "0.12.2",
