@@ -1,5 +1,5 @@
 import { Field, ObjectType, Int } from '@nestjs/graphql';
-import { PageInfo } from './page-info';
+import { PageInfo } from './page-info.model';
 import { Type } from '@nestjs/common';
 
 export default function Paginated<TItem>(TItemClass: Type<TItem>) {
