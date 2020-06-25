@@ -1,5 +1,5 @@
 import { PrismaService } from './../../services/prisma.service';
-import { PaginationArgs } from '../../common/pagination/pagination-args';
+import { PaginationArgs } from '../../common/pagination/pagination.args';
 import { PostIdArgs } from '../../models/args/post-id.args';
 import { UserIdArgs } from '../../models/args/user-id.args';
 import { Resolver, Query, Parent, Args, ResolveField } from '@nestjs/graphql';

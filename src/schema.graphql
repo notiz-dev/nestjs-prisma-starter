@@ -69,7 +69,7 @@ type PostConnection {
 
 type Query {
   me: User!
-  publishedPosts(orderBy: PostOrder, query: String, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
+  publishedPosts(orderBy: PostOrder, query: String, skip: Int, first: Int, last: Int, after: String, before: String): PostConnection!
   userPosts(userId: String!): [Post!]!
   post(postId: String!): Post!
   helloWorld: String!
