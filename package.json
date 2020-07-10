@@ -49,7 +49,7 @@
     "@nestjs/common": "7.2.0",
     "@nestjs/config": "0.5.0",
     "@nestjs/core": "7.2.0",
-    "@nestjs/graphql": "7.4.5",
+    "@nestjs/graphql": "7.5.5",
     "@nestjs/jwt": "7.0.0",
     "@nestjs/passport": "7.0.0",
     "@nestjs/platform-express": "7.2.0",
