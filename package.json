@@ -68,7 +68,7 @@
     "swagger-ui-express": "4.1.4"
   },
   "devDependencies": {
-    "@apollo/gateway": "0.16.9",
+    "@apollo/gateway": "0.18.0",
     "@nestjs/cli": "7.4.1",
     "@nestjs/testing": "7.2.0",
     "@prisma/cli": "2.2.2",
