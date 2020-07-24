@@ -5,14 +5,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        - POSTGRESQL_URL=${POSTGRESQL_URL}
     ports:
       - 3000:3000
     depends_on:
       - postgres
     env_file:
-      - ./.env
+      - .env
 
   postgres:
     image: postgres:12

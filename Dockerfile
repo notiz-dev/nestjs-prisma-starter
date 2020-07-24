@@ -7,21 +7,19 @@ RUN apt-get update \
 # Create app directory
 WORKDIR /app
 
-ARG POSTGRESQL_URL
-ENV POSTGRESQL_URL "$POSTGRESQL_URL"
-
 RUN npm install -g @prisma/cli --unsafe-perm
-
-COPY ./prisma/schema.prisma ./
 
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./
+COPY prisma ./prisma/
 
 # Install app dependencies
 RUN npm install
 
 COPY tsconfig*.json ./
 COPY src ./src
+# Copy for swagger and graphql plugin
+COPY nest-cli.json ./nest-cli.json
 
 RUN npm run build
 
