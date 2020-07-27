@@ -21,10 +21,11 @@ COPY nest-cli.json ./nest-cli.json
 
 RUN npm run build
 
-# TODO use node-alpine when supported by prisma2 https://github.com/prisma/prisma2/issues/702
 FROM node:12
+
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/dist ./dist
+
 EXPOSE 3000
 CMD [ "npm", "run", "start:prod" ]
