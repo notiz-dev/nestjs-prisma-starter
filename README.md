@@ -92,7 +92,7 @@ npm run prisma:generate
 
 Execute the script with this command:
 
-```sh
+```bash
 npm run seed
 ```
 
@@ -100,7 +100,7 @@ npm run seed
 
 The [Nestjs CLI](https://docs.nestjs.com/cli/usages) can be used to generate controller, services, resolvers and more.
 
-```
+```bash
 npm i -g @nestjs/cli
 ```
 
@@ -131,9 +131,9 @@ Playground for the NestJS Server is available here: http://localhost:3000/graphq
 
 Some queries and mutations are secured by an auth guard. You have to acquire a JWT token from `signup` or `login`. Add the the auth token as followed to **HTTP HEADERS** in the playground and replace `YOURTOKEN` here:
 
-```
+```json
 {
-  "Authorization" : "Bearer YOURTOKEN"
+  "Authorization": "Bearer YOURTOKEN"
 }
 ```
 
@@ -146,13 +146,6 @@ Some queries and mutations are secured by an auth guard. You have to acquire a J
 Nest serve is a Node.js application and it is easily [dockerized](https://nodejs.org/de/docs/guides/nodejs-docker-webapp/).
 
 See the [Dockerfile](./Dockerfile) on how to build a Docker image of your Nest server.
-
-There is one thing to be mentioned. A library called bcrypt is used for password hashing in the nest server starter. However, the docker container kept crashing and the problem was missing tools for compilation of [bcrypt](https://github.com/kelektiv/node.bcrypt.js). The [solution](https://stackoverflow.com/a/41847996) is to install these tools for bcrypt's compilation before `npm install`:
-
-```Dockerfile
-# Install necessary tools for bcrypt to run in docker before npm install
-RUN apt-get update && apt-get install -y build-essential && apt-get install -y python
-```
 
 Now to build a Docker image of your own Nest server simply run:
 
@@ -170,9 +163,6 @@ docker run -d -t -p 3000:3000 --env-file .env nest-prisma-server
 ```
 
 Now open up [localhost:3000](http://localhost:3000) to verify that your nest server is running.
-
-If you see an error like `request to http://localhost:4466/ failed, reason: connect ECONNREFUSED 127.0.0.1:4466` this is because Nest tries to access the Prisma server on `http://localhost:4466/`. In the case of a docker container localhost is the container itself.
-Therefore, you have to open up [Prisma Service](./src/prisma/prisma.service.ts) `endpoint: 'http://localhost:4466',` and replace localhost with the IP address where the Prisma Server is executed.
 
 ## Schema Development
 
@@ -199,7 +189,7 @@ You can use [class-validator](https://docs.nestjs.com/techniques/validation) to 
 
 To implement the new query, a new resolver function needs to be added to `users.resolver.ts`.
 
-```
+```ts
 @Query(returns => User)
 async getUser(@Args() args): Promise<User> {
   return await this.prisma.client.user(args);
@@ -228,7 +218,7 @@ ng add apollo-angular
 
 `HttpLink` from apollo-angular requires the `HttpClient`. Therefore, you need to add the `HttpClientModule` to the `AppModule`:
 
-```typescript
+```ts
 imports: [BrowserModule,
     HttpClientModule,
     ...,
@@ -239,7 +229,7 @@ You can also add the `GraphQLModule` in the `AppModule` to make `Apollo` availab
 
 You need to set the URL to the NestJS Graphql Api. Open the file `src/app/graphql.module.ts` and update `uri`:
 
-```typescript
+```ts
 const uri = 'http://localhost:3000/graphql';
 ```
 
@@ -251,7 +241,7 @@ To use Apollo-Angular you can inject `private apollo: Apollo` into the construct
 
 To execute a query you can use:
 
-```typescript
+```ts
 this.apollo.query({query: YOUR_QUERY});
 
 # or
@@ -263,7 +253,7 @@ this.apollo.watchQuery({
 
 Here is an example how to fetch your profile from the NestJS Graphql Api:
 
-```typescript
+```ts
 const CurrentUserProfile = gql`
   query CurrentUserProfile {
     me {
@@ -313,7 +303,7 @@ Please refer to the [Authentication](#authentication) section.
 
 To execute a mutation you can use:
 
-```typescript
+```ts
 this.apollo.mutate({
   mutation: YOUR_MUTATION,
 });
@@ -321,7 +311,7 @@ this.apollo.mutate({
 
 Here is an example how to login into your profile using the `login` Mutation:
 
-```typescript
+```ts
 const Login = gql`
   mutation Login {
     login(email: "test@example.com", password: "pizzaHawaii") {
@@ -359,7 +349,7 @@ export class HomePage implements OnInit {
 
 To execute a subscription you can use:
 
-```typescript
+```ts
 this.apollo.subscribe({
   query: YOUR_SUBSCRIPTION_QUERY,
 });
@@ -375,7 +365,7 @@ Because the apollo client is using `HttpClient` under the hood you are able to s
 
 Create the following class:
 
-```typescript
+```ts
 import { Injectable } from '@angular/core';
 import {
   HttpEvent,
@@ -409,7 +399,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
 Add the Interceptor to the `AppModule` providers like this:
 
-```typescript
+```ts
 providers: [
     ...
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
