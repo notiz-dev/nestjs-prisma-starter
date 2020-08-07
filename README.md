@@ -1,6 +1,8 @@
 # Instructions
 
-Starter template for 😻 [nest](https://nestjs.com/) and [Prisma](https://www.prisma.io/).
+Starter template for 😻 [NestJS](https://nestjs.com/) and [Prisma](https://www.prisma.io/).
+
+> Checkout [NestJS Prisma Schematics](https://github.com/marcjulian/nestjs-prisma) to automatically add Prisma support to your Nest application.
 
 ## Version
 
