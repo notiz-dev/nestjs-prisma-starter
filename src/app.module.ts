@@ -14,20 +14,24 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     ConfigModule.forRoot({ isGlobal: true }),
     GraphQLModule.forRootAsync({
       useFactory: async (configService: ConfigService) => ({
+        buildSchemaOptions: {
+          numberScalarMode: 'integer',
+        },
+        sortSchema: true,
         autoSchemaFile:
           configService.get('GRAPHQL_SCHEMA_DEST') || './src/schema.graphql',
         debug: configService.get('GRAPHQL_DEBUG') === '1' ? true : false,
         playground:
           configService.get('PLAYGROUND_ENABLE') === '1' ? true : false,
-        context: ({ req }) => ({ req })
+        context: ({ req }) => ({ req }),
       }),
-      inject: [ConfigService]
+      inject: [ConfigService],
     }),
     AuthModule,
     UserModule,
-    PostModule
+    PostModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AppResolver, DateScalar]
+  providers: [AppService, AppResolver, DateScalar],
 })
 export class AppModule {}

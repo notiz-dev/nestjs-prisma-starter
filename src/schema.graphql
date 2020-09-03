@@ -2,44 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Post {
-  id: ID!
-  createdAt: Date!
-  updatedAt: Date!
-  title: String!
-  content: String!
-  published: Boolean!
-  author: User!
-}
-
-"""Date custom scalar type"""
-scalar Date
-
-type User {
-  id: ID!
-  createdAt: Date!
-  updatedAt: Date!
-  email: String!
-  firstname: String
-  lastname: String
-  role: Role!
-  posts: [Post!]!
-}
-
-"""User role"""
-enum Role {
-  ADMIN
-  USER
-}
-
-type Token {
-  """JWT access token"""
-  accessToken: String!
-
-  """JWT refresh token"""
-  refreshToken: String!
-}
-
 type Auth {
   """JWT access token"""
   accessToken: String!
@@ -49,36 +11,25 @@ type Auth {
   user: User!
 }
 
-type PageInfo {
-  endCursor: String
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  startCursor: String
+input ChangePasswordInput {
+  newPassword: String!
+  oldPassword: String!
 }
 
-type PostEdge {
-  cursor: String!
-  node: Post!
+"""Date custom scalar type"""
+scalar Date
+
+input LoginInput {
+  email: String!
+  password: String!
 }
 
-type PostConnection {
-  edges: [PostEdge!]
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type Query {
-  me: User!
-  publishedPosts(orderBy: PostOrder, query: String, skip: Int, first: Int, last: Int, after: String, before: String): PostConnection!
-  userPosts(userId: String!): [Post!]!
-  post(postId: String!): Post!
-  helloWorld: String!
-  hello(name: String!): String!
-}
-
-input PostOrder {
-  direction: OrderDirection!
-  field: PostOrderField!
+type Mutation {
+  changePassword(data: ChangePasswordInput!): User!
+  login(data: LoginInput!): Auth!
+  refreshToken(token: String!): Token!
+  signup(data: SignupInput!): Auth!
+  updateUser(data: UpdateUserInput!): User!
 }
 
 """
@@ -89,34 +40,77 @@ enum OrderDirection {
   desc
 }
 
-"""Properties by which post connections can be ordered."""
-enum PostOrderField {
-  id
-  createdAt
-  updatedAt
-  published
-  title
-  content
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
 }
 
-type Mutation {
-  signup(data: SignupInput!): Auth!
-  login(data: LoginInput!): Auth!
-  refreshToken(token: String!): Token!
-  updateUser(data: UpdateUserInput!): User!
-  changePassword(data: ChangePasswordInput!): User!
+type Post {
+  author: User!
+  content: String!
+  createdAt: Date!
+  id: ID!
+  published: Boolean!
+  title: String!
+  updatedAt: Date!
+}
+
+type PostConnection {
+  edges: [PostEdge!]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type PostEdge {
+  cursor: String!
+  node: Post!
+}
+
+input PostOrder {
+  direction: OrderDirection!
+  field: PostOrderField!
+}
+
+"""Properties by which post connections can be ordered."""
+enum PostOrderField {
+  content
+  createdAt
+  id
+  published
+  title
+  updatedAt
+}
+
+type Query {
+  hello(name: String!): String!
+  helloWorld: String!
+  me: User!
+  post(postId: String!): Post!
+  publishedPosts(after: String, before: String, first: Int, last: Int, orderBy: PostOrder, query: String, skip: Int): PostConnection!
+  userPosts(userId: String!): [Post!]!
+}
+
+"""User role"""
+enum Role {
+  ADMIN
+  USER
 }
 
 input SignupInput {
   email: String!
-  password: String!
   firstname: String
   lastname: String
+  password: String!
 }
 
-input LoginInput {
-  email: String!
-  password: String!
+type Token {
+  """JWT access token"""
+  accessToken: String!
+
+  """JWT refresh token"""
+  refreshToken: String!
 }
 
 input UpdateUserInput {
@@ -124,7 +118,13 @@ input UpdateUserInput {
   lastname: String
 }
 
-input ChangePasswordInput {
-  oldPassword: String!
-  newPassword: String!
+type User {
+  createdAt: Date!
+  email: String!
+  firstname: String
+  id: ID!
+  lastname: String
+  posts: [Post!]!
+  role: Role!
+  updatedAt: Date!
 }
