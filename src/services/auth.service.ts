@@ -12,6 +12,7 @@ import { PrismaService } from './prisma.service';
 import { User } from '@prisma/client';
 import { Token } from '../models/token.model';
 import { ConfigService } from '@nestjs/config';
+import { SecurityConfig } from 'src/configs/config.interface';
 
 @Injectable()
 export class AuthService {
@@ -77,8 +78,9 @@ export class AuthService {
   generateToken(payload: object): Token {
     const accessToken = this.jwtService.sign(payload);
 
+    const securityConfig = this.configService.get<SecurityConfig>('security'); 
     const refreshToken = this.jwtService.sign(payload, {
-      expiresIn: this.configService.get('JWT_REFRESH_IN'),
+      expiresIn: securityConfig.refreshIn,
     });
 
     return {
