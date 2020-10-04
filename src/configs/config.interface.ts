@@ -26,10 +26,11 @@ export interface GraphqlConfig {
   playgroundEnabled: boolean;
   debug: boolean;
   schemaDestination: string;
+  sortSchema: boolean;
 }
 
 export interface SecurityConfig {
   expiresIn: string;
   refreshIn: string;
-  bcryptSaltOrRound: number;
+  bcryptSaltOrRound: string | number;
 }

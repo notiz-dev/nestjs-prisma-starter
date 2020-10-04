@@ -21,7 +21,7 @@ import { GraphqlConfig } from './configs/config.interface';
           buildSchemaOptions: {
             numberScalarMode: 'integer',
           },
-          sortSchema: true,
+          sortSchema: graphqlConfig.sortSchema,
           autoSchemaFile:
             graphqlConfig.schemaDestination || './src/schema.graphql',
           debug: graphqlConfig.debug,

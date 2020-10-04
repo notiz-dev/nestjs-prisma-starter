@@ -18,6 +18,7 @@ const config: Config = {
     playgroundEnabled: true,
     debug: true,
     schemaDestination: './src/schema.graphql',
+    sortSchema: true,
   },
   security: {
     expiresIn: '2m',
