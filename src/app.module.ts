@@ -8,12 +8,19 @@ import { PostModule } from './resolvers/post/post.module';
 import { AppResolver } from './resolvers/app.resolver';
 import { DateScalar } from './common/scalars/date.scalar';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import config from './configs/config';
 import { GraphqlConfig } from './configs/config.interface';
+
+// Import config from file according to NODE_ENV
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const config = require(`./configs/${process.env.NODE_ENV}`).default;
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true, load: [config] }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: `.env.${process.env.NODE_ENV}`,
+      load: [config],
+    }),
     GraphQLModule.forRootAsync({
       useFactory: async (configService: ConfigService) => {
         const graphqlConfig = configService.get<GraphqlConfig>('graphql');
