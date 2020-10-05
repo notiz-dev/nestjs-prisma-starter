@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { hash, compare } from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
+import { SecurityConfig } from 'src/configs/config.interface';
 
 @Injectable()
 export class PasswordService {
   get bcryptSaltRounds(): string | number {
-    const saltOrRounds = this.configService.get<number>(
-      'BCRYPT_SALT_OR_ROUNDS'
-    );
+    const securityConfig = this.configService.get<SecurityConfig>('security');
+    const saltOrRounds = securityConfig.bcryptSaltOrRound;
 
     return Number.isInteger(Number(saltOrRounds))
       ? Number(saltOrRounds)

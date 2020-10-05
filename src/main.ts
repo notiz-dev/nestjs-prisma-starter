@@ -1,7 +1,9 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { ConfigService } from '@nestjs/config';
+import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from './app.module';
+import { CorsConfig, NestConfig, SwaggerConfig } from './configs/config.interface';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -9,25 +11,28 @@ async function bootstrap() {
   // Validation
   app.useGlobalPipes(new ValidationPipe());
 
+  const configService = app.get(ConfigService);
+  const nestConfig = configService.get<NestConfig>('nest');
+  const corsConfig = configService.get<CorsConfig>('cors');
+  const swaggerConfig = configService.get<SwaggerConfig>('swagger');
+
   // Swagger Api
-  if (process.env.SWAGGER_ENABLE === '1') {
+  if (swaggerConfig.enabled) {
     const options = new DocumentBuilder()
-      .setTitle(process.env.SWAGGER_TITLE || 'Nestjs')
-      .setDescription(
-        process.env.SWAGGER_DESCRIPTION || 'The nestjs API description'
-      )
-      .setVersion(process.env.SWAGGER_VERSION || '1.0')
+      .setTitle(swaggerConfig.title || 'Nestjs')
+      .setDescription(swaggerConfig.description || 'The nestjs API description')
+      .setVersion(swaggerConfig.version || '1.0')
       .build();
     const document = SwaggerModule.createDocument(app, options);
 
-    SwaggerModule.setup(process.env.SWAGGER_PATH || 'api', app, document);
+    SwaggerModule.setup(swaggerConfig.path || 'api', app, document);
   }
 
   // Cors
-  if (process.env.CORS_ENABLE === '1') {
+  if (corsConfig.enabled) {
     app.enableCors();
   }
 
-  await app.listen(process.env.PORT || 3000);
+  await app.listen(process.env.PORT || nestConfig.port || 3000);
 }
 bootstrap();
