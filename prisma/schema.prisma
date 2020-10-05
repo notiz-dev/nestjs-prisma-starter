@@ -5,7 +5,7 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
-  // previewFeatures = ["aggregateApi", "connectOrCreate", "distinct", "transactionApi"]
+  // previewFeatures = []
 }
 
 generator dbml {
@@ -13,7 +13,7 @@ generator dbml {
 }
 
 model User {
-  id        String   @default(cuid()) @id
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   email     String   @unique
@@ -25,7 +25,7 @@ model User {
 }
 
 model Post {
-  id        String   @default(cuid()) @id
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   published Boolean
