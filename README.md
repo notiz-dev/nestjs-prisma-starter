@@ -141,7 +141,7 @@ GraphQL Playground for the NestJS Server is available here: http://localhost:300
 
 ## GraphQL Playground
 
-Some queries and mutations are secured by an auth guard. You have to acquire a JWT token from `signup` or `login`. Add the the auth token as followed to **HTTP HEADERS** in the playground and replace `YOURTOKEN` here:
+Open up the [example GraphQL queries](graphql/auth.graphql) and copy them to the GraphQL Playground. Some queries and mutations are secured by an auth guard. You have to acquire a JWT token from `signup` or `login`. Add the `accessToken`as followed to **HTTP HEADERS** in the playground and replace `YOURTOKEN` here:
 
 ```json
 {
