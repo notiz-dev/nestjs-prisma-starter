@@ -155,7 +155,7 @@ Open up the [example GraphQL queries](graphql/auth.graphql) and copy them to the
 
 ## Docker
 
-Nest serve is a Node.js application and it is easily [dockerized](https://nodejs.org/de/docs/guides/nodejs-docker-webapp/).
+Nest server is a Node.js application and it is easily [dockerized](https://nodejs.org/de/docs/guides/nodejs-docker-webapp/).
 
 See the [Dockerfile](./Dockerfile) on how to build a Docker image of your Nest server.
 
@@ -175,6 +175,43 @@ docker run -d -t -p 3000:3000 --env-file .env nest-prisma-server
 ```
 
 Now open up [localhost:3000](http://localhost:3000) to verify that your nest server is running.
+
+When you run your NestJS application in a Docker container update your [.env](.env) file
+
+```diff
+- DB_HOST=localhost
+# replace with name of the database container
++ DB_HOST=postgres
+
+# Prisma database connection
++ DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_HOST}:${DB_PORT}/${POSTGRES_DB}?schema=${DB_SCHEMA}&sslmode=prefer
+```
+
+If `DATABASE_URL` is missing in the root `.env` file, which is loaded into the Docker container, the NestJS application will exit with the following error:
+
+```bash
+(node:19) UnhandledPromiseRejectionWarning: Error: error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:3
+   | 
+ 2 |   provider = "postgresql"
+ 3 |   url      = env("DATABASE_URL")
+```
+
+### Docker Compose
+
+You can also setup a the database and Nest application with the docker-compose 
+
+```bash
+# building new NestJS docker image
+docker-compose build
+# or
+npm run docker:build
+
+# start docker-compose
+docker-compose up -d
+# or
+npm run docker
+```
 
 ## Schema Development
 
