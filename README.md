@@ -29,18 +29,18 @@ Starter template for 😻 [NestJS](https://nestjs.com/) and [Prisma](https://www
   - [Overview](#overview)
   - [Prisma Setup](#prisma-setup)
     - [1. Install Dependencies](#1-install-dependencies)
-    - [2. Prisma2: Prisma Migrate](#2-prisma2-prisma-migrate)
-    - [3. Prisma2: Prisma Client JS](#3-prisma2-client-js)
-    - [4. Seed the database data with this script](#4-seed-the-database-data-with-this-script)
-    - [5. Install Nestjs](#5-install-nestjs)
-  - [Start NestJS Server](#start-nestjs-server)
-  - [Playground](#playground)
+    - [2. PostgreSQL with Docker](#2-PostgreSQL-with-docker)
+    - [3. Prisma: Prisma Migrate](#3-prisma-prisma-migrate)
+    - [4. Prisma: Prisma Client JS](#4-prisma-client-js)
+    - [5. Seed the database data with this script](#5-seed-the-database-data-with-this-script)
+    - [6. Start NestJS Server](#6-start-nestjs-server)
+  - [GraphQL Playground](#graphql-playground)
   - [Rest Api](#rest-api)
   - [Docker](#docker)
   - [Schema Development](#schema-development)
   - [NestJS - Api Schema](#nestjs---api-schema)
     - [Resolver](#resolver)
-  - [Graphql Client](#graphql-client)
+  - [GraphQL Client](#graphql-client)
     - [Angular](#angular)
       - [Setup](#setup)
       - [Queries](#queries)
@@ -52,15 +52,33 @@ Starter template for 😻 [NestJS](https://nestjs.com/) and [Prisma](https://www
 
 ### 1. Install Dependencies
 
-Install the dependencies for the nest server:
+Install [Nestjs CLI](https://docs.nestjs.com/cli/usages) to start and [generate CRUD resources](https://trilon.io/blog/introducing-cli-generators-crud-api-in-1-minute)
+
+```bash
+npm i -g @nestjs/cli
+```
+
+Install the dependencies for the Nest application:
 
 ```bash
 npm install
 ```
 
-### 2. Prisma2: Prisma Migrate
+### 2. PostgreSQL with Docker
 
-[Prisma Migrate](https://github.com/prisma/prisma2/tree/master/docs/prisma-migrate) is used to manage the schema and migration of the database.
+Setup a development PostgreSQL with Docker. Copy [example.env](./example.env) and rename to `.env` which sets the required environments for PostgreSQL such as `POSTGRES_USER`, `POSTGRES_PASSWORD` and `POSTGRES_DB`. Update the variables as you wish and select a strong password.
+
+Start the PostgreSQL database
+
+```bash
+docker-compose -f docker-compose.db.yml up -d
+# or
+npm run docker:db
+```
+
+### 3. Prisma: Prisma Migrate
+
+[Prisma Migrate](https://github.com/prisma/prisma2/tree/master/docs/prisma-migrate) is used to manage the schema and migration of the database. Prisma datasource requires an environment variable `DATABASE_URL` for the connection to the PostgreSQL database. Copy [prisma/example.env](prisma/example.env) and rename to `.env`. If you made any updates to the PostgreSQL variables (`POSTGRES_USER`, `POSTGRES_PASSWORD` `POSTGRES_DB`), please update them in your [prisma/.env](prisma/.env) file which is used by Prisma Migrate and for seeding the database.
 
 Saving the migration of the database:
 
@@ -78,11 +96,13 @@ npx prisma migrate up --experimental
 npm run prisma:up
 ```
 
-### 3. Prisma2: Prisma Client JS
+### 4. Prisma: Prisma Client JS
 
 [Prisma Client JS](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/api) is a type-safe database client auto-generated based on the data model.
 
-To generate Prisma Client JS execute, this will always be executed after `npm install`:
+Generate Prisma Client JS by running
+
+> **Note**: Every time you update [schema.prisma](prisma/schema.prisma) re-generate Prisma Client JS
 
 ```bash
 npx prisma generate
@@ -90,7 +110,7 @@ npx prisma generate
 npm run prisma:generate
 ```
 
-### 4. Seed the database data with this script
+### 5. Seed the database data with this script
 
 Execute the script with this command:
 
@@ -98,17 +118,7 @@ Execute the script with this command:
 npm run seed
 ```
 
-### 5. Install Nestjs
-
-The [Nestjs CLI](https://docs.nestjs.com/cli/usages) can be used to generate controller, services, resolvers and more.
-
-```bash
-npm i -g @nestjs/cli
-```
-
-**[⬆ back to top](#overview)**
-
-## Start NestJS Server
+### 6. Start NestJS Server
 
 Run Nest Server in Development mode:
 
@@ -125,11 +135,11 @@ Run Nest Server in Production mode:
 npm run start:prod
 ```
 
-Playground for the NestJS Server is available here: http://localhost:3000/graphql
+GraphQL Playground for the NestJS Server is available here: http://localhost:3000/graphql
 
 **[⬆ back to top](#overview)**
 
-## Playground
+## GraphQL Playground
 
 Some queries and mutations are secured by an auth guard. You have to acquire a JWT token from `signup` or `login`. Add the the auth token as followed to **HTTP HEADERS** in the playground and replace `YOURTOKEN` here:
 
@@ -202,11 +212,11 @@ Restart the NestJS server and this time the Query to fetch a `user` should work.
 
 **[⬆ back to top](#overview)**
 
-## Graphql Client
+## GraphQL Client
 
-A graphql client is necessary to consume the graphql api provided by the NestJS Server.
+A GraphQL client is necessary to consume the GraphQL api provided by the NestJS Server.
 
-Checkout [Apollo](https://www.apollographql.com/) a popular graphql client which offers several clients for React, Angular, Vue.js, Native iOS, Native Android and more.
+Checkout [Apollo](https://www.apollographql.com/) a popular GraphQL client which offers several clients for React, Angular, Vue.js, Native iOS, Native Android and more.
 
 ### Angular
 
@@ -229,7 +239,7 @@ imports: [BrowserModule,
 
 You can also add the `GraphQLModule` in the `AppModule` to make `Apollo` available in your Angular App.
 
-You need to set the URL to the NestJS Graphql Api. Open the file `src/app/graphql.module.ts` and update `uri`:
+You need to set the URL to the NestJS GraphQL Api. Open the file `src/app/graphql.module.ts` and update `uri`:
 
 ```ts
 const uri = 'http://localhost:3000/graphql';
@@ -253,7 +263,7 @@ this.apollo.watchQuery({
 }).valueChanges;
 ```
 
-Here is an example how to fetch your profile from the NestJS Graphql Api:
+Here is an example how to fetch your profile from the NestJS GraphQL Api:
 
 ```ts
 const CurrentUserProfile = gql`

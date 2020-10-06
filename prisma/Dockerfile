@@ -1,7 +1,7 @@
 FROM node:12
 RUN openssl version -v
 RUN uname -a
-RUN echo $POSTGRESQL_URL
+RUN echo $DATABASE_URL
 
 # Create app directory
 WORKDIR /app
