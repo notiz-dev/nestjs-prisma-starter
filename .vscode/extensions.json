@@ -3,7 +3,7 @@
     "angular.ng-template",
     "ms-vscode.vscode-typescript-tslint-plugin",
     "esbenp.prettier-vscode",
-    "prisma.vscode-graphql",
+    "graphql.vscode-graphql",
     "prisma.prisma"
   ]
 }
