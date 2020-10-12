@@ -33,7 +33,8 @@ Starter template for 😻 [NestJS](https://nestjs.com/) and [Prisma](https://www
     - [3. Prisma: Prisma Migrate](#3-prisma-prisma-migrate)
     - [4. Prisma: Prisma Client JS](#4-prisma-client-js)
     - [5. Seed the database data with this script](#5-seed-the-database-data-with-this-script)
-    - [6. Start NestJS Server](#6-start-nestjs-server)
+    - [6. Run Tests](#6-run-tests)
+    - [7. Start NestJS Server](#7-start-nestjs-server)
   - [GraphQL Playground](#graphql-playground)
   - [Rest Api](#rest-api)
   - [Docker](#docker)
@@ -118,7 +119,29 @@ Execute the script with this command:
 npm run seed
 ```
 
-### 6. Start NestJS Server
+### 6. Run Tests
+
+Unit tests:
+
+```bash
+yarn test
+
+# watch mode
+yarn test:watch
+```
+
+End to end tests:
+
+```bash
+yarn test:e2e
+
+# watch mode
+yarn prebuild:e2e --watch   # run this on another terminal
+yarn jest:e2e --watch
+```
+
+
+### 7. Start NestJS Server
 
 Run Nest Server in Development mode:
 
