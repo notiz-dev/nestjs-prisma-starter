@@ -41,7 +41,8 @@ export class AuthService {
         userId: user.id,
       });
     } catch (error) {
-      throw new ConflictException(`Email ${payload.email} already used.`);
+        throw new Error(error)
+        //throw new ConflictException(`Email ${payload.email} already used.`); //not always the case
     }
   }
 
