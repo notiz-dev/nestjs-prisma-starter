@@ -10,16 +10,17 @@ import { DateScalar } from './common/scalars/date.scalar';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphqlConfig } from './configs/config.interface';
 
-// Import config from file according to NODE_ENV
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const config = require(`./configs/${process.env.NODE_ENV}`).default;
+const loadConfig = (env: string) => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  return require(`./configs/${env}`).default;
+};
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,
-      load: [config],
+      load: [loadConfig(process.env.NODE_ENV)],
     }),
     GraphQLModule.forRootAsync({
       useFactory: async (configService: ConfigService) => {
