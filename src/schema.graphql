@@ -50,10 +50,14 @@ type PageInfo {
 type Post {
   author: User!
   content: String!
+
+  """Identifies the date and time when the object was created."""
   createdAt: Date!
   id: ID!
   published: Boolean!
   title: String!
+
+  """Identifies the date and time when the object was last updated."""
   updatedAt: Date!
 }
 
@@ -119,6 +123,7 @@ input UpdateUserInput {
 }
 
 type User {
+  """Identifies the date and time when the object was created."""
   createdAt: Date!
   email: String!
   firstname: String
@@ -126,5 +131,7 @@ type User {
   lastname: String
   posts: [Post!]!
   role: Role!
+
+  """Identifies the date and time when the object was last updated."""
   updatedAt: Date!
 }
