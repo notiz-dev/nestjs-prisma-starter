@@ -41,8 +41,11 @@ export class AuthService {
         userId: user.id,
       });
     } catch (error) {
-        throw new Error(error)
-        //throw new ConflictException(`Email ${payload.email} already used.`); //not always the case
+        if(e instanceof PrismaClientKnownRequestError && e.code === 'P2002') {
+           throw new ConflictException(`Email ${payload.email} already used.`);
+        } else {
+           throw new Error(error);
+        }
     }
   }
 
