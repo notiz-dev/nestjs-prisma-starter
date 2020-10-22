@@ -9,7 +9,7 @@ import { JwtService } from '@nestjs/jwt';
 import { PasswordService } from './password.service';
 import { SignupInput } from '../resolvers/auth/dto/signup.input';
 import { PrismaService } from './prisma.service';
-import { User } from '@prisma/client';
+import { User, PrismaClientKnownRequestError } from '@prisma/client';
 import { Token } from '../models/token.model';
 import { ConfigService } from '@nestjs/config';
 import { SecurityConfig } from 'src/configs/config.interface';
@@ -40,11 +40,11 @@ export class AuthService {
       return this.generateToken({
         userId: user.id,
       });
-    } catch (error) {
+    } catch (e) {
         if(e instanceof PrismaClientKnownRequestError && e.code === 'P2002') {
            throw new ConflictException(`Email ${payload.email} already used.`);
         } else {
-           throw new Error(error);
+           throw new Error(e);
         }
     }
   }
