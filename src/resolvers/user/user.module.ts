@@ -5,6 +5,6 @@ import { UserService } from '../../services/user.service';
 import { PasswordService } from '../../services/password.service';
 
 @Module({
-  providers: [UserResolver, UserService, PasswordService, PrismaService]
+  providers: [UserResolver, UserService, PasswordService, PrismaService],
 })
 export class UserModule {}

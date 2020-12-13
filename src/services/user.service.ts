@@ -15,8 +15,8 @@ export class UserService {
     return this.prisma.user.update({
       data: newUserData,
       where: {
-        id: userId
-      }
+        id: userId,
+      },
     });
   }
 
@@ -40,9 +40,9 @@ export class UserService {
 
     return this.prisma.user.update({
       data: {
-        password: hashedPassword
+        password: hashedPassword,
       },
-      where: { id: userId }
+      where: { id: userId },
     });
   }
 }

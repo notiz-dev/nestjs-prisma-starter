@@ -1,7 +1,7 @@
 import { Config } from './config.interface';
 
 const config: Config = {
-  nest: {
+  nest: {
     port: 3000,
   },
   cors: {
@@ -25,7 +25,6 @@ const config: Config = {
     refreshIn: '7d',
     bcryptSaltOrRound: 10,
   },
-
 };
 
 export default (): Config => config;
