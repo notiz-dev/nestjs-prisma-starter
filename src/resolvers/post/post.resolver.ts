@@ -50,7 +50,7 @@ export class PostResolver {
   @Query((returns) => [Post])
   userPosts(@Args() id: UserIdArgs) {
     return this.prisma.user
-      .findOne({ where: { id: id.userId } })
+      .findUnique({ where: { id: id.userId } })
       .posts({ where: { published: true } });
 
     // or
@@ -64,11 +64,11 @@ export class PostResolver {
 
   @Query((returns) => Post)
   async post(@Args() id: PostIdArgs) {
-    return this.prisma.post.findOne({ where: { id: id.postId } });
+    return this.prisma.post.findUnique({ where: { id: id.postId } });
   }
 
   @ResolveField('author')
   async author(@Parent() post: Post) {
-    return this.prisma.post.findOne({ where: { id: post.id } }).author();
+    return this.prisma.post.findUnique({ where: { id: post.id } }).author();
   }
 }

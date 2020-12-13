@@ -41,16 +41,16 @@ export class AuthService {
         userId: user.id,
       });
     } catch (e) {
-        if(e instanceof PrismaClientKnownRequestError && e.code === 'P2002') {
-           throw new ConflictException(`Email ${payload.email} already used.`);
-        } else {
-           throw new Error(e);
-        }
+      if (e instanceof PrismaClientKnownRequestError && e.code === 'P2002') {
+        throw new ConflictException(`Email ${payload.email} already used.`);
+      } else {
+        throw new Error(e);
+      }
     }
   }
 
   async login(email: string, password: string): Promise<Token> {
-    const user = await this.prisma.user.findOne({ where: { email } });
+    const user = await this.prisma.user.findUnique({ where: { email } });
 
     if (!user) {
       throw new NotFoundException(`No user found for email: ${email}`);
@@ -71,18 +71,18 @@ export class AuthService {
   }
 
   validateUser(userId: string): Promise<User> {
-    return this.prisma.user.findOne({ where: { id: userId } });
+    return this.prisma.user.findUnique({ where: { id: userId } });
   }
 
   getUserFromToken(token: string): Promise<User> {
     const id = this.jwtService.decode(token)['userId'];
-    return this.prisma.user.findOne({ where: { id } });
+    return this.prisma.user.findUnique({ where: { id } });
   }
 
   generateToken(payload: object): Token {
     const accessToken = this.jwtService.sign(payload);
 
-    const securityConfig = this.configService.get<SecurityConfig>('security'); 
+    const securityConfig = this.configService.get<SecurityConfig>('security');
     const refreshToken = this.jwtService.sign(payload, {
       expiresIn: securityConfig.refreshIn,
     });
