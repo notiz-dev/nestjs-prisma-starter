@@ -76,24 +76,36 @@ docker-compose -f docker-compose.db.yml up -d
 npm run docker:db
 ```
 
-### 3. Prisma: Prisma Migrate
+### 3. Prisma Migrate
 
 [Prisma Migrate](https://github.com/prisma/prisma2/tree/master/docs/prisma-migrate) is used to manage the schema and migration of the database. Prisma datasource requires an environment variable `DATABASE_URL` for the connection to the PostgreSQL database. Copy [prisma/example.env](prisma/example.env) and rename to `.env`. If you made any updates to the PostgreSQL variables (`POSTGRES_USER`, `POSTGRES_PASSWORD` `POSTGRES_DB`), please update them in your [prisma/.env](prisma/.env) file which is used by Prisma Migrate and for seeding the database.
 
-Saving the migration of the database:
+Use Prisma Migrate in your [development environment](https://www.prisma.io/blog/prisma-migrate-preview-b5eno5g08d0b#evolving-the-schema-in-development) to
+
+1. Creates `migration.sql` file
+2. Updates Database Schema
+3. Generates Prisma Client
 
 ```bash
-npx prisma migrate save --experimental
+npx prisma migrate dev --preview-feature
 # or
-npm run prisma:save
+npm run migrate:dev
 ```
 
-Perform the database migration:
+If you like to customize your `migration.sql` file run the following command. After making your customizations run `npx prisma migrate dev --preview-feature` to apply it.
 
 ```bash
-npx prisma migrate up --experimental
+npx prisma migrate dev --create-only --preview-feature
 # or
-npm run prisma:up
+npm run migrate:dev:create
+```
+
+If you are happy with your database changes you want to deploy those changes to your [production database](https://www.prisma.io/blog/prisma-migrate-preview-b5eno5g08d0b#applying-migrations-in-production-and-other-environments). Use `prisma migrate deploy` to apply all pending migrations, can also be used in CI/CD pipelines as it works without prompts.
+
+```bash
+npx prisma migrate deploy --preview-feature
+# or
+npm run migrate:deploy
 ```
 
 ### 4. Prisma: Prisma Client JS
@@ -192,14 +204,14 @@ If `DATABASE_URL` is missing in the root `.env` file, which is loaded into the D
 ```bash
 (node:19) UnhandledPromiseRejectionWarning: Error: error: Environment variable not found: DATABASE_URL.
   -->  schema.prisma:3
-   | 
+   |
  2 |   provider = "postgresql"
  3 |   url      = env("DATABASE_URL")
 ```
 
 ### Docker Compose
 
-You can also setup a the database and Nest application with the docker-compose 
+You can also setup a the database and Nest application with the docker-compose
 
 ```bash
 # building new NestJS docker image
