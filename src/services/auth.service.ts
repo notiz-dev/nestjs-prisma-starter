@@ -79,7 +79,7 @@ export class AuthService {
     return this.prisma.user.findUnique({ where: { id } });
   }
 
-  generateToken(payload: object): Token {
+  generateToken(payload: { userId: string }): Token {
     const accessToken = this.jwtService.sign(payload);
 
     const securityConfig = this.configService.get<SecurityConfig>('security');
