@@ -1,4 +1,4 @@
-name: Nest Prisma Starter CI
+name: Node.js CI
 
 on:
   push:
@@ -9,11 +9,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x]
+
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
-          node-version: 12
-      - run: npm i
-      - run: npm test
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
       - run: npm run build
+      - run: npm test
