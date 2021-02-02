@@ -10,7 +10,7 @@ Table User {
   password String [not null]
   firstname String
   lastname String
-  posts Post
+  posts Post [not null]
   role Role [not null]
 }
 
