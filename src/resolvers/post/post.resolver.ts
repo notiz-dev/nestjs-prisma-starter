@@ -5,7 +5,7 @@ import { UserIdArgs } from '../../models/args/user-id.args';
 import { Resolver, Query, Parent, Args, ResolveField } from '@nestjs/graphql';
 import { Post } from '../../models/post.model';
 import { PostOrder } from '../../models/inputs/post-order.input';
-import { PostConnection } from 'src/models/pagination/post-connection.model';
+import { PostConnection } from '../../models/pagination/post-connection.model';
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
 
 @Resolver((of) => Post)
