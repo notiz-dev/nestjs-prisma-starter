@@ -2,15 +2,54 @@ import { PrismaService } from './../../services/prisma.service';
 import { PaginationArgs } from '../../common/pagination/pagination.args';
 import { PostIdArgs } from '../../models/args/post-id.args';
 import { UserIdArgs } from '../../models/args/user-id.args';
-import { Resolver, Query, Parent, Args, ResolveField } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Parent,
+  Args,
+  ResolveField,
+  Subscription,
+  Mutation,
+} from '@nestjs/graphql';
 import { Post } from '../../models/post.model';
 import { PostOrder } from '../../models/inputs/post-order.input';
 import { PostConnection } from 'src/models/pagination/post-connection.model';
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
+import { PubSub } from 'graphql-subscriptions/';
+import { CreatePostInput } from './dto/createPost.input';
+import { UserEntity } from 'src/decorators/user.decorator';
+import { User } from 'src/models/user.model';
+import { GqlAuthGuard } from 'src/guards/gql-auth.guard';
+import { UseGuards } from '@nestjs/common';
+
+const pubSub = new PubSub();
 
 @Resolver((of) => Post)
 export class PostResolver {
   constructor(private prisma: PrismaService) {}
+
+  @Subscription((returns) => Post)
+  postCreated() {
+    return pubSub.asyncIterator('postCreated');
+  }
+
+  @UseGuards(GqlAuthGuard)
+  @Mutation((returns) => Post)
+  async createPost(
+    @UserEntity() user: User,
+    @Args('data') data: CreatePostInput
+  ) {
+    const newPost = this.prisma.post.create({
+      data: {
+        published: true,
+        title: data.title,
+        content: data.content,
+        authorId: user.id,
+      },
+    });
+    pubSub.publish('postCreated', { postCreated: newPost });
+    return newPost;
+  }
 
   @Query((returns) => PostConnection)
   async publishedPosts(
