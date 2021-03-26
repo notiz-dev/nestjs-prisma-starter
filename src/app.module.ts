@@ -18,6 +18,7 @@ import { GraphqlConfig } from './configs/config.interface';
       useFactory: async (configService: ConfigService) => {
         const graphqlConfig = configService.get<GraphqlConfig>('graphql');
         return {
+          installSubscriptionHandlers: true,
           buildSchemaOptions: {
             numberScalarMode: 'integer',
           },

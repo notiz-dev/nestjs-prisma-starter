@@ -16,6 +16,11 @@ input ChangePasswordInput {
   oldPassword: String!
 }
 
+input CreatePostInput {
+  content: String!
+  title: String!
+}
+
 """Date custom scalar type"""
 scalar Date
 
@@ -26,6 +31,7 @@ input LoginInput {
 
 type Mutation {
   changePassword(data: ChangePasswordInput!): User!
+  createPost(data: CreatePostInput!): Post!
   login(data: LoginInput!): Auth!
   refreshToken(token: String!): Token!
   signup(data: SignupInput!): Auth!
@@ -107,6 +113,10 @@ input SignupInput {
   firstname: String
   lastname: String
   password: String!
+}
+
+type Subscription {
+  postCreated: Post!
 }
 
 type Token {
