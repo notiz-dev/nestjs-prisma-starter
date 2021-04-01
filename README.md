@@ -87,15 +87,15 @@ Use Prisma Migrate in your [development environment](https://www.prisma.io/blog/
 3. Generates Prisma Client
 
 ```bash
-npx prisma migrate dev --preview-feature
+npx prisma migrate dev
 # or
 npm run migrate:dev
 ```
 
-If you like to customize your `migration.sql` file run the following command. After making your customizations run `npx prisma migrate dev --preview-feature` to apply it.
+If you like to customize your `migration.sql` file run the following command. After making your customizations run `npx prisma migrate dev` to apply it.
 
 ```bash
-npx prisma migrate dev --create-only --preview-feature
+npx prisma migrate dev --create-only
 # or
 npm run migrate:dev:create
 ```
@@ -103,7 +103,7 @@ npm run migrate:dev:create
 If you are happy with your database changes you want to deploy those changes to your [production database](https://www.prisma.io/blog/prisma-migrate-preview-b5eno5g08d0b#applying-migrations-in-production-and-other-environments). Use `prisma migrate deploy` to apply all pending migrations, can also be used in CI/CD pipelines as it works without prompts.
 
 ```bash
-npx prisma migrate deploy --preview-feature
+npx prisma migrate deploy
 # or
 npm run migrate:deploy
 ```
