@@ -25,6 +25,18 @@ query PublishedPostsConnection {
   }
 }
 
+mutation CreatePost {
+  createPost(data: { content: "Hello", title: "New Post" }) {
+    ...PostData
+  }
+}
+
+subscription SubscriptionPost {
+  postCreated {
+    ...PostData
+  }
+}
+
 fragment PostData on Post {
   id
   createdAt
