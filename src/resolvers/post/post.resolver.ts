@@ -1,4 +1,4 @@
-import { PrismaService } from './../../services/prisma.service';
+import { PrismaService } from './../../prisma/prisma.service';
 import { PaginationArgs } from '../../common/pagination/pagination.args';
 import { PostIdArgs } from '../../models/args/post-id.args';
 import { UserIdArgs } from '../../models/args/user-id.args';

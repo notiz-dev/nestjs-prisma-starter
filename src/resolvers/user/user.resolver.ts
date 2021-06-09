@@ -1,4 +1,4 @@
-import { PrismaService } from './../../services/prisma.service';
+import { PrismaService } from './../../prisma/prisma.service';
 import { GqlAuthGuard } from '../../guards/gql-auth.guard';
 import {
   Resolver,
