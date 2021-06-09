@@ -11,7 +11,7 @@ services:
       - postgres
 
   postgres:
-    image: postgres:12
+    image: postgres:13
     container_name: postgres
     restart: always
     ports:
