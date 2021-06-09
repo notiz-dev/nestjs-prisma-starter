@@ -37,11 +37,14 @@ export class AuthService {
         },
       });
 
-      return this.generateToken({
+      return this.generateTokens({
         userId: user.id,
       });
     } catch (e) {
-      if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2002') {
+      if (
+        e instanceof Prisma.PrismaClientKnownRequestError &&
+        e.code === 'P2002'
+      ) {
         throw new ConflictException(`Email ${payload.email} already used.`);
       } else {
         throw new Error(e);
@@ -65,7 +68,7 @@ export class AuthService {
       throw new BadRequestException('Invalid password');
     }
 
-    return this.generateToken({
+    return this.generateTokens({
       userId: user.id,
     });
   }
@@ -79,25 +82,35 @@ export class AuthService {
     return this.prisma.user.findUnique({ where: { id } });
   }
 
-  generateToken(payload: { userId: string }): Token {
-    const accessToken = this.jwtService.sign(payload);
-
-    const securityConfig = this.configService.get<SecurityConfig>('security');
-    const refreshToken = this.jwtService.sign(payload, {
-      expiresIn: securityConfig.refreshIn,
-    });
-
+  generateTokens(payload: { userId: string }): Token {
     return {
-      accessToken,
-      refreshToken,
+      accessToken: this.generateAccessToken(payload),
+      refreshToken: this.generateRefreshToken(payload)
     };
+  }
+
+  private generateAccessToken(payload: { userId: string }): string {
+    return this.jwtService.sign(payload);
+  }
+
+  private generateRefreshToken(payload: { userId: string }): string {
+    const securityConfig = this.configService.get<SecurityConfig>('security');
+    return this.jwtService.sign(
+      payload,
+      {
+        secret: this.configService.get('JWT_REFRESH_SECRET'),
+      expiresIn: securityConfig.refreshIn,
+      },
+    );
   }
 
   refreshToken(token: string) {
     try {
-      const { userId } = this.jwtService.verify(token);
+      const { userId } = this.jwtService.verify(token, {
+        secret: this.configService.get('JWT_REFRESH_SECRET'),
+      });
 
-      return this.generateToken({
+      return this.generateTokens({
         userId,
       });
     } catch (e) {
