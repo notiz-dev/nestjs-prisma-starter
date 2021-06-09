@@ -66,7 +66,7 @@ npm install
 
 ### 2. PostgreSQL with Docker
 
-Setup a development PostgreSQL with Docker. Copy [example.env](./example.env) and rename to `.env` which sets the required environments for PostgreSQL such as `POSTGRES_USER`, `POSTGRES_PASSWORD` and `POSTGRES_DB`. Update the variables as you wish and select a strong password.
+Setup a development PostgreSQL with Docker. Copy [.env.example](./.env.example) and rename to `.env` - `cp .env.example .env` - which sets the required environments for PostgreSQL such as `POSTGRES_USER`, `POSTGRES_PASSWORD` and `POSTGRES_DB`. Update the variables as you wish and select a strong password.
 
 Start the PostgreSQL database
 
@@ -78,7 +78,7 @@ npm run docker:db
 
 ### 3. Prisma Migrate
 
-[Prisma Migrate](https://github.com/prisma/prisma2/tree/master/docs/prisma-migrate) is used to manage the schema and migration of the database. Prisma datasource requires an environment variable `DATABASE_URL` for the connection to the PostgreSQL database. Copy [prisma/example.env](prisma/example.env) and rename to `.env`. If you made any updates to the PostgreSQL variables (`POSTGRES_USER`, `POSTGRES_PASSWORD` `POSTGRES_DB`), please update them in your [prisma/.env](prisma/.env) file which is used by Prisma Migrate and for seeding the database.
+[Prisma Migrate](https://github.com/prisma/prisma2/tree/master/docs/prisma-migrate) is used to manage the schema and migration of the database. Prisma datasource requires an environment variable `DATABASE_URL` for the connection to the PostgreSQL database. Prisma reads the `DATABASE_URL` from the root [.env](./.env) file.
 
 Use Prisma Migrate in your [development environment](https://www.prisma.io/blog/prisma-migrate-preview-b5eno5g08d0b#evolving-the-schema-in-development) to
 
