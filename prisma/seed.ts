@@ -5,6 +5,9 @@ const prisma = new PrismaClient();
 
 async function main() {
   dotenv.config();
+  await prisma.user.deleteMany();
+  await prisma.post.deleteMany();
+
   console.log('Seeding...');
 
   const user1 = await prisma.user.create({
