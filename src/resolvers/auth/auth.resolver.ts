@@ -10,6 +10,7 @@ import {
 } from '@nestjs/graphql';
 import { AuthService } from '../../services/auth.service';
 import { SignupInput } from './dto/signup.input';
+import { RefreshTokenInput } from './dto/refresh-token.input';
 
 @Resolver((of) => Auth)
 export class AuthResolver {
@@ -39,7 +40,7 @@ export class AuthResolver {
   }
 
   @Mutation((returns) => Token)
-  async refreshToken(@Args('token') token: string) {
+  async refreshToken(@Args() { token }: RefreshTokenInput) {
     return this.auth.refreshToken(token);
   }
 
