@@ -24,17 +24,17 @@ import { UseGuards } from '@nestjs/common';
 
 const pubSub = new PubSub();
 
-@Resolver((of) => Post)
+@Resolver(() => Post)
 export class PostResolver {
   constructor(private prisma: PrismaService) {}
 
-  @Subscription((returns) => Post)
+  @Subscription(() => Post)
   postCreated() {
     return pubSub.asyncIterator('postCreated');
   }
 
   @UseGuards(GqlAuthGuard)
-  @Mutation((returns) => Post)
+  @Mutation(() => Post)
   async createPost(
     @UserEntity() user: User,
     @Args('data') data: CreatePostInput
@@ -51,9 +51,9 @@ export class PostResolver {
     return newPost;
   }
 
-  @Query((returns) => PostConnection)
+  @Query(() => PostConnection)
   async publishedPosts(
-    @Args() { skip, after, before, first, last }: PaginationArgs,
+    @Args() { after, before, first, last }: PaginationArgs,
     @Args({ name: 'query', type: () => String, nullable: true })
     query: string,
     @Args({
@@ -86,7 +86,7 @@ export class PostResolver {
     return a;
   }
 
-  @Query((returns) => [Post])
+  @Query(() => [Post])
   userPosts(@Args() id: UserIdArgs) {
     return this.prisma.user
       .findUnique({ where: { id: id.userId } })
@@ -101,7 +101,7 @@ export class PostResolver {
     // });
   }
 
-  @Query((returns) => Post)
+  @Query(() => Post)
   async post(@Args() id: PostIdArgs) {
     return this.prisma.post.findUnique({ where: { id: id.postId } });
   }

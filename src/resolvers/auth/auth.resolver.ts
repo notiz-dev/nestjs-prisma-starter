@@ -12,11 +12,11 @@ import { AuthService } from '../../services/auth.service';
 import { SignupInput } from './dto/signup.input';
 import { RefreshTokenInput } from './dto/refresh-token.input';
 
-@Resolver((of) => Auth)
+@Resolver(() => Auth)
 export class AuthResolver {
   constructor(private readonly auth: AuthService) {}
 
-  @Mutation((returns) => Auth)
+  @Mutation(() => Auth)
   async signup(@Args('data') data: SignupInput) {
     data.email = data.email.toLowerCase();
     const { accessToken, refreshToken } = await this.auth.createUser(data);
@@ -26,7 +26,7 @@ export class AuthResolver {
     };
   }
 
-  @Mutation((returns) => Auth)
+  @Mutation(() => Auth)
   async login(@Args('data') { email, password }: LoginInput) {
     const { accessToken, refreshToken } = await this.auth.login(
       email.toLowerCase(),
@@ -39,7 +39,7 @@ export class AuthResolver {
     };
   }
 
-  @Mutation((returns) => Token)
+  @Mutation(() => Token)
   async refreshToken(@Args() { token }: RefreshTokenInput) {
     return this.auth.refreshToken(token);
   }

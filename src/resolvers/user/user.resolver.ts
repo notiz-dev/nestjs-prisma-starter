@@ -15,7 +15,7 @@ import { ChangePasswordInput } from './dto/change-password.input';
 import { UserService } from 'src/services/user.service';
 import { UpdateUserInput } from './dto/update-user.input';
 
-@Resolver((of) => User)
+@Resolver(() => User)
 @UseGuards(GqlAuthGuard)
 export class UserResolver {
   constructor(
@@ -23,13 +23,13 @@ export class UserResolver {
     private prisma: PrismaService
   ) {}
 
-  @Query((returns) => User)
+  @Query(() => User)
   async me(@UserEntity() user: User): Promise<User> {
     return user;
   }
 
   @UseGuards(GqlAuthGuard)
-  @Mutation((returns) => User)
+  @Mutation(() => User)
   async updateUser(
     @UserEntity() user: User,
     @Args('data') newUserData: UpdateUserInput
@@ -38,7 +38,7 @@ export class UserResolver {
   }
 
   @UseGuards(GqlAuthGuard)
-  @Mutation((returns) => User)
+  @Mutation(() => User)
   async changePassword(
     @UserEntity() user: User,
     @Args('data') changePassword: ChangePasswordInput
