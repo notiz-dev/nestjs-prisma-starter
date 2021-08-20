@@ -1,10 +1,8 @@
 import { PrismaClient } from '@prisma/client';
-import * as dotenv from 'dotenv';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  dotenv.config();
   await prisma.user.deleteMany();
   await prisma.post.deleteMany();
 
