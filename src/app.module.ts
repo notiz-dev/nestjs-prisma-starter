@@ -10,6 +10,7 @@ import { DateScalar } from './common/scalars/date.scalar';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import config from './configs/config';
 import { GraphqlConfig } from './configs/config.interface';
+import { PrismaModule } from 'nestjs-prisma';
 
 @Module({
   imports: [
@@ -31,6 +32,9 @@ import { GraphqlConfig } from './configs/config.interface';
         };
       },
       inject: [ConfigService],
+    }),
+    PrismaModule.forRoot({
+      isGlobal: true,
     }),
     AuthModule,
     UserModule,

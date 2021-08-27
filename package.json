@@ -66,6 +66,7 @@
     "class-validator": "0.13.1",
     "graphql": "15.5.1",
     "graphql-subscriptions": "1.2.1",
+    "nestjs-prisma": "^0.13.0",
     "passport": "0.4.1",
     "passport-jwt": "4.0.0",
     "reflect-metadata": "0.1.13",

@@ -1,4 +1,4 @@
-import { PrismaService } from './../../prisma/prisma.service';
+import { PrismaService } from 'nestjs-prisma';
 import { GqlAuthGuard } from '../../guards/gql-auth.guard';
 import {
   Resolver,

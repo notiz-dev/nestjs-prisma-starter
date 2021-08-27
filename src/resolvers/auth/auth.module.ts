@@ -1,4 +1,3 @@
-import { PrismaModule } from './../../prisma/prisma.module';
 import { PasswordService } from './../../services/password.service';
 import { GqlAuthGuard } from '../../guards/gql-auth.guard';
 import { AuthService } from '../../services/auth.service';
@@ -25,7 +24,6 @@ import { SecurityConfig } from 'src/configs/config.interface';
       },
       inject: [ConfigService],
     }),
-    PrismaModule,
   ],
   providers: [
     AuthService,
