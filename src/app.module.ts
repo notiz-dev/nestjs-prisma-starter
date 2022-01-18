@@ -11,10 +11,17 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import config from './configs/config';
 import { GraphqlConfig } from './configs/config.interface';
 import { PrismaModule } from 'nestjs-prisma';
+import { loggingMiddleware } from './logging.middleware';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, load: [config] }),
+    PrismaModule.forRoot({
+      isGlobal: true,
+      prismaServiceOptions: {
+        middlewares: [loggingMiddleware()], // configure your prisma middleware
+      },
+    }),
     GraphQLModule.forRootAsync({
       useFactory: async (configService: ConfigService) => {
         const graphqlConfig = configService.get<GraphqlConfig>('graphql');
@@ -33,9 +40,7 @@ import { PrismaModule } from 'nestjs-prisma';
       },
       inject: [ConfigService],
     }),
-    PrismaModule.forRoot({
-      isGlobal: true,
-    }),
+
     AuthModule,
     UserModule,
     PostModule,
