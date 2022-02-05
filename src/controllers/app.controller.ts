@@ -14,4 +14,9 @@ export class AppController {
   getHelloName(@Param('name') name: string): string {
     return this.appService.getHelloName(name);
   }
+
+  @Get('hello/:name/async')
+  async getHelloNameAsync(@Param('name') name: string) {
+    return this.appService.sayHello(name);
+  }
 }

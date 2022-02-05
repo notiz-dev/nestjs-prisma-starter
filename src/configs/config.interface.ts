@@ -1,9 +1,12 @@
+import { QueueOptions } from 'bull';
+export { QueueOptions } from 'bull';
 export interface Config {
   nest: NestConfig;
   cors: CorsConfig;
   swagger: SwaggerConfig;
   graphql: GraphqlConfig;
   security: SecurityConfig;
+  bull: QueueOptions;
 }
 
 export interface NestConfig {

@@ -1,5 +1,5 @@
 import { GraphQLModule } from '@nestjs/graphql';
-import { Module } from '@nestjs/common';
+import { Module, Logger } from '@nestjs/common';
 import { AppController } from './controllers/app.controller';
 import { AppService } from './services/app.service';
 import { AuthModule } from './resolvers/auth/auth.module';
@@ -12,14 +12,16 @@ import config from './configs/config';
 import { GraphqlConfig } from './configs/config.interface';
 import { PrismaModule } from 'nestjs-prisma';
 import { loggingMiddleware } from './logging.middleware';
-
+import { BullModule } from '@nestjs/bull';
+import { QueueOptions } from 'bull';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, load: [config] }),
-    PrismaModule.forRoot({
+    PrismaModule.forRootAsync({
       isGlobal: true,
-      prismaServiceOptions: {
-        middlewares: [loggingMiddleware()], // configure your prisma middleware
+      useFactory: () => {
+        const logger = new Logger('PrismaMiddleware');
+        return { middlewares: [loggingMiddleware(logger)] }; // configure your prisma middleware
       },
     }),
     GraphQLModule.forRootAsync({
@@ -40,7 +42,15 @@ import { loggingMiddleware } from './logging.middleware';
       },
       inject: [ConfigService],
     }),
-
+    BullModule.registerQueueAsync({
+      name: 'nest-worker',
+      useFactory: async (configService: ConfigService) => {
+        const bullConfig = await configService.get<QueueOptions>('bull');
+        return bullConfig;
+      },
+      imports: [ConfigModule],
+      inject: [ConfigService],
+    }),
     AuthModule,
     UserModule,
     PostModule,
