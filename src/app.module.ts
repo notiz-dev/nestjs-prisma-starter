@@ -1,5 +1,5 @@
 import { GraphQLModule } from '@nestjs/graphql';
-import { Module } from '@nestjs/common';
+import { Module, Logger } from '@nestjs/common';
 import { AppController } from './controllers/app.controller';
 import { AppService } from './services/app.service';
 import { AuthModule } from './resolvers/auth/auth.module';
@@ -16,10 +16,11 @@ import { loggingMiddleware } from './logging.middleware';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, load: [config] }),
-    PrismaModule.forRoot({
+    PrismaModule.forRootAsync({
       isGlobal: true,
-      prismaServiceOptions: {
-        middlewares: [loggingMiddleware()], // configure your prisma middleware
+      useFactory: () => {
+        const logger = new Logger('PrismaMiddleware');
+        return { middlewares: [loggingMiddleware(logger)] }; // configure your prisma middleware
       },
     }),
     GraphQLModule.forRootAsync({
