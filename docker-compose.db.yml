@@ -11,6 +11,20 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
 
+  redis: 
+    image: redis:6
+    container_name: redis
+    restart: always
+    ports:
+      - 6379:6379
+    env_file:
+      - .env
+    volumes:
+      - redis:/data
+
 volumes:
   postgres:
     name: nest-db
+  redis:
+    name: nest-redis
+
