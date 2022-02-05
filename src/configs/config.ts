@@ -25,6 +25,25 @@ const config: Config = {
     refreshIn: '7d',
     bcryptSaltOrRound: 10,
   },
+  bull: {
+    redis: {
+      host: process.env.REDIS_HOST || 'localhost',
+      port: Number(process.env.REDIS_PORT || 6379),
+      password: process.env.REDIS_PASSWORD,
+    },
+    limiter: {
+      max: 1000,
+      duration: 60000,
+    },
+    prefix: 'bull',
+    defaultJobOptions: {
+      attempts: 3,
+      backoff: {
+        type: 'exponential',
+        delay: 1000,
+      },
+    },
+  },
 };
 
 export default (): Config => config;

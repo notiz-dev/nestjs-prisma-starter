@@ -12,7 +12,8 @@ import config from './configs/config';
 import { GraphqlConfig } from './configs/config.interface';
 import { PrismaModule } from 'nestjs-prisma';
 import { loggingMiddleware } from './logging.middleware';
-
+import { BullModule } from '@nestjs/bull';
+import { QueueOptions } from 'bull';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true, load: [config] }),
@@ -41,7 +42,15 @@ import { loggingMiddleware } from './logging.middleware';
       },
       inject: [ConfigService],
     }),
-
+    BullModule.registerQueueAsync({
+      name: 'nest-worker',
+      useFactory: async (configService: ConfigService) => {
+        const bullConfig = await configService.get<QueueOptions>('bull');
+        return bullConfig;
+      },
+      imports: [ConfigModule],
+      inject: [ConfigService],
+    }),
     AuthModule,
     UserModule,
     PostModule,
