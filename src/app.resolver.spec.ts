@@ -1,7 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppResolver } from './app.resolver';
-import { AppService } from '../services/app.service';
 import { Chance } from 'chance';
+import { AppResolver } from './app.resolver';
+import { AppService } from './app.service';
+
 const chance = new Chance();
 
 describe('AppResolver', () => {
