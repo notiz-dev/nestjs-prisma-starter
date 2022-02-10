@@ -243,7 +243,7 @@ npm run prisma:generate:watch
 
 ## NestJS - Api Schema
 
-The [schema.graphql](./src/schema.graphql) is generated with [code first approach](https://docs.nestjs.com/graphql/quick-start#code-first). The schema is generated from the [models](./src/models/user.ts), the [resolvers](./src/resolvers/auth/auth.resolver.ts) and the [input](./src/resolvers/auth/dto/login.input.ts) classes.
+The [schema.graphql](./src/schema.graphql) is generated with [code first approach](https://docs.nestjs.com/graphql/quick-start#code-first) from the models, resolvers and input classes.
 
 You can use [class-validator](https://docs.nestjs.com/techniques/validation) to validate your inputs and arguments.
 
