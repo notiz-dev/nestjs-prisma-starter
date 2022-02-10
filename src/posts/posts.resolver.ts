@@ -25,7 +25,7 @@ import { CreatePostInput } from './dto/createPost.input';
 const pubSub = new PubSub();
 
 @Resolver(() => Post)
-export class PostResolver {
+export class PostsResolver {
   constructor(private prisma: PrismaService) {}
 
   @Subscription(() => Post)

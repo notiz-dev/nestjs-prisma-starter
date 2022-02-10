@@ -10,16 +10,16 @@ import {
 import { UseGuards } from '@nestjs/common';
 import { UserEntity } from 'src/common/decorators/user.decorator';
 import { GqlAuthGuard } from 'src/auth/gql-auth.guard';
-import { UserService } from './user.service';
+import { UsersService } from './users.service';
 import { User } from './models/user.model';
 import { ChangePasswordInput } from './dto/change-password.input';
 import { UpdateUserInput } from './dto/update-user.input';
 
 @Resolver(() => User)
 @UseGuards(GqlAuthGuard)
-export class UserResolver {
+export class UsersResolver {
   constructor(
-    private userService: UserService,
+    private usersService: UsersService,
     private prisma: PrismaService
   ) {}
 
@@ -34,7 +34,7 @@ export class UserResolver {
     @UserEntity() user: User,
     @Args('data') newUserData: UpdateUserInput
   ) {
-    return this.userService.updateUser(user.id, newUserData);
+    return this.usersService.updateUser(user.id, newUserData);
   }
 
   @UseGuards(GqlAuthGuard)
@@ -43,7 +43,7 @@ export class UserResolver {
     @UserEntity() user: User,
     @Args('data') changePassword: ChangePasswordInput
   ) {
-    return this.userService.changePassword(
+    return this.usersService.changePassword(
       user.id,
       user.password,
       changePassword

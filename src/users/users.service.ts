@@ -5,7 +5,7 @@ import { ChangePasswordInput } from './dto/change-password.input';
 import { UpdateUserInput } from './dto/update-user.input';
 
 @Injectable()
-export class UserService {
+export class UsersService {
   constructor(
     private prisma: PrismaService,
     private passwordService: PasswordService
