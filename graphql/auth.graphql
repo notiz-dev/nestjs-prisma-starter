@@ -17,7 +17,7 @@ mutation AuthUser {
 }
 
 mutation RefreshToken {
-  refreshToken(token: "REFRESH_TOKEN") {
+  refreshToken(token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJja3lqdDZrdmkwMDIxcHdldmM0OW8zYTAyIiwiaWF0IjoxNjQ0ODMyNzYyLCJleHAiOjE2NDU0Mzc1NjJ9.eSD3zIsVBNS1pTRtYjjYrCWUYBcUL5ZeCpPTDXEc68Y") {
     ...TokenData
   }
 }

@@ -4,10 +4,10 @@
 
 type Auth {
   """JWT access token"""
-  accessToken: String!
+  accessToken: JWT!
 
   """JWT refresh token"""
-  refreshToken: String!
+  refreshToken: JWT!
   user: User!
 }
 
@@ -26,6 +26,11 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+"""
+A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
+"""
+scalar JWT
+
 input LoginInput {
   email: String!
   password: String!
@@ -35,7 +40,7 @@ type Mutation {
   changePassword(data: ChangePasswordInput!): User!
   createPost(data: CreatePostInput!): Post!
   login(data: LoginInput!): Auth!
-  refreshToken(token: String!): Token!
+  refreshToken(token: JWT!): Token!
   signup(data: SignupInput!): Auth!
   updateUser(data: UpdateUserInput!): User!
 }
@@ -123,10 +128,10 @@ type Subscription {
 
 type Token {
   """JWT access token"""
-  accessToken: String!
+  accessToken: JWT!
 
   """JWT refresh token"""
-  refreshToken: String!
+  refreshToken: JWT!
 }
 
 input UpdateUserInput {
