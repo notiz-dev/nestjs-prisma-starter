@@ -22,29 +22,6 @@ import { GqlConfigService } from './gql-config.service';
         middlewares: [loggingMiddleware()], // configure your prisma middleware
       },
     }),
-    // GraphQLModule.forRoot({
-    //   driver: ApolloDriver,
-    //   autoSchemaFile: true,
-    // }),
-    // GraphQLModule.forRootAsync<ApolloDriverConfig>({
-    //   driver: ApolloDriver,
-    //   useFactory: async (configService: ConfigService) => {
-    //     const graphqlConfig = configService.get<GraphqlConfig>('graphql');
-    //     return {
-    //       // installSubscriptionHandlers: true,
-    //       // buildSchemaOptions: {
-    //       //   numberScalarMode: 'integer',
-    //       // },
-    //       // sortSchema: graphqlConfig.sortSchema,
-    //       // autoSchemaFile:
-    //       //   graphqlConfig.schemaDestination || './src/schema.graphql',
-    //       // debug: graphqlConfig.debug,
-    //       // playground: graphqlConfig.playgroundEnabled,
-    //       // context: ({ req }) => ({ req }),
-    //     };
-    //   },
-    //   inject: [ConfigService],
-    // }),
 
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,
