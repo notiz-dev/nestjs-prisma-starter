@@ -1,7 +1,4 @@
 import { PrismaService } from 'nestjs-prisma';
-import { PaginationArgs } from '../../common/pagination/pagination.args';
-import { PostIdArgs } from '../../models/args/post-id.args';
-import { UserIdArgs } from '../../models/args/user-id.args';
 import {
   Resolver,
   Query,
@@ -11,21 +8,24 @@ import {
   Subscription,
   Mutation,
 } from '@nestjs/graphql';
-import { Post } from '../../models/post.model';
-import { PostOrder } from '../../models/inputs/post-order.input';
-import { PostConnection } from 'src/models/pagination/post-connection.model';
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
-import { PubSub } from 'graphql-subscriptions/';
-import { CreatePostInput } from './dto/createPost.input';
-import { UserEntity } from 'src/decorators/user.decorator';
-import { User } from 'src/models/user.model';
-import { GqlAuthGuard } from 'src/guards/gql-auth.guard';
+import { PubSub } from 'graphql-subscriptions';
 import { UseGuards } from '@nestjs/common';
+import { PaginationArgs } from 'src/common/pagination/pagination.args';
+import { UserEntity } from 'src/common/decorators/user.decorator';
+import { User } from 'src/users/models/user.model';
+import { GqlAuthGuard } from 'src/auth/gql-auth.guard';
+import { PostIdArgs } from './args/post-id.args';
+import { UserIdArgs } from './args/user-id.args';
+import { Post } from './models/post.model';
+import { PostConnection } from './models/post-connection.model';
+import { PostOrder } from './dto/post-order.input';
+import { CreatePostInput } from './dto/createPost.input';
 
 const pubSub = new PubSub();
 
 @Resolver(() => Post)
-export class PostResolver {
+export class PostsResolver {
   constructor(private prisma: PrismaService) {}
 
   @Subscription(() => Post)

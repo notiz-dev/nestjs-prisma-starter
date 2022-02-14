@@ -1,5 +1,5 @@
 import { InputType, registerEnumType } from '@nestjs/graphql';
-import { Order } from '../../common/order/order';
+import { Order } from 'src/common/order/order';
 
 export enum PostOrderField {
   id = 'id',
