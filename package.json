@@ -67,6 +67,7 @@
     "class-transformer": "0.5.1",
     "class-validator": "0.13.2",
     "graphql": "15.6.0",
+    "graphql-scalars": "^1.14.1",
     "graphql-subscriptions": "1.2.1",
     "nestjs-prisma": "^0.15.0",
     "passport": "0.5.2",

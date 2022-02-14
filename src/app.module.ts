@@ -8,7 +8,6 @@ import { AppResolver } from './app.resolver';
 import { AuthModule } from 'src/auth/auth.module';
 import { UsersModule } from 'src/users/users.module';
 import { PostsModule } from 'src/posts/posts.module';
-import { DateScalar } from 'src/common/scalars/date.scalar';
 import config from 'src/common/configs/config';
 import type { GraphqlConfig } from 'src/common/configs/config.interface';
 import { loggingMiddleware } from 'src/common/middleware/logging.middleware';
@@ -46,6 +45,6 @@ import { loggingMiddleware } from 'src/common/middleware/logging.middleware';
     PostsModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AppResolver, DateScalar],
+  providers: [AppService, AppResolver],
 })
 export class AppModule {}

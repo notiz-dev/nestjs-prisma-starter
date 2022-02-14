@@ -21,8 +21,10 @@ input CreatePostInput {
   title: String!
 }
 
-"""Date custom scalar type"""
-scalar Date
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 input LoginInput {
   email: String!
@@ -58,13 +60,13 @@ type Post {
   content: String!
 
   """Identifies the date and time when the object was created."""
-  createdAt: Date!
+  createdAt: DateTime!
   id: ID!
   published: Boolean!
   title: String!
 
   """Identifies the date and time when the object was last updated."""
-  updatedAt: Date!
+  updatedAt: DateTime!
 }
 
 type PostConnection {
@@ -134,7 +136,7 @@ input UpdateUserInput {
 
 type User {
   """Identifies the date and time when the object was created."""
-  createdAt: Date!
+  createdAt: DateTime!
   email: String!
   firstname: String
   id: ID!
@@ -143,5 +145,5 @@ type User {
   role: Role!
 
   """Identifies the date and time when the object was last updated."""
-  updatedAt: Date!
+  updatedAt: DateTime!
 }
