@@ -2,9 +2,9 @@ import { InputType, registerEnumType } from '@nestjs/graphql';
 import { Order } from 'src/common/order/order';
 
 export enum PostOrderField {
-  id = 'id',
-  createdAt = 'createdAt',
-  updatedAt = 'updatedAt',
+  id = 0,
+  created = 'created',
+  updated = 'updated',
   published = 'published',
   title = 'title',
   content = 'content',

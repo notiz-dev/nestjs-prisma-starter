@@ -65,13 +65,13 @@ type Post {
   content: String!
 
   """Identifies the date and time when the object was created."""
-  createdAt: DateTime!
+  created: DateTime!
   id: ID!
   published: Boolean!
   title: String!
 
   """Identifies the date and time when the object was last updated."""
-  updatedAt: DateTime!
+  updated: DateTime!
 }
 
 type PostConnection {
@@ -93,20 +93,20 @@ input PostOrder {
 """Properties by which post connections can be ordered."""
 enum PostOrderField {
   content
-  createdAt
+  created
   id
   published
   title
-  updatedAt
+  updated
 }
 
 type Query {
   hello(name: String!): String!
   helloWorld: String!
   me: User!
-  post(postId: String!): Post!
+  post(postId: Int!): Post!
   publishedPosts(after: String, before: String, first: Int, last: Int, orderBy: PostOrder, query: String, skip: Int): PostConnection!
-  userPosts(userId: String!): [Post!]!
+  userPosts(userId: Int!): [Post!]!
 }
 
 """User role"""
@@ -141,7 +141,7 @@ input UpdateUserInput {
 
 type User {
   """Identifies the date and time when the object was created."""
-  createdAt: DateTime!
+  created: DateTime!
   email: String!
   firstname: String
   id: ID!
@@ -150,5 +150,5 @@ type User {
   role: Role!
 
   """Identifies the date and time when the object was last updated."""
-  updatedAt: DateTime!
+  updated: DateTime!
 }

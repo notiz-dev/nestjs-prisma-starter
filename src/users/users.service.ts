@@ -11,8 +11,8 @@ export class UsersService {
     private passwordService: PasswordService
   ) {}
 
-  updateUser(userId: string, newUserData: UpdateUserInput) {
-    return this.prisma.user.update({
+  updateUser(userId: number, newUserData: UpdateUserInput) {
+    return this.prisma.app_users.update({
       data: newUserData,
       where: {
         id: userId,
@@ -21,7 +21,7 @@ export class UsersService {
   }
 
   async changePassword(
-    userId: string,
+    userId: number,
     userPassword: string,
     changePassword: ChangePasswordInput
   ) {
@@ -38,7 +38,7 @@ export class UsersService {
       changePassword.newPassword
     );
 
-    return this.prisma.user.update({
+    return this.prisma.app_users.update({
       data: {
         password: hashedPassword,
       },

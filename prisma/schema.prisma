@@ -1,41 +1,167 @@
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 generator client {
   provider = "prisma-client-js"
-  // previewFeatures = []
 }
 
-generator dbml {
-  provider = "prisma-dbml-generator"
+enum app_user_roles {
+  ADMIN
+  USER
 }
 
-model User {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  email     String   @unique
+model app_users {
+  id        Int      @id @default(autoincrement())
+  created   DateTime @default(now())
+  updated   DateTime @updatedAt
+  email     String   @db.VarChar(254) @unique
   password  String
   firstname String?
   lastname  String?
-  posts     Post[]
-  role      Role
+  posts     test_posts[]
+  role      app_user_roles
 }
 
-model Post {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model test_posts {
+  id        Int      @id @default(autoincrement())
+  created   DateTime @default(now())
+  updated   DateTime @updatedAt
   published Boolean
   title     String
   content   String?
-  author    User?    @relation(fields: [authorId], references: [id])
-  authorId  String?
+  author    app_users?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
 }
 
-enum Role {
-  ADMIN
-  USER
+model attendance {
+  id          Int    @id @default(autoincrement())
+  uid         Int
+  clockin     String @db.VarChar(45)
+  clockout    String @default("0") @db.VarChar(45)
+  locationin  String @db.VarChar(45)
+  locationout String @db.VarChar(45)
+  ip_in       String @db.VarChar(45)
+  ip_out      String @db.VarChar(45)
+  host_in     String @db.VarChar(45)
+  host_out    String @db.VarChar(45)
+  whatidid    String @db.MediumText
+}
+
+model card_attribute_categories {
+  cac_id  Int    @id @default(autoincrement()) @map("cac-id")
+  ce_id_1 Int    @map("ce-id-1")
+  ce_id_2 Int?   @map("ce-id-2")
+  name    String @db.VarChar(64)
+  prob    Float  @db.Float
+  single  Int
+  twin    Int
+  triplet Int
+  full    Int
+  r       Int
+  g       Int
+  b       Int
+}
+
+model card_attributes {
+  ca_id  Int    @id @default(autoincrement()) @map("ca-id")
+  cac_id Int    @map("cac-id")
+  name   String @db.VarChar(128)
+  icon   String @db.VarChar(256)
+  prob   Float  @db.Float
+  min    Float  @db.Float
+  max    Float  @db.Float
+}
+
+model card_editions {
+  ce_id Int    @id @default(autoincrement()) @map("ce-id")
+  name  String @db.VarChar(32)
+  start Int
+  end   Int    @default(-1)
+}
+
+model card_mint_logs {
+  cml_id    Int @id @default(autoincrement()) @map("cml-id")
+  cm_id     Int @map("cm-id")
+  cu_id     Int @map("cu-id")
+  timestamp Int
+}
+
+model card_mints {
+  cm_id       Int    @id @default(autoincrement()) @map("cm-id")
+  ce_id       Int    @map("ce-id")
+  cu_id       Int    @map("cu-id")
+  ct_id       Int    @map("ct-id")
+  count       Int
+  set_group   String @map("set-group") @db.VarChar(5)
+  name        String @db.VarChar(32)
+  credit      String @db.VarChar(32)
+  description String @db.VarChar(2048)
+  points      Int
+  attrbs      String @db.VarChar(24)
+  timestamp   Int
+}
+
+model card_team {
+  ct_id   Int    @id @default(autoincrement()) @map("ct-id")
+  ce_id_1 Int    @map("ce-id-1")
+  ce_id_2 Int?   @map("ce-id-2")
+  name    String @db.VarChar(10)
+  icon    String @db.VarChar(256)
+}
+
+model card_user_logs {
+  cul_id    Int     @id @default(autoincrement()) @map("cul-id")
+  ce_id     Int     @map("ce-id")
+  cu_id     Int     @map("cu-id")
+  cuv_id    Int     @map("cuv-id")
+  io        Boolean
+  val       Int
+  timestamp Int
+}
+
+model card_user_vals {
+  cuv_id      Int     @id @default(autoincrement()) @map("cuv-id")
+  ce_id_1     Int     @map("ce-id-1")
+  ce_id_2     Int?    @map("ce-id-2")
+  val         String  @db.VarChar(64)
+  description String? @db.VarChar(2048)
+  color       String? @db.VarChar(12)
+  icon        String? @db.VarChar(256)
+}
+
+model card_users {
+  cu_id     Int     @id @default(autoincrement()) @map("cu-id")
+  ce_id     Int     @map("ce-id")
+  ct_id     Int     @map("ct-id")
+  uid       Int
+  mint_name String  @map("mint name") @db.VarChar(64)
+  points    Int
+  energy    Int
+  streak    Int
+  ban       Boolean
+}
+
+model users {
+  uid                         Int      @id @default(autoincrement())
+  name                        String   @db.VarChar(60)
+  mail                        String   @db.VarChar(254)
+  created                     Int
+  status                      Int      @default(1) @db.TinyInt
+  init                        String   @db.VarChar(254)
+  lastEmail                   Int?
+  dashboard                   String?  @db.VarChar(22)
+  dashboard_phone             Int?
+  dashboard_school            String?  @db.Text
+  dashboard_grade             Int?
+  dashboard_alerts_attendance Boolean?
+  dashboard_alerts_form       Boolean?
+  dashboard_alerts_scorecard  Boolean?
+  dashboard_theme             Int      @default(0)
+  dashboard_bio               String?  @db.Text
+  dashboard_img               String?  @db.Text
+  clip                        Int?
+  notification_badge          Int?
+  division                    String?  @db.Text
 }

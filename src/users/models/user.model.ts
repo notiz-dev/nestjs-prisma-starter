@@ -6,9 +6,9 @@ import {
 } from '@nestjs/graphql';
 import { Post } from 'src/posts/models/post.model';
 import { BaseModel } from 'src/common/models/base.model';
-import { Role } from '@prisma/client';
+import { app_user_roles } from '@prisma/client';
 
-registerEnumType(Role, {
+registerEnumType(app_user_roles, {
   name: 'Role',
   description: 'User role',
 });
@@ -18,8 +18,8 @@ export class User extends BaseModel {
   email: string;
   firstname?: string;
   lastname?: string;
-  @Field(() => Role)
-  role: Role;
+  @Field(() => app_user_roles)
+  role: app_user_roles;
   posts: Post[];
   @HideField()
   password: string;

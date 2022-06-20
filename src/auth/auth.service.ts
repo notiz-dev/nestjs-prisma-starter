@@ -1,5 +1,5 @@
 import { PrismaService } from 'nestjs-prisma';
-import { Prisma, User } from '@prisma/client';
+import { Prisma, app_users } from '@prisma/client';
 import {
   Injectable,
   NotFoundException,
@@ -29,7 +29,7 @@ export class AuthService {
     );
 
     try {
-      const user = await this.prisma.user.create({
+      const user = await this.prisma.app_users.create({
         data: {
           ...payload,
           password: hashedPassword,
@@ -53,7 +53,7 @@ export class AuthService {
   }
 
   async login(email: string, password: string): Promise<Token> {
-    const user = await this.prisma.user.findUnique({ where: { email } });
+    const user = await this.prisma.app_users.findUnique({ where: { email } });
 
     if (!user) {
       throw new NotFoundException(`No user found for email: ${email}`);
@@ -73,27 +73,27 @@ export class AuthService {
     });
   }
 
-  validateUser(userId: string): Promise<User> {
-    return this.prisma.user.findUnique({ where: { id: userId } });
+  validateUser(userId: number): Promise<app_users> {
+    return this.prisma.app_users.findUnique({ where: { id: userId } });
   }
 
-  getUserFromToken(token: string): Promise<User> {
+  getUserFromToken(token: string): Promise<app_users> {
     const id = this.jwtService.decode(token)['userId'];
-    return this.prisma.user.findUnique({ where: { id } });
+    return this.prisma.app_users.findUnique({ where: { id } });
   }
 
-  generateTokens(payload: { userId: string }): Token {
+  generateTokens(payload: { userId: number }): Token {
     return {
       accessToken: this.generateAccessToken(payload),
       refreshToken: this.generateRefreshToken(payload),
     };
   }
 
-  private generateAccessToken(payload: { userId: string }): string {
+  private generateAccessToken(payload: { userId: number }): string {
     return this.jwtService.sign(payload);
   }
 
-  private generateRefreshToken(payload: { userId: string }): string {
+  private generateRefreshToken(payload: { userId: number }): string {
     const securityConfig = this.configService.get<SecurityConfig>('security');
     return this.jwtService.sign(payload, {
       secret: this.configService.get('JWT_REFRESH_SECRET'),
