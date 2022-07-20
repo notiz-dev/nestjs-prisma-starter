@@ -1,6 +1,6 @@
 import { Prisma } from '@prisma/client';
 
-export function loggingMiddleware(): Prisma.Middleware {
+export function loggingMiddleware(logger: any = console): Prisma.Middleware {
   return async (params, next) => {
     const before = Date.now();
 
@@ -8,7 +8,7 @@ export function loggingMiddleware(): Prisma.Middleware {
 
     const after = Date.now();
 
-    console.log(
+    logger.log(
       `Prisma Query ${params.model}.${params.action} took ${after - before}ms`
     );
 
