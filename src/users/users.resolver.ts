@@ -8,8 +8,11 @@ import {
   ResolveField,
 } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
+import { Role } from '@prisma/client';
 import { UserEntity } from 'src/common/decorators/user.decorator';
 import { GqlAuthGuard } from 'src/auth/gql-auth.guard';
+import { RolesGuard } from 'src/auth/roles.guard';
+import { Roles } from 'src/common/decorators/roles.decorator';
 import { UsersService } from './users.service';
 import { User } from './models/user.model';
 import { ChangePasswordInput } from './dto/change-password.input';
@@ -28,7 +31,8 @@ export class UsersResolver {
     return user;
   }
 
-  @UseGuards(GqlAuthGuard)
+  @Roles(Role.USER, Role.ADMIN)
+  @UseGuards(GqlAuthGuard, RolesGuard)
   @Mutation(() => User)
   async updateUser(
     @UserEntity() user: User,
