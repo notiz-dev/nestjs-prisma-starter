@@ -61,8 +61,8 @@ type PageInfo {
 }
 
 type Post {
-  author: User!
-  content: String!
+  author: User
+  content: String
 
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
@@ -87,26 +87,15 @@ type PostEdge {
 
 input PostOrder {
   direction: OrderDirection!
-  field: PostOrderField!
-}
-
-"""Properties by which post connections can be ordered."""
-enum PostOrderField {
-  content
-  createdAt
-  id
-  published
-  title
-  updatedAt
 }
 
 type Query {
   hello(name: String!): String!
   helloWorld: String!
   me: User!
-  post(postId: String!): Post!
-  publishedPosts(after: String, before: String, first: Int, last: Int, orderBy: PostOrder, query: String, skip: Int): PostConnection!
-  userPosts(userId: String!): [Post!]!
+  post: Post!
+  publishedPosts(orderBy: PostOrder, query: String): PostConnection!
+  userPosts: [Post!]!
 }
 
 """User role"""
@@ -146,7 +135,7 @@ type User {
   firstname: String
   id: ID!
   lastname: String
-  posts: [Post!]!
+  posts: [Post!]
   role: Role!
 
   """Identifies the date and time when the object was last updated."""
