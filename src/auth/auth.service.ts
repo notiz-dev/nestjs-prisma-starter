@@ -46,9 +46,8 @@ export class AuthService {
         e.code === 'P2002'
       ) {
         throw new ConflictException(`Email ${payload.email} already used.`);
-      } else {
-        throw new Error(e);
       }
+      throw new Error(e);
     }
   }
 
