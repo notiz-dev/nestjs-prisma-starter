@@ -7,12 +7,12 @@ export class Post extends BaseModel {
   @Field()
   title: string;
 
-  @Field((type) => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   content?: string | null;
 
-  @Field((type) => Boolean)
+  @Field(() => Boolean)
   published: boolean;
 
-  @Field((type) => User, { nullable: true })
+  @Field(() => User, { nullable: true })
   author?: User | null;
 }
