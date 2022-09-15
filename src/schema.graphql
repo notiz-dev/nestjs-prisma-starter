@@ -61,8 +61,8 @@ type PageInfo {
 }
 
 type Post {
-  author: User!
-  content: String!
+  author: User
+  content: String
 
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
@@ -146,7 +146,7 @@ type User {
   firstname: String
   id: ID!
   lastname: String
-  posts: [Post!]!
+  posts: [Post!]
   role: Role!
 
   """Identifies the date and time when the object was last updated."""
