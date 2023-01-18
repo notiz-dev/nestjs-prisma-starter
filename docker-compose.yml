@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 3000:3000
+      - '3000:3000'
     depends_on:
       - postgres
     env_file:
@@ -17,7 +17,7 @@ services:
     container_name: postgres
     restart: always
     ports:
-      - 5432:5432
+      - '5432:5432'
     env_file:
       - .env
     volumes:
