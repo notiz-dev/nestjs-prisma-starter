@@ -1,10 +1,12 @@
+import { ValidatorOptions } from 'class-validator';
+
 export interface Config {
   nest: NestConfig;
   cors: CorsConfig;
   swagger: SwaggerConfig;
   graphql: GraphqlConfig;
   security: SecurityConfig;
-  validation: ValidationConfig;
+  validation: ValidatorOptions;
 }
 
 export interface NestConfig {
@@ -34,9 +36,4 @@ export interface SecurityConfig {
   expiresIn: string;
   refreshIn: string;
   bcryptSaltOrRound: string | number;
-}
-
-export interface ValidationConfig {
-  enableDebugMessages: boolean;
-  forbidUnknownValues: boolean;
 }

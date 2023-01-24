@@ -8,8 +8,8 @@ import type {
   CorsConfig,
   NestConfig,
   SwaggerConfig,
-  ValidationConfig,
 } from 'src/common/configs/config.interface';
+import { ValidatorOptions } from 'class-validator';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -18,7 +18,7 @@ async function bootstrap() {
   const nestConfig = configService.get<NestConfig>('nest');
   const corsConfig = configService.get<CorsConfig>('cors');
   const swaggerConfig = configService.get<SwaggerConfig>('swagger');
-  const validationConfig = configService.get<ValidationConfig>('validation');
+  const validationConfig = configService.get<ValidatorOptions>('validation');
   // Validation
   app.useGlobalPipes(
     new ValidationPipe({
