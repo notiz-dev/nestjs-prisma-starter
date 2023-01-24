@@ -24,6 +24,7 @@ import { CreatePostInput } from './dto/createPost.input';
 import { RolesGuard } from 'src/common/guards/roles.guard';
 import { Roles } from 'src/common/decorators/roles.decorator';
 import { Role } from 'src/common/enums';
+import { AllowAny } from 'src/common/decorators/AllowAny.decorator';
 
 const pubSub = new PubSub();
 
@@ -36,7 +37,6 @@ export class PostsResolver {
     return pubSub.asyncIterator('postCreated');
   }
 
-  @Roles(Role.Admin)
   @UseGuards(GqlAuthGuard, RolesGuard)
   @Mutation(() => Post)
   async createPost(
