@@ -21,6 +21,9 @@ import { Post } from './models/post.model';
 import { PostConnection } from './models/post-connection.model';
 import { PostOrder } from './dto/post-order.input';
 import { CreatePostInput } from './dto/createPost.input';
+import { RolesGuard } from 'src/common/guards/roles.guard';
+import { Roles } from 'src/common/decorators/roles.decorator';
+import { Role } from 'src/common/enums';
 
 const pubSub = new PubSub();
 
@@ -33,7 +36,8 @@ export class PostsResolver {
     return pubSub.asyncIterator('postCreated');
   }
 
-  @UseGuards(GqlAuthGuard)
+  @Roles(Role.Admin)
+  @UseGuards(GqlAuthGuard, RolesGuard)
   @Mutation(() => Post)
   async createPost(
     @UserEntity() user: User,

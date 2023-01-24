@@ -21,7 +21,7 @@ model User {
   firstname String?
   lastname  String?
   posts     Post[]
-  role      Role
+  roles      String[]
 }
 
 model Post {

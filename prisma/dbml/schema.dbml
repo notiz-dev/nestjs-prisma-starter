@@ -11,7 +11,7 @@ Table User {
   firstname String
   lastname String
   posts Post [not null]
-  role Role [not null]
+  roles String[] [not null]
 }
 
 Table Post {
