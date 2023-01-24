@@ -25,6 +25,10 @@ const config: Config = {
     refreshIn: '7d',
     bcryptSaltOrRound: 10,
   },
+  validation: {
+    enableDebugMessages: true,
+    forbidUnknownValues: false,
+  },
 };
 
 export default (): Config => config;

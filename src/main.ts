@@ -8,13 +8,24 @@ import type {
   CorsConfig,
   NestConfig,
   SwaggerConfig,
+  ValidationConfig,
 } from 'src/common/configs/config.interface';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  const configService = app.get(ConfigService);
+  const nestConfig = configService.get<NestConfig>('nest');
+  const corsConfig = configService.get<CorsConfig>('cors');
+  const swaggerConfig = configService.get<SwaggerConfig>('swagger');
+  const validationConfig = configService.get<ValidationConfig>('validation');
   // Validation
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      enableDebugMessages: validationConfig.enableDebugMessages,
+      forbidUnknownValues: validationConfig.forbidUnknownValues,
+    })
+  );
 
   // enable shutdown hook
   const prismaService: PrismaService = app.get(PrismaService);
@@ -23,11 +34,6 @@ async function bootstrap() {
   // Prisma Client Exception Filter for unhandled exceptions
   const { httpAdapter } = app.get(HttpAdapterHost);
   app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
-
-  const configService = app.get(ConfigService);
-  const nestConfig = configService.get<NestConfig>('nest');
-  const corsConfig = configService.get<CorsConfig>('cors');
-  const swaggerConfig = configService.get<SwaggerConfig>('swagger');
 
   // Swagger Api
   if (swaggerConfig.enabled) {
