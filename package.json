@@ -66,7 +66,7 @@
     "apollo-server-express": "3.11.1",
     "bcrypt": "5.1.0",
     "class-transformer": "0.5.1",
-    "class-validator": "0.13.2",
+    "class-validator": "0.14.0",
     "graphql": "16.6.0",
     "graphql-scalars": "1.20.1",
     "graphql-subscriptions": "2.0.0",
