@@ -59,11 +59,17 @@ Install [Nestjs CLI](https://docs.nestjs.com/cli/usages) to start and [generate 
 ```bash
 npm i -g @nestjs/cli
 ```
+```bash
+yarn add -g @nestjs/cli
+```
 
 Install the dependencies for the Nest application:
 
 ```bash
 npm install
+```
+```bash
+yarn install
 ```
 
 ### 2. PostgreSQL with Docker
