@@ -66,9 +66,9 @@ yarn add -g @nestjs/cli
 Install the dependencies for the Nest application:
 
 ```bash
+# npm
 npm install
-```
-```bash
+# yarn
 yarn install
 ```
 
