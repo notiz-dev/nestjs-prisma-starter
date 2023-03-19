@@ -57,9 +57,9 @@ Starter template for 😻 [NestJS](https://nestjs.com/) and [Prisma](https://www
 Install [Nestjs CLI](https://docs.nestjs.com/cli/usages) to start and [generate CRUD resources](https://trilon.io/blog/introducing-cli-generators-crud-api-in-1-minute)
 
 ```bash
+# npm
 npm i -g @nestjs/cli
-```
-```bash
+# yarn
 yarn add -g @nestjs/cli
 ```
 
