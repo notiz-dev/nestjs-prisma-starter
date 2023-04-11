@@ -71,7 +71,7 @@ export class PostsResolver {
             published: true,
             title: { contains: query || '' },
           },
-          orderBy: orderBy ? { [orderBy.field]: orderBy.direction } : null,
+          orderBy: orderBy ? { [orderBy.field]: orderBy.direction } : undefined,
           ...args,
         }),
       () =>
