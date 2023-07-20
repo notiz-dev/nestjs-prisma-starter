@@ -7,7 +7,7 @@ import { GqlAuthGuard } from './gql-auth.guard';
 import { AuthService } from './auth.service';
 import { AuthResolver } from './auth.resolver';
 import { JwtStrategy } from './jwt.strategy';
-import { SecurityConfig } from 'src/common/configs/config.interface';
+import { SecurityConfig } from '../common/configs/config.interface';
 
 @Module({
   imports: [

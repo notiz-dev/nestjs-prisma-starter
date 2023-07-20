@@ -8,7 +8,7 @@ import type {
   CorsConfig,
   NestConfig,
   SwaggerConfig,
-} from 'src/common/configs/config.interface';
+} from './common/configs/config.interface';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

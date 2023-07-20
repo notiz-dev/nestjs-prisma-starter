@@ -1,6 +1,6 @@
 import { PrismaService } from 'nestjs-prisma';
 import { Injectable, BadRequestException } from '@nestjs/common';
-import { PasswordService } from 'src/auth/password.service';
+import { PasswordService } from '../auth/password.service';
 import { ChangePasswordInput } from './dto/change-password.input';
 import { UpdateUserInput } from './dto/update-user.input';
 
