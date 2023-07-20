@@ -1,11 +1,9 @@
 {
-  "language": "ts",
+  "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
-    "plugins": [
-      "@nestjs/swagger/plugin",
-      "@nestjs/graphql/plugin"
-    ]
+    "deleteOutDir": true,
+    "plugins": ["@nestjs/swagger/plugin", "@nestjs/graphql/plugin"]
   }
 }
