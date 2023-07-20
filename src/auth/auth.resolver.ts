@@ -31,7 +31,7 @@ export class AuthResolver {
   async login(@Args('data') { email, password }: LoginInput) {
     const { accessToken, refreshToken } = await this.auth.login(
       email.toLowerCase(),
-      password
+      password,
     );
 
     return {

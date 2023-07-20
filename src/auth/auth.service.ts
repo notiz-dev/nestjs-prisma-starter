@@ -20,12 +20,12 @@ export class AuthService {
     private readonly jwtService: JwtService,
     private readonly prisma: PrismaService,
     private readonly passwordService: PasswordService,
-    private readonly configService: ConfigService
+    private readonly configService: ConfigService,
   ) {}
 
   async createUser(payload: SignupInput): Promise<Token> {
     const hashedPassword = await this.passwordService.hashPassword(
-      payload.password
+      payload.password,
     );
 
     try {
@@ -60,7 +60,7 @@ export class AuthService {
 
     const passwordValid = await this.passwordService.validatePassword(
       password,
-      user.password
+      user.password,
     );
 
     if (!passwordValid) {

@@ -37,7 +37,7 @@ export class PostsResolver {
   @Mutation(() => Post)
   async createPost(
     @UserEntity() user: User,
-    @Args('data') data: CreatePostInput
+    @Args('data') data: CreatePostInput,
   ) {
     const newPost = this.prisma.post.create({
       data: {
@@ -61,7 +61,7 @@ export class PostsResolver {
       type: () => PostOrder,
       nullable: true,
     })
-    orderBy: PostOrder
+    orderBy: PostOrder,
   ) {
     const a = await findManyCursorConnection(
       (args) =>
@@ -81,7 +81,7 @@ export class PostsResolver {
             title: { contains: query || '' },
           },
         }),
-      { first, last, before, after }
+      { first, last, before, after },
     );
     return a;
   }

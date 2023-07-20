@@ -8,7 +8,7 @@ import { UpdateUserInput } from './dto/update-user.input';
 export class UsersService {
   constructor(
     private prisma: PrismaService,
-    private passwordService: PasswordService
+    private passwordService: PasswordService,
   ) {}
 
   updateUser(userId: string, newUserData: UpdateUserInput) {
@@ -23,11 +23,11 @@ export class UsersService {
   async changePassword(
     userId: string,
     userPassword: string,
-    changePassword: ChangePasswordInput
+    changePassword: ChangePasswordInput,
   ) {
     const passwordValid = await this.passwordService.validatePassword(
       changePassword.oldPassword,
-      userPassword
+      userPassword,
     );
 
     if (!passwordValid) {
@@ -35,7 +35,7 @@ export class UsersService {
     }
 
     const hashedPassword = await this.passwordService.hashPassword(
-      changePassword.newPassword
+      changePassword.newPassword,
     );
 
     return this.prisma.user.update({
