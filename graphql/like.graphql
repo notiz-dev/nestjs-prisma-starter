@@ -1,0 +1,40 @@
+query LikeCount {
+  likeCount(id: {postId: "POST_ID"}) {
+    totalCount
+  }
+}
+
+mutation CreateLike {
+  createLike(data: {postId: "POST_ID"}) {
+    ...LikeData
+  }
+}
+
+mutation RemoveLike {
+  removeLike(data: {postId: "POST_ID"})
+}
+
+fragment LikeData on Like {
+  createdAt
+  updatedAt
+}
+
+fragment PostData on Post {
+  id
+  createdAt
+  updatedAt
+  published
+  title
+  content
+  likes {
+    ...LikeData
+  }
+}
+
+fragment UserData on User {
+  id
+  email
+  firstname
+  lastname
+  role
+}

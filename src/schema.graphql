@@ -31,6 +31,25 @@ A field whose value is a JSON Web Token (JWT): https://jwt.io/introduction.
 """
 scalar JWT
 
+type Like {
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  post: Post
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+  user: User
+}
+
+type LikeCountResponse {
+  likeCount: Int!
+  postId: String!
+}
+
+input LikeIdArgs {
+  postId: String!
+}
+
 input LoginInput {
   email: String!
   password: String!
@@ -38,7 +57,9 @@ input LoginInput {
 
 type Mutation {
   changePassword(data: ChangePasswordInput!): User!
+  createLike(data: LikeIdArgs!): Like!
   createPost(data: CreatePostInput!): Post!
+  deleteLike(data: LikeIdArgs!): String!
   login(data: LoginInput!): Auth!
   refreshToken(token: JWT!): Token!
   signup(data: SignupInput!): Auth!
@@ -85,13 +106,29 @@ type PostEdge {
   node: Post!
 }
 
+input PostIdArgs {
+  postId: String!
+}
+
 input PostOrder {
   direction: OrderDirection!
+  field: PostOrderField!
+}
+
+"""Properties by which post connections can be ordered."""
+enum PostOrderField {
+  content
+  createdAt
+  id
+  published
+  title
+  updatedAt
 }
 
 type Query {
   hello(name: String!): String!
   helloWorld: String!
+  likeCount(id: PostIdArgs!): LikeCountResponse!
   me: User!
   post: Post!
   publishedPosts(orderBy: PostOrder, query: String): PostConnection!

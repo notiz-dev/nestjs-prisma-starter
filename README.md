@@ -29,6 +29,8 @@ Starter template for 😻 [NestJS](https://nestjs.com/) and [Prisma](https://www
 - [Instructions](#instructions)
   - [Features](#features)
   - [Overview](#overview)
+  - [Assumtion and Conclusions](#assumptions-shortcuts)
+  - [API Operations](#api-operations)
   - [Prisma Setup](#prisma-setup)
     - [1. Install Dependencies](#1-install-dependencies)
     - [2. PostgreSQL with Docker](#2-PostgreSQL-with-docker)
@@ -49,6 +51,62 @@ Starter template for 😻 [NestJS](https://nestjs.com/) and [Prisma](https://www
       - [Mutations](#mutations)
       - [Subscriptions](#subscriptions)
       - [Authentication](#authentication)
+
+## Assumtion and Shortcuts
+
+### **Assumptions:**
+
+- The implementation of the "like" feature is not inherently complex. The main challenge was adapting to the project's existing structure and maintaining consistency with its style.
+
+- In large-scale applications, such a feature is typically not implemented using relational tables. Instead, a more suitable database (e.g., NoSQL or specialized time-series storage) would be used to handle large volumes of data efficiently.
+
+- The current implementation follows a relational database approach, which is sufficient for the given project but may not be optimal for handling millions of likes efficiently.
+
+### **Shortcuts:**
+
+- GraphQL schema is not highly optimized: The schema could be structured more efficiently using GraphQL libraries that provide better type handling, validations, and query optimizations.
+
+- Reused existing GraphQL module structures: Instead of designing everything from scratch, I utilized predefined patterns and structures from other modules and GraphQL schemas in the project. This allowed for quicker integration but may not be the most efficient approach.
+
+- Did not implement advanced caching or indexing strategies: In production, additional optimizations like Redis caching or database indexing strategies would be necessary to handle large-scale operations efficiently.
+
+## API Operations
+
+### Mutation: CreateLike
+
+Allows a user to like the post. This operation requires an authorization token.
+
+```graphql
+mutation {
+  createLike(data: { postId: "cm8rkhybn0001unskbuyshqxf"}) {
+    createdAt
+    updatedAt
+  }
+}
+```
+
+### Mutation: RemoveLike
+
+Allows a user to delte like from the post. This operation requires an authorization token.
+
+```graphql
+mutation {
+  deleteLike(data: { postId: "cm8rkhybn0001unskbuyshqxf"})
+}
+```
+
+### Query: LikeCount
+
+Allows to count amount of likes to the post
+
+```graphql
+{
+  likeCount(id: {postId: "cm8rkhybn0001unskbuyshqxf"}) {
+    likeCount
+    postId
+  }
+}
+```
 
 ## Prisma Setup
 

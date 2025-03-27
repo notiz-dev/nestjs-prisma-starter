@@ -22,6 +22,7 @@ model User {
   lastname  String?
   posts     Post[]
   role      Role
+  likes     Like[]
 }
 
 model Post {
@@ -33,9 +34,21 @@ model Post {
   content   String?
   author    User?    @relation(fields: [authorId], references: [id])
   authorId  String?
+  likes     Like[]
 }
 
 enum Role {
   ADMIN
   USER
+}
+
+model Like {
+  user      User     @relation(fields: [userId], references: [id]) 
+  userId    String
+  post      Post     @relation(fields: [postId], references: [id]) 
+  postId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@id([userId, postId])
 }
