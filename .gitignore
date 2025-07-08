@@ -35,3 +35,8 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 .env
+
+# Docker Compose YAML's
+docker-compose.db.yml
+docker-compose.migrate.yml
+docker-compose.yml

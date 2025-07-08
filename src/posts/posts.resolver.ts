@@ -22,7 +22,7 @@ import { PostConnection } from './models/post-connection.model';
 import { PostOrder } from './dto/post-order.input';
 import { CreatePostInput } from './dto/createPost.input';
 
-const pubSub = new PubSub();
+const pubSub = new PubSub() as any;
 
 @Resolver(() => Post)
 export class PostsResolver {

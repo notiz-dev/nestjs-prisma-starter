@@ -87,6 +87,17 @@ type PostEdge {
 
 input PostOrder {
   direction: OrderDirection!
+  field: PostOrderField!
+}
+
+"""Properties by which post connections can be ordered."""
+enum PostOrderField {
+  content
+  createdAt
+  id
+  published
+  title
+  updatedAt
 }
 
 type Query {
