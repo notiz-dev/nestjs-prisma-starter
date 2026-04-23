@@ -479,3 +479,8 @@ providers: [
 After you configured the Interceptor and retrieved the `TOKEN` from storage your request will succeed on resolvers with `@UseGuards(GqlAuthGuard)`.
 
 **[⬆ back to top](#overview)**
+
+
+## Getting Started
+
+Clone the repo and follow the installation instructions in the docs.
